@@ -36,7 +36,7 @@ public class Controlador {
 	}
 
 	public void cambiarPosicion(Figura f, Point p){
-		f.setPosicion(p);
+			f.setPosicion(limitar(p));
 	}
 	
 	public Vista getVista(){
@@ -55,10 +55,10 @@ public class Controlador {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
-			this.anyadirFigura(new Cuadrado(ev.getPoint(),40));			
+			this.anyadirFigura(new Cuadrado(limitar(ev.getPoint()),40));			
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
-			this.anyadirFigura(new Circulo(ev.getPoint(),40));
+			this.anyadirFigura(new Circulo(limitar(ev.getPoint()),40));
 		}
 		vista.repaint();		
 	}
@@ -78,5 +78,11 @@ public class Controlador {
 			seleccionada=null;
 		}
 	}
+	
+	public Point limitar(Point original){
+		Point auxiliar=new Point();
+		auxiliar.setLocation((int)original.x/45*45+5, (int)original.y/45*45+5);
+		return auxiliar;
+	} 
 
 }
