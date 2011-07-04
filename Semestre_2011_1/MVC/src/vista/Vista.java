@@ -36,8 +36,8 @@ public class Vista extends JPanel {
 			public void mouseExited(MouseEvent event) {}
 			public void mouseMoved( MouseEvent evento )
 			   {
-			     System.out.println( "Se movió en [" + evento.getX() +
-			         ", " + evento.getY() + "]" );
+			     /*System.out.println( "Se movió en [" + evento.getX() +
+			         ", " + evento.getY() + "]" );*/
 			   }
 			public void mousePressed(MouseEvent event) {
 			    eVmousePressed(event);	}
