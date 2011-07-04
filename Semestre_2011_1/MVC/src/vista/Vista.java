@@ -34,7 +34,11 @@ public class Vista extends JPanel {
 			public void mouseClicked(MouseEvent event) {}
 			public void mouseEntered(MouseEvent event) {}
 			public void mouseExited(MouseEvent event) {}
-			public void mouseMoved(MouseEvent event) {}
+			public void mouseMoved( MouseEvent evento )
+			   {
+			     System.out.println( "Se movió en [" + evento.getX() +
+			         ", " + evento.getY() + "]" );
+			   }
 			public void mousePressed(MouseEvent event) {
 			    eVmousePressed(event);	}
 			public void mouseReleased(MouseEvent event) {
@@ -53,8 +57,27 @@ public class Vista extends JPanel {
 	}
 	
 	private void pintarTodo(Graphics2D g){
+		pintar_rejilla(g);
+		
 		for (Figura elemento : modelo.getListado()) {
 			elemento.dibujar(g);
+		}
+	}
+	
+	public void pintar_rejilla(Graphics2D g){
+		g.setColor(Color.LIGHT_GRAY);
+		int tamanio=40;
+		int separacion=5;
+		int tam_sep=tamanio+separacion;
+		
+		for(int i=0;i<this.getWidth()/tam_sep;i++){
+			g.drawRect(i*tam_sep, 0, 0, this.getHeight());
+			g.drawRect(i*tam_sep +separacion, 0, 0, this.getHeight());
+		}
+		
+		for(int i=0;i<this.getHeight()/tam_sep;i++){
+			g.drawRect(0,i*tam_sep,  this.getWidth(),0 );
+			g.drawRect(0, i*tam_sep + separacion, this.getWidth(), 0);
 		}
 	}
 

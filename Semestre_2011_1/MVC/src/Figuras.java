@@ -1,15 +1,20 @@
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 
-import vista.Vista;
 import modelo.Modelo;
-
+import vista.Vista;
 import controlador.Controlador;
 
 
@@ -32,12 +37,45 @@ public class Figuras {
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
+			JPanel a=new JPanel(),b=new JPanel(),c=new JPanel(),d=new JPanel();
+			a.setOpaque(true);
+			a.setBackground(Color.BLUE);
+			/*a = new JPanel(new FlowLayout());
+	        a.setBackground(Color.yellow);
+	        a.add(new JLabel("Pon texto"));
+	        a.add(new JTextField(25));
+	        a.add(new JButton("Listo"));*/
+			
+			b.setOpaque(true);
+			b.setBackground(Color.GREEN);
+			b.add(new JButton("Listo"));
+			
+			
+			c.setOpaque(true);
+			c.setBackground(Color.YELLOW);
+			
+			d.setOpaque(true);
+			d.setBackground(Color.RED);
+			
+			
+			
 			final Controlador controlador = new Controlador(modelo,vista);
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-			guiobjects.add(ModelScroll);
+			guiobjects.add(ModelScroll,BorderLayout.CENTER);
+			guiobjects.add(a,BorderLayout.SOUTH);
+			guiobjects.add(b,BorderLayout.WEST);
+			guiobjects.add(c,BorderLayout.EAST);
+			
 			/*ModelScroll.repaint();
-			frame.repaint();*/
+			 * v.getContentPane().setLayout(new BorderLayout()); 
+			v.getContentPane().add(scroll,BorderLayout.CENTER);
+			v.getContentPane().add(panelSuperior,BorderLayout.NORTH);
+			v.getContentPane().add(panelInferior,BorderLayout.SOUTH);
+			v.getContentPane().add(panelIzquierdo,BorderLayout.WEST);
+			v.getContentPane().add(panelDerecho,BorderLayout.EAST);
+			 */
+			frame.repaint();//*/
 			frame.pack();
 		}catch (RuntimeException e){
 			exitApplication();
