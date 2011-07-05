@@ -16,6 +16,7 @@ public class Controlador {
 	private Modelo modelo;
 	private Vista vista;
 	private Figura seleccionada;
+	int tamanyoFig=40;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
@@ -56,10 +57,10 @@ public class Controlador {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
-			this.anyadirFigura(new Cuadrado(limitar(ev.getPoint()),40));			
+			this.anyadirFigura(new Cuadrado(limitar(ev.getPoint()),tamanyoFig));			
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
-			this.anyadirFigura(new Circulo(limitar(ev.getPoint()),40));
+			this.anyadirFigura(new Circulo(limitar(ev.getPoint()),tamanyoFig));
 		}
 		vista.repaint();		
 	}
