@@ -52,6 +52,7 @@ public class Controlador {
 	}
 	
 	public void eVmousePressed(MouseEvent ev) {
+		System.out.println(ev.getPoint());
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado

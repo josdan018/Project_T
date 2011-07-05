@@ -24,7 +24,8 @@ public class Circulo extends Figura {
 	
 	@Override
 	public boolean dentroFigura(Point p) {
-		if ( radio >= Math.sqrt( Math.pow( p.x - posicion.x, 2 ) + Math.pow(p.y - posicion.y, 2 )))		
+		System.out.println(radio/2 +" "+Math.sqrt( Math.pow( p.x - posicion.x - radio/2, 2 ) + Math.pow(p.y - posicion.y - radio/2, 2 )));
+		if ( radio/2 >= Math.sqrt( Math.pow( p.x - posicion.x - radio/2, 2 ) + Math.pow(p.y - posicion.y- radio/2, 2 )))		
 				return true;
 		else
 				return false;
