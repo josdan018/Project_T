@@ -17,11 +17,13 @@ public class Controlador {
 	private Vista vista;
 	private Figura seleccionada;
 	int tamanyoFig=40;
+	boolean insercion;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
+		insercion=false;
 	}
 	
 	public Figura obtenerFigura(Point posicion){
@@ -54,6 +56,7 @@ public class Controlador {
 	
 	public void eVmousePressed(MouseEvent ev) {
 		System.out.println(ev.getPoint());
+		//if(insercion){
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			seleccionada=this.getFiguraEn(ev.getPoint());
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
@@ -62,7 +65,8 @@ public class Controlador {
 		{
 			this.anyadirFigura(new Circulo(limitar(ev.getPoint()),tamanyoFig));
 		}
-		vista.repaint();		
+		vista.repaint();
+		//}
 	}
 	
 	public void eVmouseDragged(MouseEvent ev) {
