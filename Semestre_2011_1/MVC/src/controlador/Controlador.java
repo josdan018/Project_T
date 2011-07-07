@@ -10,6 +10,7 @@ import modelo.Circulo;
 import modelo.Cuadrado;
 import modelo.Figura;
 import modelo.Modelo;
+import modelo.compilador;
 
 public class Controlador {
 	
@@ -58,8 +59,12 @@ public class Controlador {
 		System.out.println(ev.getPoint());
 		//if(insercion){
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
-			
+			if(this.obtenerFigura(ev.getPoint())==null){
+				this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
+			}else{
+				System.out.println("ya hay: " + modelo.getListado().size());
 				seleccionada=this.getFiguraEn(ev.getPoint());
+			}
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
 			if(this.obtenerFigura(ev.getPoint())==null)
 				this.anyadirFigura(new Cuadrado(limitar(ev.getPoint()),tamanyoFig));			
