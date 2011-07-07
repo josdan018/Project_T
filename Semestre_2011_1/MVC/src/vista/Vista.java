@@ -20,6 +20,9 @@ public class Vista extends JPanel {
 	static final long serialVersionUID = 0L;
 	private Modelo modelo;
 	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
+	int tamanio=40;
+	int separacion=5;
+	int tam_sep=tamanio+separacion;
 	
 	public Vista(Dimension size, Modelo modelo){
 		super();
@@ -36,8 +39,8 @@ public class Vista extends JPanel {
 			public void mouseExited(MouseEvent event) {}
 			public void mouseMoved( MouseEvent evento )
 			   {
-			     System.out.println( "Se movió en [" + evento.getX() +
-			         ", " + evento.getY() + "]" );
+			     /*System.out.println( "Se movió en [" + evento.getX() +
+			         ", " + evento.getY() + "]" );*/
 			   }
 			public void mousePressed(MouseEvent event) {
 			    eVmousePressed(event);	}
@@ -66,9 +69,7 @@ public class Vista extends JPanel {
 	
 	public void pintar_rejilla(Graphics2D g){
 		g.setColor(Color.LIGHT_GRAY);
-		int tamanio=40;
-		int separacion=5;
-		int tam_sep=tamanio+separacion;
+		
 		
 		for(int i=0;i<this.getWidth()/tam_sep;i++){
 			g.drawRect(i*tam_sep, 0, 0, this.getHeight());
