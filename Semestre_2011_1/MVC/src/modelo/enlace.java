@@ -12,7 +12,8 @@ public class enlace extends Figura{
 		ENLACE_VERTICAL=2,
 		ENLACE_SOLIDO=1,
 		ENLACE_VOLATIL_CORRECTO=2,
-		ENLACE_VOLATIL_INCORRECTO=3
+		ENLACE_VOLATIL_INCORRECTO=3,
+		ENLACE_VOLATIL_NO_ACTIVO=4
 		;
 	 
 	int ancho, alto, orientacion, estado;
@@ -50,7 +51,7 @@ public class enlace extends Figura{
 	@Override
 	public void dibujar(Graphics g) {
 		if(estado==ENLACE_SOLIDO)
-			g.setColor(Color.BLACK);
+			g.setColor(Color.BLUE);
 		else if(estado==ENLACE_VOLATIL_CORRECTO)
 			g.setColor(Color.GREEN);
 		else if(estado==ENLACE_VOLATIL_INCORRECTO)

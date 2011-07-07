@@ -44,6 +44,7 @@ public class compilador extends Figura{
 		enlaces[0].setPosicion(translacionPto(posicion, -5, 0));
 		enlaces[1].setPosicion(translacionPto(posicion, 40, 0));
 		enlaces[2].setPosicion(translacionPto(posicion, 0, 40));
+		//deberian haber enlaces invisibles para poder activarlos digo no . . .  
 	}
 	
 	
