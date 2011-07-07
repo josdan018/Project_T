@@ -13,7 +13,8 @@ public class enlace extends Figura{
 		ENLACE_SOLIDO=1,
 		ENLACE_VOLATIL_CORRECTO=2,
 		ENLACE_VOLATIL_INCORRECTO=3,
-		ENLACE_VOLATIL_NO_ACTIVO=4
+		ENLACE_VOLATIL_NO_ACTIVO=4,
+		ENLACE_TRIANGULAR=5//solo para maquinas
 		;
 	 
 	int ancho, alto, orientacion, estado;
@@ -50,14 +51,20 @@ public class enlace extends Figura{
 
 	@Override
 	public void dibujar(Graphics g) {
-		if(estado==ENLACE_SOLIDO)
+		if(estado==ENLACE_SOLIDO||estado==ENLACE_TRIANGULAR)
 			g.setColor(Color.BLUE);
 		else if(estado==ENLACE_VOLATIL_CORRECTO)
 			g.setColor(Color.GREEN);
 		else if(estado==ENLACE_VOLATIL_INCORRECTO)
 			g.setColor(Color.RED);
-		 
-		g.fillRect(posicion.x,posicion.y,ancho,alto);
+		
+		if(ENLACE_SOLIDO==estado)
+			g.fillRect(posicion.x,posicion.y,ancho,alto);
+		else if(ENLACE_TRIANGULAR==estado){
+			int[] x={posicion.x,posicion.x+ancho/2,posicion.x+ancho};
+			int[] y={posicion.y,posicion.y+alto,posicion.y};
+			g.fillPolygon(x,y, 3);
+		}
 		// TODO Auto-generated method stub
 		
 	}
