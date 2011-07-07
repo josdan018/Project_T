@@ -6,7 +6,7 @@ import java.awt.Point;
 public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  circulo
 	Cuadrado cuadrados[];
 	enlace enlaces[];
-	String lenguajeObjeto,lenguajeFuente,lenguajeBase;
+	String nombrePrograma,lenguajeBase;
 	
 	public programa(Point posicion,int ancho) {
 		cuadrados=new Cuadrado[4];
@@ -21,7 +21,7 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		enlaces[0]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[1]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[2]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
-		lenguajeBase=lenguajeObjeto=lenguajeFuente="";
+		lenguajeBase=nombrePrograma="";
 	}
 	
 	Point translacionPto(Point posicion,int dx, int dy){
