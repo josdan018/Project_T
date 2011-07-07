@@ -35,10 +35,10 @@ public class Circulo extends Figura {
 	public void dibujar(Graphics g) {
 		g.setColor(Color.ORANGE);
 		g.fillOval(this.getX(), this.getY(), this.getRadio(), this.getRadio());
-		if(this.getSeleccionada()){
+		/*if(this.getSeleccionada()){
 			g.setColor(Color.CYAN);
 			g.drawOval(this.getX()+7, this.getY()+7, this.getRadio()-20, this.getRadio()-20);
-		}
+		}*/
 	}
 
 }

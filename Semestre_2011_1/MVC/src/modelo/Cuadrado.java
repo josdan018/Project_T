@@ -34,9 +34,9 @@ public class Cuadrado extends Figura {
 	{
 		g.setColor(Color.BLUE);
 		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getAncho());
-		if(this.getSeleccionada()){
+		/*if(this.getSeleccionada()){
 			g.setColor(Color.RED);
 			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAncho()-20);
-		}
+		}*/
 	}	
 }
