@@ -6,7 +6,7 @@ import java.awt.Point;
 public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 	Cuadrado cuadrados[];
 	enlace enlaces[];
-	String lenguajeObjeto,lenguajeFuente,lenguajeBase;
+	String lenguajeFuente,lenguajeBase;
 	
 	public interprete(Point posicion,int ancho) {
 		cuadrados=new Cuadrado[4];
@@ -21,7 +21,7 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 		enlaces[0]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[1]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[2]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
-		lenguajeBase=lenguajeObjeto=lenguajeFuente="";
+		lenguajeBase=lenguajeFuente="";
 	}
 	
 	Point translacionPto(Point posicion,int dx, int dy){
