@@ -71,11 +71,12 @@ public class Controlador {
 			}
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
 			if(this.obtenerFigura(ev.getPoint())==null)
-				this.anyadirFigura(new Cuadrado(limitar(ev.getPoint()),tamanyoFig));			
+				this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
+							
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
 			if(this.obtenerFigura(ev.getPoint())==null)
-				this.anyadirFigura(new Circulo(limitar(ev.getPoint()),tamanyoFig));
+				this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 		}
 		vista.repaint();
 		//}
