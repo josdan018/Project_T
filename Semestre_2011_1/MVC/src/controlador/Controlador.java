@@ -69,6 +69,24 @@ public class Controlador {
 				System.out.println("ya hay: " + modelo.getListado().size());
 				seleccionada=this.getFiguraEn(ev.getPoint());
 			}
+			switch (this.getFiguraEn(ev.getPoint()).getTipoFigura()) {
+			case Figura.COMPILADOR:
+				/*aux
+				if(this.getFiguraEn(Figura.translacionPto(ev.getPoint(), -90, 0))!=null);*/
+				//revisar por arriba y por los lados . . . 
+				break;
+			case Figura.PROGRAMA:
+				//revisar por debajo
+				break;
+			case Figura.INTERPRETE:
+				//revisar por arriba y por debajo
+				break;
+			case Figura.MAQUINA:
+				//revisar por arriba
+				break;
+			default:
+				break;
+			}
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
 			if(this.obtenerFigura(ev.getPoint())==null)
 				this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
