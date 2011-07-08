@@ -18,18 +18,16 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		circulos=new Circulo(translacionPto(posicion, -5, -(ancho+5)), ancho+ancho/4);
 		this.ancho=ancho;
 				
-		enlaces=new enlace[1];
+		enlaces=new enlace[4];
 		
 		enlaces[0]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
+		enlaces[1]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[2]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[3]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		lenguajeBase=nombrePrograma="";
 	}
 	
-	Point translacionPto(Point posicion,int dx, int dy){
-		//System.out.println(posicion);
-		Point aMover=new Point(posicion);
-		aMover.translate(dx, dy);
-		return aMover;
-	}
+	
 	
 	@Override
 	public void setPosicion(Point posicion) {
@@ -39,6 +37,9 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		
 		circulos.setPosicion(translacionPto(posicion,-5, -(ancho+5)));
 		enlaces[0].setPosicion(translacionPto(posicion, 0, -5));
+		enlaces[1].setPosicion(translacionPto(posicion, -5, 0));
+		enlaces[2].setPosicion(translacionPto(posicion, 40, 0));
+		enlaces[3].setPosicion(translacionPto(posicion, 0, 40));
 		//deberian haber enlaces invisibles para poder activarlos digo no . . .  
 	}
 	
@@ -61,6 +62,9 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		cuadrados.dibujar(g);
 		circulos.dibujar(g);
 		enlaces[0].dibujar(g);
+		enlaces[1].dibujar(g);
+		enlaces[2].dibujar(g);
+		enlaces[3].dibujar(g);
 		
 		
 	}

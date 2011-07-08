@@ -18,20 +18,20 @@ public class compilador extends Figura{
 		cuadrados[2]=new Cuadrado(translacionPto(posicion, -45, 0), ancho);
 		cuadrados[3]=new Cuadrado(translacionPto(posicion, 0, 45), ancho);
 		
-		enlaces=new enlace[3];
+		enlaces=new enlace[8];
 		
 		enlaces[0]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[1]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[2]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
+		enlaces[3]=new enlace(translacionPto(posicion, -50, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[4]=new enlace(translacionPto(posicion, 85, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[5]=new enlace(translacionPto(posicion, 0, 85),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[6]=new enlace(translacionPto(posicion, -5, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[7]=new enlace(translacionPto(posicion, 40, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		lenguajeBase=lenguajeObjeto=lenguajeFuente="";
 	}
 	
-	Point translacionPto(Point posicion,int dx, int dy){
-		//System.out.println(posicion);
-		Point aMover=new Point(posicion);
-		aMover.translate(dx, dy);
-		return aMover;
-	}
+	
 	
 	@Override
 	public void setPosicion(Point posicion) {
@@ -46,6 +46,11 @@ public class compilador extends Figura{
 		enlaces[0].setPosicion(translacionPto(posicion, -5, 0));
 		enlaces[1].setPosicion(translacionPto(posicion, 40, 0));
 		enlaces[2].setPosicion(translacionPto(posicion, 0, 40));
+		enlaces[3].setPosicion(translacionPto(posicion, -50, 0));
+		enlaces[4].setPosicion(translacionPto(posicion, 85, 0));
+		enlaces[5].setPosicion(translacionPto(posicion, 0, 85));
+		enlaces[6].setPosicion(translacionPto(posicion, -5, 45));
+		enlaces[7].setPosicion(translacionPto(posicion, 40, 45));
 		//deberian haber enlaces invisibles para poder activarlos digo no . . .  
 	}
 	
@@ -67,22 +72,19 @@ public class compilador extends Figura{
 
 	@Override
 	public void dibujar(Graphics g) {
-		//System.out.println("creando cuadro 1");
 		cuadrados[0].dibujar(g);
-		//System.out.println("creando cuadro 2");
 		cuadrados[1].dibujar(g);
-		//System.out.println("creando cuadro 3");
 		cuadrados[2].dibujar(g);
-		//System.out.println("creando cuadro 4");
 		cuadrados[3].dibujar(g);
 		
-		//System.out.println("creando enlace 1");
 		enlaces[0].dibujar(g);
-		//System.out.println("creando enlace 2");
 		enlaces[1].dibujar(g);
-		//System.out.println("creando enlace 3");
 		enlaces[2].dibujar(g);
-		
+		enlaces[3].dibujar(g);
+		enlaces[4].dibujar(g);
+		enlaces[5].dibujar(g);
+		enlaces[6].dibujar(g);
+		enlaces[7].dibujar(g);
 	}
 	
 
