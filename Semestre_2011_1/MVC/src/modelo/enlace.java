@@ -58,14 +58,18 @@ public class enlace extends Figura{
 			g.setColor(Color.GREEN);
 		else if(estado==ENLACE_VOLATIL_INCORRECTO)
 			g.setColor(Color.RED);
+		else if(estado==ENLACE_VOLATIL_NO_ACTIVO){
+			g.setColor(new Color(0.1F, 0.1F, 0.1F, 0.1F));
+		}
+
 		
-		if(ENLACE_SOLIDO==estado)
-			g.fillRect(posicion.x,posicion.y,ancho,alto);
-		else if(ENLACE_TRIANGULAR==estado){
+		if(ENLACE_TRIANGULAR==estado){
 			int[] x={posicion.x,posicion.x+ancho/2,posicion.x+ancho};
 			int[] y={posicion.y,posicion.y+alto,posicion.y};
 			g.fillPolygon(x,y, 3);
-		}
+		}else
+			g.fillRect(posicion.x,posicion.y,ancho,alto);
+		 
 		// TODO Auto-generated method stub
 		
 	}
