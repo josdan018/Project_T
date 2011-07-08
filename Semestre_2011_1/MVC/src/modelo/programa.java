@@ -11,6 +11,7 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 	int ancho;
 	
 	public programa(Point posicion,int ancho) {
+		this.tipoFigura=Figura.PROGRAMA;
 		
 		
 		cuadrados=new Cuadrado(posicion, ancho);

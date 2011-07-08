@@ -8,6 +8,7 @@ public class Cuadrado extends Figura {
 
 	private int ancho;
 	public Cuadrado(Point posicion, int ancho){
+		this.tipoFigura=Figura.CUADRADO;
 		this.posicion=posicion;
 		this.ancho=ancho;
 		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad

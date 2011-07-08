@@ -4,6 +4,17 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 public abstract class Figura {
+	static int	
+				NINGUNA=0,
+				CUADRADO=1,
+				CIRCULO=2,
+				ENLACE=3,
+				INTERPRETE=4,
+				PROGRAMA=5,
+				COMPILADOR=6,
+				MAQUINA=7
+				;
+	int tipoFigura; 
 	protected Point posicion;
 	protected boolean seleccionada;
 	public abstract boolean dentroFigura(Point p);

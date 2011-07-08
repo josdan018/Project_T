@@ -9,6 +9,8 @@ public class compilador extends Figura{
 	String lenguajeObjeto,lenguajeFuente,lenguajeBase;
 	
 	public compilador(Point posicion,int ancho) {
+		this.tipoFigura=Figura.COMPILADOR;
+		
 		cuadrados=new Cuadrado[4];
 		
 		cuadrados[0]=new Cuadrado(posicion, ancho);		

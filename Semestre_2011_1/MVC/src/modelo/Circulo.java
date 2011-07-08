@@ -17,6 +17,7 @@ public class Circulo extends Figura {
 	}
 	
 	public Circulo(Point posicion, int radio){
+		this.tipoFigura=Figura.CIRCULO;
 		this.posicion=posicion;
 		this.radio=radio;
 		this.seleccionada=false;  //Deberia estar en el constructor de figura pero por simplicidad

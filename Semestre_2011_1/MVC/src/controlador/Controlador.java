@@ -12,6 +12,7 @@ import modelo.Figura;
 import modelo.Modelo;
 import modelo.compilador;
 import modelo.maquina;
+import modelo.programa;
 
 public class Controlador {
 	
@@ -61,7 +62,8 @@ public class Controlador {
 		//if(insercion){
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			if(this.obtenerFigura(ev.getPoint())==null){
-				this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
+				this.anyadirFigura(new programa(limitar(ev.getPoint()), 40));
+				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
 				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 			}else{
 				System.out.println("ya hay: " + modelo.getListado().size());

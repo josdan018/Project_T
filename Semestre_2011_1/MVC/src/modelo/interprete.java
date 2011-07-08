@@ -9,7 +9,7 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 	String lenguajeFuente,lenguajeBase;
 	
 	public interprete(Point posicion,int ancho) {
-		
+		this.tipoFigura=Figura.INTERPRETE;
 		
 		cuadrados=new Cuadrado(posicion, ancho);		
 		

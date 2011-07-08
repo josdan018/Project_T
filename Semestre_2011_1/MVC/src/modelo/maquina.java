@@ -9,7 +9,7 @@ public class maquina extends Figura{
 	String lenguajeBase;
 	
 	public maquina(Point posicion,int ancho) {
-				
+		this.tipoFigura=Figura.MAQUINA;
 		cuadrados=new Cuadrado(posicion, ancho);		
 
 		enlaces=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_TRIANGULAR);

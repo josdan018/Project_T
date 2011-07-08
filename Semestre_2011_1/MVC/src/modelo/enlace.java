@@ -23,6 +23,7 @@ public class enlace extends Figura{
 		this.posicion=posicion;
 		this.orientacion=orientacion;
 		this.estado=estado;
+		this.tipoFigura=Figura.ENLACE;
 		if(orientacion==ENLACE_VERTICAL){
 			this.ancho=ancho/8;
 			this.alto=ancho;
