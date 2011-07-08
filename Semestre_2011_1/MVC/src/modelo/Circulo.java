@@ -33,7 +33,7 @@ public class Circulo extends Figura {
 
 	@Override
 	public void dibujar(Graphics g) {
-		g.setColor(Color.ORANGE);
+		g.setColor(Color.BLUE);
 		g.fillOval(this.getX(), this.getY(), this.getRadio(), this.getRadio());
 		/*if(this.getSeleccionada()){
 			g.setColor(Color.CYAN);
