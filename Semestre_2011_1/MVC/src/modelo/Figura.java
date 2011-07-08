@@ -4,7 +4,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 
 public abstract class Figura {
-	static int	
+	public static final int	
 				NINGUNA=0,
 				CUADRADO=1,
 				CIRCULO=2,
@@ -18,7 +18,13 @@ public abstract class Figura {
 	protected Point posicion;
 	protected boolean seleccionada;
 	public abstract boolean dentroFigura(Point p);
-	public abstract void dibujar(Graphics g);	
+	public abstract void dibujar(Graphics g);
+	public static Point translacionPto(Point posicion,int dx, int dy){
+		//System.out.println(posicion);
+		Point aMover=new Point(posicion);
+		aMover.translate(dx, dy);
+		return aMover;
+	}
 	
 	public void setPosicion(Point posicion)
 	{
@@ -45,4 +51,7 @@ public abstract class Figura {
 		seleccionada=sel;
 	}
 
+	public int getTipoFigura() {
+		return tipoFigura;
+	}
 }
