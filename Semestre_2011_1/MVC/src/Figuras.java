@@ -29,29 +29,30 @@ public class Figuras {
 			frame.setVisible(true);
 			Dimension fullscreen = Toolkit.getDefaultToolkit().getScreenSize();
 			fullscreen.width=fullscreen.width-400;
-			fullscreen.height=fullscreen.height-400;
+			fullscreen.height=fullscreen.height-250;
 			frame.setBounds(50,50,fullscreen.width,fullscreen.height);
 			frame.getContentPane().setPreferredSize(fullscreen);
 			frame.setDefaultCloseOperation (JFrame.EXIT_ON_CLOSE);
 		    Container guiobjects = frame.getContentPane();
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
-			Vista vista = new Vista(new Dimension(1000,800),modelo);
+			Vista vista = new Vista(new Dimension(800,500),modelo);
+			
 			JPanel a=new JPanel(),b=new JPanel(),c=new JPanel(),d=new JPanel();
+			
 			a.setOpaque(true);
 			a.setBackground(Color.BLUE);
 			a = new JPanel(new FlowLayout());
-	        //a.setBackground(Color.yellow);
 	        a.add(new JLabel("Pon texto"));
 	        a.add(new JTextField(25));
 	        a.add(new JButton("Listo"));
 			
 			b.setOpaque(true);
 			b.setBackground(Color.GREEN);
-			b.add(new JButton("Listo"));
-			b.add(new JLabel("Pon texto"));
-	        b.add(new JTextField(25));
-	        b.add(new JButton("Listo"));
+			//b.add(new JButton("Listo"));
+			//b.add(new JLabel("Pon texto"));
+	       // b.add(new JTextField(25));
+	        b.add(new JButton("Agregar"));
 			
 			c.setOpaque(true);
 			c.setBackground(Color.YELLOW);
