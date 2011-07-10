@@ -40,16 +40,18 @@ public class Figuras {
 			JPanel a=new JPanel(),b=new JPanel(),c=new JPanel(),d=new JPanel();
 			a.setOpaque(true);
 			a.setBackground(Color.BLUE);
-			/*a = new JPanel(new FlowLayout());
-	        a.setBackground(Color.yellow);
+			a = new JPanel(new FlowLayout());
+	        //a.setBackground(Color.yellow);
 	        a.add(new JLabel("Pon texto"));
 	        a.add(new JTextField(25));
-	        a.add(new JButton("Listo"));*/
+	        a.add(new JButton("Listo"));
 			
 			b.setOpaque(true);
 			b.setBackground(Color.GREEN);
 			b.add(new JButton("Listo"));
-			
+			b.add(new JLabel("Pon texto"));
+	        b.add(new JTextField(25));
+	        b.add(new JButton("Listo"));
 			
 			c.setOpaque(true);
 			c.setBackground(Color.YELLOW);
