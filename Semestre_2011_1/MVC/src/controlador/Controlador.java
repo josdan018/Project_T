@@ -69,6 +69,7 @@ public class Controlador {
 				System.out.println("ya hay: " + modelo.getListado().size());
 				seleccionada=this.getFiguraEn(ev.getPoint());
 			}
+			if(this.getFiguraEn(ev.getPoint())!=null)
 			switch (this.getFiguraEn(ev.getPoint()).getTipoFigura()) {
 			case Figura.COMPILADOR:
 				/*aux
