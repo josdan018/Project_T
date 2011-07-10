@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -10,6 +11,7 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 	
 	public interprete(Point posicion,int ancho) {
 		this.tipoFigura=Figura.INTERPRETE;
+		this.posicion = posicion;
 		
 		cuadrados=new Cuadrado(posicion, ancho);
 		
@@ -18,7 +20,8 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 		enlaces[1]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[2]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[3]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		lenguajeBase=lenguajeFuente="";
+		lenguajeBase="Facilon";
+		lenguajeFuente="Facilon";
 	}
 	
 	
@@ -51,6 +54,16 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 		enlaces[1].dibujar(g);
 		enlaces[2].dibujar(g);
 		enlaces[3].dibujar(g);
+		
+		g.setColor(Color.BLACK);
+		
+		//Para el lenguaje base
+		g.drawString(lenguajeBase, translacionPto(posicion, -40, 23).x,translacionPto(posicion, -40, 23).y);
+		
+		//Para el lenguaje Fuente
+		g.drawString(lenguajeFuente, translacionPto(posicion, -40, 23).x,translacionPto(posicion, -40, 23).y);
+				
+		
 				
 	}
 

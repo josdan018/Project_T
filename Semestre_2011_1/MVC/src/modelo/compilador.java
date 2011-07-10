@@ -1,5 +1,6 @@
 package modelo;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Point;
 
@@ -28,8 +29,8 @@ public class compilador extends Figura{
 		enlaces[5]=new enlace(translacionPto(posicion, 0, 85),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[6]=new enlace(translacionPto(posicion, -5, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[7]=new enlace(translacionPto(posicion, 40, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		lenguajeBase="Facilon";
-		lenguajeObjeto=" ";
+		lenguajeBase="linux";
+		lenguajeObjeto="linux";
 		lenguajeFuente="Facilon";
 	}
 	
@@ -87,7 +88,19 @@ public class compilador extends Figura{
 		enlaces[5].dibujar(g);
 		enlaces[6].dibujar(g);
 		enlaces[7].dibujar(g);
-		g.drawString(lenguajeFuente, translacionPto(posicion, -45, 5).x,translacionPto(posicion, -45, 5).y);
+		
+		g.setColor(Color.BLACK);
+		
+		//Para el lenguaje Fuente
+		g.drawString(lenguajeFuente, translacionPto(posicion, -40, 23).x,translacionPto(posicion, -40, 23).y);
+		
+		//Para el lenguaje objeto
+		g.drawString(lenguajeObjeto, translacionPto(posicion, 50, 23).x,translacionPto(posicion, 50, 23).y);
+		
+		//Para el lenguaje Base
+		g.drawString(lenguajeBase, translacionPto(posicion, 7, 65).x,translacionPto(posicion, 7, 65).y);
+		
+		
 	}
 	
 
