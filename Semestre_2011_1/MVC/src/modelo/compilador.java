@@ -10,7 +10,7 @@ public class compilador extends Figura{
 	
 	public compilador(Point posicion,int ancho) {
 		this.tipoFigura=Figura.COMPILADOR;
-		
+		this.posicion = posicion;
 		cuadrados=new Cuadrado[4];
 		
 		cuadrados[0]=new Cuadrado(posicion, ancho);		
@@ -28,7 +28,9 @@ public class compilador extends Figura{
 		enlaces[5]=new enlace(translacionPto(posicion, 0, 85),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[6]=new enlace(translacionPto(posicion, -5, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[7]=new enlace(translacionPto(posicion, 40, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		lenguajeBase=lenguajeObjeto=lenguajeFuente="";
+		lenguajeBase="Facilon";
+		lenguajeObjeto=" ";
+		lenguajeFuente="Facilon";
 	}
 	
 	
@@ -85,6 +87,7 @@ public class compilador extends Figura{
 		enlaces[5].dibujar(g);
 		enlaces[6].dibujar(g);
 		enlaces[7].dibujar(g);
+		g.drawString(lenguajeFuente, translacionPto(posicion, -45, 5).x,translacionPto(posicion, -45, 5).y);
 	}
 	
 
