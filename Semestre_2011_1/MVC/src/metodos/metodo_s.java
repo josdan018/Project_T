@@ -35,14 +35,46 @@ public class metodo_s extends JPanel {
 	
 	public void ventana_emergente(){
 				
-	/*	String seleccion = JOptionPane.showInputDialog(
+		Object seleccion = JOptionPane.showInputDialog(
 				ventana,
-				"Seleccione opcion",
-				"Selector de opciones",
+				"Seleccione un tipo de Componente",
+				"Componentes",
 				JOptionPane.QUESTION_MESSAGE,
 				null, 
-				new Object[] { "opcion 1", "opcion 2", "opcion 3" },
-				"opcion 1");	*/	
+				new Object[] { "Compilador", "Interprete", "Maquina","Programa"},
+				"Compilador");	
+		if(seleccion.equals("Compilador")){
+			String []lenguajes=new String[3];
+			
+			lenguajes[0]=componentes("Lenguaje Fuente");
+			lenguajes[1]=componentes("Lenguaje Objeto");
+			lenguajes[2]=componentes("Implementacion");			
+		}else if(seleccion.equals("Interprete")){
+			String []lenguajes=new String[3];
+			
+			lenguajes[0]=componentes("Lenguaje conector");
+			lenguajes[1]=componentes("Lenguaje a interpretar");
+			lenguajes[2]=null;			
+		}else if(seleccion.equals("Maquina")){
+			String []lenguajes=new String[3];
+			
+			lenguajes[0]=componentes("Lenguaje de la Maquina");
+			lenguajes[1]=null;
+			lenguajes[2]=null;
+		}else if(seleccion.equals("Programa")){
+			String []lenguajes=new String[3];
+			
+			lenguajes[0]=componentes("Nombre del Programa");
+			lenguajes[1]=componentes("Lenguaje del Programa");
+			lenguajes[2]=null;
+		}
+		
+	}
+	public String componentes(String lenguaje){
+		String len = JOptionPane.showInputDialog(
+				  ventana,
+				  lenguaje,null);
+		return len;
 	}
 
 }
