@@ -80,4 +80,12 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		
 		
 	}
+
+
+
+	@Override
+	public void bloquear() {
+		// TODO Auto-generated method stub
+		
+	}
 }

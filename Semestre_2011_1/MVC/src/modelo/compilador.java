@@ -7,6 +7,7 @@ import java.awt.Point;
 public class compilador extends Figura{
 	Cuadrado cuadrados[];
 	enlace enlaces[];
+	
 	String lenguajeObjeto,lenguajeFuente,lenguajeBase;
 	
 	public compilador(Point posicion,int ancho) {
@@ -24,6 +25,7 @@ public class compilador extends Figura{
 		enlaces[0]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[1]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
 		enlaces[2]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
+		
 		enlaces[3]=new enlace(translacionPto(posicion, -50, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[4]=new enlace(translacionPto(posicion, 85, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
 		enlaces[5]=new enlace(translacionPto(posicion, 0, 85),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
@@ -99,6 +101,14 @@ public class compilador extends Figura{
 		
 		//Para el lenguaje Base
 		g.drawString(lenguajeBase, translacionPto(posicion, 7, 65).x,translacionPto(posicion, 7, 65).y);
+		
+		
+	}
+
+
+
+	@Override
+	public void bloquear() {
 		
 		
 	}

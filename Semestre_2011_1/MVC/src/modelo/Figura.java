@@ -15,10 +15,12 @@ public abstract class Figura {
 				MAQUINA=7
 				;
 	int tipoFigura; 
+	int ID;
 	protected Point posicion;
 	protected boolean seleccionada;
 	public abstract boolean dentroFigura(Point p);
 	public abstract void dibujar(Graphics g);
+	public abstract void bloquear();
 	public static Point translacionPto(Point posicion,int dx, int dy){
 		//System.out.println(posicion);
 		Point aMover=new Point(posicion);
@@ -54,4 +56,6 @@ public abstract class Figura {
 	public int getTipoFigura() {
 		return tipoFigura;
 	}
+	
+	
 }

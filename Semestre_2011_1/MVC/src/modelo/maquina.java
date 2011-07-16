@@ -58,5 +58,11 @@ public class maquina extends Figura{
 				
 	}
 
+	@Override
+	public void bloquear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 }

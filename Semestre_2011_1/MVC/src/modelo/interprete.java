@@ -67,4 +67,12 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 				
 	}
 
+
+
+	@Override
+	public void bloquear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

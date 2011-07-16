@@ -14,7 +14,8 @@ public class enlace extends Figura{
 		ENLACE_VOLATIL_CORRECTO=2,
 		ENLACE_VOLATIL_INCORRECTO=3,
 		ENLACE_VOLATIL_NO_ACTIVO=4,
-		ENLACE_TRIANGULAR=5//solo para maquinas
+		ENLACE_TRIANGULAR=5,//solo para maquinas
+		ENLACE_BLOQUEADO=6
 		;
 	 
 	int ancho, alto, orientacion, estado;
@@ -52,24 +53,31 @@ public class enlace extends Figura{
 
 	@Override
 	public void dibujar(Graphics g) {
-		if(estado==ENLACE_SOLIDO||estado==ENLACE_TRIANGULAR)
-			g.setColor(Color.BLUE);
-		else if(estado==ENLACE_VOLATIL_CORRECTO)
-			g.setColor(Color.GREEN);
-		else if(estado==ENLACE_VOLATIL_INCORRECTO)
-			g.setColor(Color.RED);
-		else if(estado==ENLACE_VOLATIL_NO_ACTIVO){
-			g.setColor(new Color(0.1F, 0.1F, 0.1F, 0.1F));
-		}
-
+		if(estado!=ENLACE_BLOQUEADO){
+			if(estado==ENLACE_SOLIDO||estado==ENLACE_TRIANGULAR)
+				g.setColor(Color.BLUE);
+			else if(estado==ENLACE_VOLATIL_CORRECTO)
+				g.setColor(Color.GREEN);
+			else if(estado==ENLACE_VOLATIL_INCORRECTO)
+				g.setColor(Color.RED);
+			else if(estado==ENLACE_VOLATIL_NO_ACTIVO){
+				g.setColor(new Color(0.1F, 0.1F, 0.1F, 0.1F));
+			}
+	
+			
+			if(ENLACE_TRIANGULAR==estado){
+				int[] x={posicion.x,posicion.x+ancho/2,posicion.x+ancho};
+				int[] y={posicion.y,posicion.y+alto,posicion.y};
+				g.fillPolygon(x,y, 3);
+			}else
+				g.fillRect(posicion.x,posicion.y,ancho,alto);
+			}
+		// TODO Auto-generated method stub
 		
-		if(ENLACE_TRIANGULAR==estado){
-			int[] x={posicion.x,posicion.x+ancho/2,posicion.x+ancho};
-			int[] y={posicion.y,posicion.y+alto,posicion.y};
-			g.fillPolygon(x,y, 3);
-		}else
-			g.fillRect(posicion.x,posicion.y,ancho,alto);
-		 
+	}
+
+	@Override
+	public void bloquear() {
 		// TODO Auto-generated method stub
 		
 	}

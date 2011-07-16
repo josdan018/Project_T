@@ -42,4 +42,10 @@ public class Circulo extends Figura {
 		}*/
 	}
 
+	@Override
+	public void bloquear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
