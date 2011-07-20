@@ -63,6 +63,10 @@ public class maquina extends Figura{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void dentroCualFigura(Point p){
+		
+	}
 
 
 }

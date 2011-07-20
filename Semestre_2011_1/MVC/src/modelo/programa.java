@@ -88,4 +88,8 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void dentroCualFigura(Point p){
+		
+	}
 }

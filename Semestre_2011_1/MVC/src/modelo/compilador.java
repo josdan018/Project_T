@@ -8,10 +8,13 @@ public class compilador extends Figura{
 	Cuadrado cuadrados[];
 	enlace enlaces[];
 	
+	
+	 
 	String lenguajeObjeto,lenguajeFuente,lenguajeBase;
 	
 	public compilador(Point posicion,int ancho) {
 		this.tipoFigura=Figura.COMPILADOR;
+		
 		this.posicion = posicion;
 		cuadrados=new Cuadrado[4];
 		
@@ -113,5 +116,8 @@ public class compilador extends Figura{
 		
 	}
 	
+	public int dentroCualFigura(Point p){
+		return 0;
+	}
 
 }

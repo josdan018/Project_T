@@ -6,8 +6,6 @@ import java.awt.event.MouseEvent;
 import java.util.ListIterator;
 
 import vista.Vista;
-import modelo.Circulo;
-import modelo.Cuadrado;
 import modelo.Figura;
 import modelo.Modelo;
 import modelo.compilador;

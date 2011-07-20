@@ -74,5 +74,8 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void dentroCualFigura(Point p){
+		
+	}
 }

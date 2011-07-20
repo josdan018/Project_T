@@ -47,5 +47,9 @@ public class Circulo extends Figura {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public void dentroCualFigura(Point p){
+		
+	}
 
 }
