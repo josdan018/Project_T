@@ -6,14 +6,15 @@ import java.awt.Point;
 
 public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  circulo
 	Cuadrado cuadrados;
-	enlace enlaces[];
+
 	Circulo circulos;
 	String nombrePrograma,lenguajeBase;
 	int ancho;
 	
-	public programa(Point posicion,int ancho) {
+	public programa(Point posicion,int ancho, int id) {
 		this.tipoFigura=Figura.PROGRAMA;
 		this.posicion = posicion;
+		this.ID=id;
 		
 		
 		cuadrados=new Cuadrado(posicion, ancho);
@@ -22,10 +23,11 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 				
 		enlaces=new enlace[4];
 		
-		enlaces[0]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
-		enlaces[1]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[2]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[3]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[0]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO,ID);
+		enlaces[1]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO,ID);
+		enlaces[2]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO,ID);
+		enlaces[3]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO,ID);
+		numeroEnlaces=4;
 		lenguajeBase="Linux";
 		nombrePrograma="C++";
 	}
@@ -89,7 +91,7 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		
 	}
 	
-	public void dentroCualFigura(Point p){
-		
+	public int dentroCualFigura(Point p){
+		return 0;
 	}
 }

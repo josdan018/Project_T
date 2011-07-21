@@ -7,7 +7,7 @@ import java.awt.Point;
 import java.awt.Rectangle;
 
 public class enlace extends Figura{
-	static int 
+	public static int 
 		ENLACE_HORIZONTAL=1,
 		ENLACE_VERTICAL=2,
 		ENLACE_SOLIDO=1,
@@ -17,14 +17,19 @@ public class enlace extends Figura{
 		ENLACE_TRIANGULAR=5,//solo para maquinas
 		ENLACE_BLOQUEADO=6
 		;
+
 	 
-	int ancho, alto, orientacion, estado;
+	int ancho, alto, orientacion, estado, idCercano, idDuenyo;
+
 	
-	public enlace(Point posicion, int ancho, int orientacion, int estado) {
+	
+	public enlace(Point posicion, int ancho, int orientacion, int estado, int idDuenyo) {
+
 		this.posicion=posicion;
 		this.orientacion=orientacion;
 		this.estado=estado;
 		this.tipoFigura=Figura.ENLACE;
+		this.idDuenyo=idDuenyo;
 		if(orientacion==ENLACE_VERTICAL){
 			this.ancho=ancho/8;
 			this.alto=ancho;
@@ -35,6 +40,30 @@ public class enlace extends Figura{
 		
 		
 		// TODO Auto-generated constructor stub
+	}
+	
+	public boolean disponible(){
+		
+		if(estado==ENLACE_VOLATIL_CORRECTO)
+			return true;
+		if(estado==ENLACE_VOLATIL_INCORRECTO)
+			return true;
+		return false;
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	public void setEstado(int estado) {
+		this.estado = estado;
+	}
+	
+	public int getEstado() {
+		return estado;
 	}
 	
 	public void setAlto(int alto) {
@@ -82,8 +111,14 @@ public class enlace extends Figura{
 		
 	}
 	
-	public void dentroCualFigura(Point p){
-		
+	public int dentroCualFigura(Point p){
+		return 0;
 	}
+	
+	public boolean interseccionDeEnlaces(enlace otro){
+		
+		return new Rectangle(posicion,new Dimension(ancho, alto)).intersects(new Rectangle(otro.posicion,new Dimension(ancho, alto)));
+		
+	} 
 
 }

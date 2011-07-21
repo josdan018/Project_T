@@ -9,6 +9,7 @@ import vista.Vista;
 import modelo.Figura;
 import modelo.Modelo;
 import modelo.compilador;
+import modelo.enlace;
 import modelo.maquina;
 import modelo.programa;
 
@@ -38,6 +39,30 @@ public class Controlador {
 		    }
 	    return null;
 	}
+	
+	public Figura obtenerFigura(int ID){
+		ListIterator<Figura> it=modelo.getListado().listIterator();
+	    while (it.hasNext()) {
+	    	Figura tmp=it.next();
+	    		if(tmp.getID()==ID){
+	    			tmp.setSeleccionada(true);
+	    			return tmp;
+	    		}
+		    }
+	    return null;
+	}
+	public int cuantasFiguras(Point posicion){
+		ListIterator<Figura> it=modelo.getListado().listIterator();
+		int k=0;
+	    while (it.hasNext()) {
+	    	Figura tmp=it.next();
+	    		if(tmp.dentroFigura(posicion)){
+	    			
+	    			k++;
+	    		}
+		    }
+	    return k;
+	}
 
 	public void cambiarPosicion(Figura f, Point p){
 			f.setPosicion(limitar(p));
@@ -60,50 +85,45 @@ public class Controlador {
 		//if(insercion){
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			if(this.obtenerFigura(ev.getPoint())==null){
-				this.anyadirFigura(new programa(limitar(ev.getPoint()), 40));
+				this.anyadirFigura(new programa(limitar(ev.getPoint()), 40,modelo.getListado().size()));
 				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
 				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 			}else{
-				System.out.println("ya hay: " + modelo.getListado().size());
+				//System.out.println("ya hay: " + modelo.getListado().size());
 				seleccionada=this.getFiguraEn(ev.getPoint());
 			}
-			if(this.getFiguraEn(ev.getPoint())!=null)
-			switch (this.getFiguraEn(ev.getPoint()).getTipoFigura()) {
-			case Figura.COMPILADOR:
-				/*aux
-				if(this.getFiguraEn(Figura.translacionPto(ev.getPoint(), -90, 0))!=null);*/
-				//revisar por arriba y por los lados . . . 
-				break;
-			case Figura.PROGRAMA:
-				//revisar por debajo
-				break;
-			case Figura.INTERPRETE:
-				//revisar por arriba y por debajo
-				break;
-			case Figura.MAQUINA:
-				//revisar por arriba
-				break;
-			default:
-				break;
-			}
+			if(this.getFiguraEn(ev.getPoint())!=null);
+				//detectaEnlaces(ev.getPoint());
+			
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
 			if(this.obtenerFigura(ev.getPoint())==null)
-				this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
+				this.anyadirFigura(new maquina(limitar(ev.getPoint()),40,modelo.getListado().size()));
 							
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
 			if(this.obtenerFigura(ev.getPoint())==null)
-				this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
+				this.anyadirFigura(new compilador(limitar(ev.getPoint()),40,modelo.getListado().size()));
 		}
 		vista.repaint();
 		//}
 	}
 	
 	public void eVmouseDragged(MouseEvent ev) {
+		//System.out.println(this.obtenerFigura(ev.getPoint()));
+		if(this.obtenerFigura(ev.getPoint())==null){
+			//System.out.println("ya hay algo");
+		}
 		if(seleccionada!=null){
+			
 			//El movimiento puede ser mas fluido recalculando el pto
-			this.cambiarPosicion(seleccionada, ev.getPoint());
-			vista.repaint();
+			//System.out.println(this.cuantasFiguras(ev.getPoint())+"------------>>>");
+			if(this.cuantasFiguras(limitar(ev.getPoint()))==0){
+				//System.out.println("menor que uno");
+				this.cambiarPosicion(seleccionada, ev.getPoint());
+				vista.repaint();
+			}//else
+				//System.out.println("mayor o igual que uno");
+			//
 		}
 	}
 
@@ -112,7 +132,60 @@ public class Controlador {
 		if(seleccionada!=null){
 			seleccionada.setSeleccionada(false);
 			seleccionada=null;
+			if(this.getFiguraEn(ev.getPoint())!=null)
+				detectaEnlaces(ev.getPoint());
 		}
+	}
+	
+	public void detectaEnlaces(Point donde) {
+		
+		Point posicionFigura = this.getFiguraEn(donde).getPosicion();
+		switch (this.getFiguraEn(donde).getTipoFigura()) {
+		case Figura.COMPILADOR:
+			System.out.println("primer entrar");
+			modificarAlgo(donde, Figura.translacionPto(donde, -70, 0), 3);
+			
+			break;
+		case Figura.PROGRAMA:
+			//revisar por debajo
+			break;
+		case Figura.INTERPRETE:
+			//revisar por arriba y por debajo
+			break;
+		case Figura.MAQUINA:
+			//revisar por arriba
+			break;
+		default:
+			break;
+		}
+		
+		
+	}
+	
+	public void modificarAlgo(Point figuraResidente, Point figuraVecina, int enlaceAfectado){
+		Figura vecina = this.getFiguraEn(figuraVecina);
+		Figura residente = this.getFiguraEn(figuraResidente);
+		int tipoResidente = residente.getTipoFigura();	
+		System.out.println("vecina: "+vecina);
+		
+		if(vecina!=null){
+			for(int i=0; i < residente.numeroEnlaces ;i++)
+				for(int j=0;j<vecina.numeroEnlaces;j++)
+					if(residente.enlaces[enlaceAfectado].interseccionDeEnlaces(vecina.enlaces[j])
+							&&
+							residente.enlaces[enlaceAfectado].disponible()){
+						System.out.println("entro");
+						residente.enlaces[enlaceAfectado].setEstado(enlace.ENLACE_VOLATIL_CORRECTO);
+						vecina.enlaces[enlaceAfectado].setEstado(enlace.ENLACE_VOLATIL_CORRECTO);
+						
+						
+					}
+			//if()
+			
+			
+		}
+		
+		
 	}
 	
 	public Point limitar(Point original){

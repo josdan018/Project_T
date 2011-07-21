@@ -6,16 +6,17 @@ import java.awt.Point;
 
 public class maquina extends Figura{
 	Cuadrado cuadrados;
-	enlace enlaces[];
+	
 	String lenguajeBase;
 	
-	public maquina(Point posicion,int ancho) {
+	public maquina(Point posicion,int ancho, int id) {
 		this.tipoFigura=Figura.MAQUINA;
 		this.posicion = posicion;
+		this.ID=id;
 		cuadrados=new Cuadrado(posicion, ancho);		
 		enlaces=new enlace[2];
-		enlaces[0]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_TRIANGULAR);
-		enlaces[1]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[0]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_TRIANGULAR, ID);
+		enlaces[1]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
 		
 		lenguajeBase="linux";
 	}
@@ -27,6 +28,7 @@ public class maquina extends Figura{
 		
 		enlaces[0].setPosicion(translacionPto(posicion, 0, 40));
 		enlaces[1].setPosicion(translacionPto(posicion, 0, -5));
+		numeroEnlaces=2;
 		//deberian haber enlaces invisibles para poder activarlos digo no . . .  
 	}
 	
@@ -64,8 +66,8 @@ public class maquina extends Figura{
 		
 	}
 	
-	public void dentroCualFigura(Point p){
-		
+	public int dentroCualFigura(Point p){
+		return 0;
 	}
 
 

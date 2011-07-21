@@ -20,17 +20,25 @@ public abstract class Figura {
 	int tipoFigura;
 	int tipoConexion;
 	int ID;
+	public enlace enlaces[];
+	public int numeroEnlaces; 
 	protected Point posicion;
 	protected boolean seleccionada;
 	public abstract boolean dentroFigura(Point p);
+	
 	public abstract void dibujar(Graphics g);
 	public abstract void bloquear();
 	public abstract int dentroCualFigura(Point p);
+	
 	public static Point translacionPto(Point posicion,int dx, int dy){
 		//System.out.println(posicion);
 		Point aMover=new Point(posicion);
 		aMover.translate(dx, dy);
 		return aMover;
+	}
+	
+	public int getID() {
+		return ID;
 	}
 	
 	public void setPosicion(Point posicion)
@@ -46,7 +54,7 @@ public abstract class Figura {
 		return posicion.y;
 	}
 
-	Point getPosicion(){
+	public Point getPosicion(){
 		return posicion;
 	}
 	

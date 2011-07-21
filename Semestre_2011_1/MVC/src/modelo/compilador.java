@@ -6,13 +6,13 @@ import java.awt.Point;
 
 public class compilador extends Figura{
 	Cuadrado cuadrados[];
-	enlace enlaces[];
+	
 	
 	
 	 
 	String lenguajeObjeto,lenguajeFuente,lenguajeBase;
 	
-	public compilador(Point posicion,int ancho) {
+	public compilador(Point posicion,int ancho, int id) {
 		this.tipoFigura=Figura.COMPILADOR;
 		
 		this.posicion = posicion;
@@ -25,15 +25,16 @@ public class compilador extends Figura{
 		
 		enlaces=new enlace[8];
 		
-		enlaces[0]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
-		enlaces[1]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO);
-		enlaces[2]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO);
+		enlaces[0]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO, ID);
+		enlaces[1]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_SOLIDO, ID);
+		enlaces[2]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_SOLIDO, ID);
 		
-		enlaces[3]=new enlace(translacionPto(posicion, -50, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[4]=new enlace(translacionPto(posicion, 85, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[5]=new enlace(translacionPto(posicion, 0, 85),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[6]=new enlace(translacionPto(posicion, -5, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[7]=new enlace(translacionPto(posicion, 40, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[3]=new enlace(translacionPto(posicion, -50, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[4]=new enlace(translacionPto(posicion, 85, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[5]=new enlace(translacionPto(posicion, 0, 85),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[6]=new enlace(translacionPto(posicion, -5, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[7]=new enlace(translacionPto(posicion, 40, 45),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		numeroEnlaces=8;
 		lenguajeBase="linux";
 		lenguajeObjeto="linux";
 		lenguajeFuente="Facilon";

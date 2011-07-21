@@ -6,20 +6,21 @@ import java.awt.Point;
 
 public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 	Cuadrado cuadrados;
-	enlace enlaces[];
+	
 	String lenguajeFuente,lenguajeBase;
 	
-	public interprete(Point posicion,int ancho) {
+	public interprete(Point posicion,int ancho, int id) {
 		this.tipoFigura=Figura.INTERPRETE;
 		this.posicion = posicion;
-		
+		this.ID=id;
 		cuadrados=new Cuadrado(posicion, ancho);
 		
 		enlaces=new enlace[4];
-		enlaces[0]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[1]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[2]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
-		enlaces[3]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO);
+		enlaces[0]=new enlace(translacionPto(posicion, 0, -5),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[1]=new enlace(translacionPto(posicion, -5, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[2]=new enlace(translacionPto(posicion, 40, 0),ancho,enlace.ENLACE_VERTICAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		enlaces[3]=new enlace(translacionPto(posicion, 0, 40),ancho,enlace.ENLACE_HORIZONTAL,enlace.ENLACE_VOLATIL_NO_ACTIVO, ID);
+		numeroEnlaces=4;
 		lenguajeBase="Facilon";
 		lenguajeFuente="Facilon";
 	}
@@ -75,7 +76,7 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 		
 	}
 	
-	public void dentroCualFigura(Point p){
-		
+	public int dentroCualFigura(Point p){
+		return 0;
 	}
 }

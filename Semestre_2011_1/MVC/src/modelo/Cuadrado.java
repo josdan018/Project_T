@@ -26,7 +26,7 @@ public class Cuadrado extends Figura {
 	public boolean dentroFigura(Point p) {
 		int difX=Math.abs(p.x-(posicion.x+(ancho/2)));
 		int difY=Math.abs(p.y-(posicion.y+(ancho/2)));
-		System.out.println(difX+" " + difY);
+		//System.out.println(difX+" " + difY);
 		return ( (difX<ancho/2) && (difY<ancho/2));   
 	}
 	
@@ -47,7 +47,7 @@ public class Cuadrado extends Figura {
 		
 	}	
 	
-	public void dentroCualFigura(Point p){
-		
+	public int dentroCualFigura(Point p){
+		return 0;
 	}
 }
