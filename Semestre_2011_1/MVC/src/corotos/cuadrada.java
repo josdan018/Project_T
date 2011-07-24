@@ -72,8 +72,14 @@ public class cuadrada extends figura{
 
 	@Override
 	public void mover(Point p) {
-		// TODO Auto-generated method stub
-		
+		setPosicion(p);
+		for (enlazante elemento : enlaces) {
+			elemento.setPosicion(p);
+		}
+	}
+	
+	public boolean comparaLenguaje(){
+		return false;
 	}
 
 }
