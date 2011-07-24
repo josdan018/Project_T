@@ -11,12 +11,13 @@ public class cuadrada extends figura{
 	
 	String nombre;
 	
-	public cuadrada(int ID, Point posicionAbsoluta) {
+	public cuadrada(int ID, Point posicionAbsoluta, String nombre) {
 		super(
 				ID,
 				new Rectangle(posicionAbsoluta,	new Dimension(G,G))
 				);
 		enlaces=new Vector<enlazante>(1, 1);
+		this.nombre=nombre;
 	}
 	
 	@Override
