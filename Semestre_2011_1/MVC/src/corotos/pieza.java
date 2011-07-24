@@ -47,6 +47,8 @@ public class pieza extends figura{
 		return cuadrados;
 	}
 	
+	
+	
 	@Override
 	public void dibujar(Graphics g) {
 		for(cuadrada elemento:cuadrados){
