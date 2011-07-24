@@ -5,6 +5,7 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -25,7 +26,7 @@ import corotos.valor.tipoPieza;
 public class Figuras {
 	
 	public static void main(String[] args) {
-		pieza p = new pieza();
+		Vector <pieza> p = new Vector<pieza>() ;
 		valor v;
 
 		try{
@@ -91,7 +92,7 @@ public class Figuras {
 		   System.exit(0);
         }
 	
-	public static void cuadro_informacion (Container guiobjects, pieza p){
+	public static void cuadro_informacion (Container guiobjects, Vector<pieza> p){
 		
 		
 		JPanel a=new JPanel();
@@ -103,11 +104,10 @@ public class Figuras {
         
         //Acciones;
         
-        
-       // if(p.getIdentificador()== tipoPi){
+        if(p.elementAt(0).getIdentificador()== tipoPieza.COMPILADOR){
         	
-        	t_area.setText(t_area.getText()+" Se tiene un  de: +, a: +, ");
-        //}
+        	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)." , a: +, ");
+        }
         a.add(t_area);
 	
         guiobjects.add(a,BorderLayout.SOUTH);
