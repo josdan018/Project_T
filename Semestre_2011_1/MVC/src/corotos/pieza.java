@@ -59,6 +59,10 @@ public class pieza extends figura{
 		
 	}
 	
+	public tipoPieza getIdentificador() {
+		return identificador;
+	}
+	
 	private void armarCompilador(Vector<String> nombres){
 		//-------centro del compilador----------------
 		cuadrada aux=new cuadrada(ID, region.getLocation(),"");
