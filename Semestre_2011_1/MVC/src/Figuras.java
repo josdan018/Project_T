@@ -39,13 +39,7 @@ public class Figuras {
 			Modelo modelo = new Modelo();
 			
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
-			JPanel a=new JPanel(),b=new JPanel(),c=new JPanel(),d=new JPanel();
-			a.setOpaque(true);
-			a.setBackground(Color.BLUE);
-			a = new JPanel(new FlowLayout());
-	        //a.setBackground(Color.yellow);
-	        a.add(new JLabel("Acción Realizada"));
-	        a.add(new JTextArea("hola", 10, 100));
+			JPanel b=new JPanel(),c=new JPanel(),d=new JPanel();
 			
 			b.setOpaque(true);
 			b.setBackground(Color.GREEN);
@@ -60,13 +54,13 @@ public class Figuras {
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
 			
-			
+			cuadro_informacion(guiobjects);
 			
 			final Controlador controlador = new Controlador(modelo,vista);
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
-			guiobjects.add(a,BorderLayout.SOUTH);
+			
 			guiobjects.add(b,BorderLayout.WEST);
 			guiobjects.add(c,BorderLayout.EAST);
 			
@@ -91,5 +85,18 @@ public class Figuras {
 		   System.out.println("Saliendo Adios...");
 		   System.exit(0);
         }
+	
+	public static void cuadro_informacion (Container guiobjects){
+		
+		JPanel a=new JPanel();
+		a.setOpaque(true);
+		a.setBackground(Color.BLUE);
+		a = new JPanel(new FlowLayout());
+        //a.setBackground(Color.yellow);
+        a.add(new JLabel("Acción Realizada"));
+        a.add(new JTextArea("holaaaaaa",5, 100));
+		
+        guiobjects.add(a,BorderLayout.SOUTH);
+	}
 
 }
