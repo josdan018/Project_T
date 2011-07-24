@@ -31,7 +31,8 @@ public class pieza extends figura{
 		
 		
 	}
-	
+	public pieza (){ 
+	}
 	
 	
 
