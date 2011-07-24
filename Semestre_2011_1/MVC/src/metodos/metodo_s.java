@@ -1,18 +1,28 @@
 package metodos;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import corotos.cuadrada;
+import corotos.pieza;
+import corotos.valor;
 
 public class metodo_s extends JPanel {
 	
 	JButton agregar_piezas= new JButton();
 	JFrame ventana;
+	Vector<String> lenguajes;
+	
 	
 	public metodo_s(JFrame ventana){
 		
@@ -34,6 +44,7 @@ public class metodo_s extends JPanel {
 	}
 	
 	public void ventana_emergente(){
+		
 				
 		Object seleccion = JOptionPane.showInputDialog(
 				ventana,
@@ -41,34 +52,54 @@ public class metodo_s extends JPanel {
 				"Componentes",
 				JOptionPane.QUESTION_MESSAGE,
 				null, 
-				new Object[] { "Compilador", "Interprete", "Maquina","Programa"},
-				"Compilador");	
-		if(seleccion.equals("Compilador")){
-			String []lenguajes=new String[3];
+				new Object[] { "COMPILADOR", "INTERPRETE", "MAQUINA","PROGRAMA"},
+				"COMPILADOR");	
+		if(seleccion.equals("COMPILADOR")){
+			lenguajes=new Vector<String>(1, 1);
 			
-			lenguajes[0]=componentes("Lenguaje Fuente");
-			lenguajes[1]=componentes("Lenguaje Objeto");
-			lenguajes[2]=componentes("Implementacion");			
-		}else if(seleccion.equals("Interprete")){
-			String []lenguajes=new String[3];
+			lenguajes.add(componentes("Lenguaje Fuente"));
+			lenguajes.add(componentes("Lenguaje Objeto"));
+			lenguajes.add(componentes("Implementacion"));
 			
-			lenguajes[0]=componentes("Lenguaje conector");
-			lenguajes[1]=componentes("Lenguaje a interpretar");
-			lenguajes[2]=null;			
-		}else if(seleccion.equals("Maquina")){
-			String []lenguajes=new String[3];
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.COMPILADOR);			
+			dibujo();
 			
-			lenguajes[0]=componentes("Lenguaje de la Maquina");
-			lenguajes[1]=null;
-			lenguajes[2]=null;
-		}else if(seleccion.equals("Programa")){
-			String []lenguajes=new String[3];
+		}else if(seleccion.equals("INTERPRETE")){
+			lenguajes=new Vector<String>(1, 1);
 			
-			lenguajes[0]=componentes("Nombre del Programa");
-			lenguajes[1]=componentes("Lenguaje del Programa");
-			lenguajes[2]=null;
-		}
-		
+			lenguajes.add(componentes("Lenguaje conector"));
+			lenguajes.add(componentes("Lenguaje a interpretar"));
+
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.INTERPRETE);			
+			dibujo();
+						
+		}else if(seleccion.equals("MAQUINA")){
+			lenguajes=new Vector<String>(1, 1);
+			
+			lenguajes.add(componentes("Lenguaje de la Maquina"));
+
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.MAQUINA);			
+			dibujo();
+			
+		}else if(seleccion.equals("PROGRAMA")){
+			lenguajes=new Vector<String>(1, 1);
+			
+			lenguajes.add(componentes("Nombre del Programa"));
+			lenguajes.add(componentes("Lenguaje del Programa"));
+
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.PROGRAMA);			
+			dibujo();
+		}		
+	}
+	
+	public void dibujo(){
+		JLabel imagen= new JLabel(){
+			pieza imag;
+			@Override			
+			public void paint(Graphics g) {
+				imag.dibujar(g);
+			}
+		};
 	}
 	public String componentes(String lenguaje){
 		String len = JOptionPane.showInputDialog(
