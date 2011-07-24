@@ -74,14 +74,29 @@ public class enlazante extends figura {
 		
 	}
 	
-	public void activar(boolean correcto){
+	public void activar(boolean activo){
+		if(!activo){
+			setColor(colorOcioso);
+			this.tipo=tipoEnlace.OCIOSO;
+		}
+	}
+	
+	public void corregir(boolean correcto){
 		if(correcto){
 			setColor(colorCorrecto);
 			this.tipo=tipoEnlace.CORRECTO;
-		}else {
+		}else{
 			setColor(colorIncorrecto);
 			this.tipo=tipoEnlace.INCORRECTO;
 		}
+	}
+
+
+
+	@Override
+	public void mover(Point p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

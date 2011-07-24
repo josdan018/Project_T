@@ -6,10 +6,6 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Vector;
 
-
-
-
-
 public class cuadrada extends figura{
 	Vector<enlazante> enlaces;
 	
@@ -20,7 +16,7 @@ public class cuadrada extends figura{
 				ID,
 				new Rectangle(posicionAbsoluta,	new Dimension(G,G))
 				);
-
+		enlaces=new Vector<enlazante>(1, 1);
 	}
 	
 	@Override
@@ -70,6 +66,12 @@ public class cuadrada extends figura{
 						)
 				);
 		
+		
+	}
+
+	@Override
+	public void mover(Point p) {
+		// TODO Auto-generated method stub
 		
 	}
 
