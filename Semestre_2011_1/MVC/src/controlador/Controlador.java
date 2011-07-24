@@ -57,10 +57,11 @@ public class Controlador {
 	    while (it.hasNext()) {
 	    	Figura tmp=it.next();
 	    		if(tmp.dentroFigura(posicion)){
-	    			
+	    			System.out.println("k aumento");
 	    			k++;
 	    		}
 		    }
+	    
 	    return k;
 	}
 
@@ -109,21 +110,18 @@ public class Controlador {
 	}
 	
 	public void eVmouseDragged(MouseEvent ev) {
-		//System.out.println(this.obtenerFigura(ev.getPoint()));
 		if(this.obtenerFigura(ev.getPoint())==null){
-			//System.out.println("ya hay algo");
+			;
 		}
 		if(seleccionada!=null){
 			
-			//El movimiento puede ser mas fluido recalculando el pto
-			//System.out.println(this.cuantasFiguras(ev.getPoint())+"------------>>>");
-			if(this.cuantasFiguras(limitar(ev.getPoint()))==0){
-				//System.out.println("menor que uno");
+			int k=this.cuantasFiguras(limitar(ev.getPoint()));
+			System.out.println(k+"             )");
+			if(k==0){
+				System.out.println("moviendo "+ev.getPoint()+" "+k);
 				this.cambiarPosicion(seleccionada, ev.getPoint());
 				vista.repaint();
-			}//else
-				//System.out.println("mayor o igual que uno");
-			//
+			}
 		}
 	}
 
