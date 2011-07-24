@@ -74,6 +74,11 @@ public abstract class figura implements valor{
 		return aMover;
 	}
 	
+	public void setPosicion(Point p){
+		region.setLocation(p);
+		
+	}
+	
 	
 	
 }

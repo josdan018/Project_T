@@ -88,7 +88,7 @@ public class enlazante extends figura {
 
 	@Override
 	public void mover(Point p) {
-		// TODO Auto-generated method stub
+		setPosicion(p);
 		
 	}
 

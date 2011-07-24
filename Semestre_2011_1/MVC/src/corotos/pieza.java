@@ -32,10 +32,6 @@ public class pieza extends figura{
 		
 	}
 	
-	
-	
-
-
 	@Override
 	public boolean dentroFigura(Point p) {
 		if(region.contains(p))
@@ -47,21 +43,30 @@ public class pieza extends figura{
 		return false;
 	}
 
+	public Vector<cuadrada> getCuadrados() {
+		return cuadrados;
+	}
+	
 	@Override
 	public void dibujar(Graphics g) {
+		for(cuadrada elemento:cuadrados){
+			elemento.dibujar(g);
+		}
 		
-		// TODO Auto-generated method stub
 		
 	}
 	@Override
 	public void mover(Point p) {
-		// TODO Auto-generated method stub
-		
+		for(cuadrada elemento:cuadrados){
+			elemento.mover(p);
+		}
 	}
 	
 	public tipoPieza getIdentificador() {
 		return identificador;
 	}
+	
+	
 	
 	private void armarCompilador(Vector<String> nombres){
 		//-------centro del compilador----------------
@@ -121,8 +126,6 @@ public class pieza extends figura{
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), 0,-G-P),"");
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.ARRIBA);
 		cuadrados.add(aux);
-		// TODO Auto-generated method stub
-		
 	}
 
 }
