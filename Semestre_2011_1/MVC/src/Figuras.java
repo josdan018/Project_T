@@ -1,9 +1,11 @@
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,12 +19,16 @@ import javax.swing.ScrollPaneConstants;
 import modelo.Modelo;
 import vista.Vista;
 import controlador.Controlador;
-
+import corotos.*;
+import corotos.valor.tipoPieza;
 
 
 public class Figuras {
 	
 	public static void main(String[] args) {
+		Vector <pieza> p = new Vector<pieza>() ;
+		valor v;
+
 		try{
 			final JFrame frame = new JFrame();
 			frame.setTitle("Ejemplo Modelo Vista Controlador (MVC) Compíladores e Interpretes UNET");
@@ -54,7 +60,7 @@ public class Figuras {
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
 			
-			cuadro_informacion(guiobjects);
+			cuadro_informacion(guiobjects, p);
 			
 			final Controlador controlador = new Controlador(modelo,vista);
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
@@ -86,16 +92,24 @@ public class Figuras {
 		   System.exit(0);
         }
 	
-	public static void cuadro_informacion (Container guiobjects){
+	public static void cuadro_informacion (Container guiobjects, Vector<pieza> p){
+		
 		
 		JPanel a=new JPanel();
+		JTextArea t_area = new JTextArea("  . . . . . Creando Compilador \n",10,80); 
 		a.setOpaque(true);
 		a.setBackground(Color.BLUE);
 		a = new JPanel(new FlowLayout());
-        //a.setBackground(Color.yellow);
-        a.add(new JLabel("Acción Realizada"));
-        a.add(new JTextArea("holaaaaaa",5, 100));
-		
+        a.add(new JLabel("Acción Realizada:  ",10));
+        
+        //Acciones;
+        
+        if(p.elementAt(0).getIdentificador()== tipoPieza.COMPILADOR){
+        	
+        	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)." , a: +, ");
+        }
+        a.add(t_area);
+	
         guiobjects.add(a,BorderLayout.SOUTH);
 	}
 

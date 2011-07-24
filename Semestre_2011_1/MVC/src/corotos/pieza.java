@@ -31,8 +31,10 @@ public class pieza extends figura{
 		
 		
 	}
+	public pieza (){ 
+	}
 	
-	@Override
+@Override
 	public boolean dentroFigura(Point p) {
 		if(region.contains(p))
 			return true;
