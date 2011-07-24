@@ -1,16 +1,15 @@
 package corotos;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+
 public abstract class figura implements valor{
 	int ID;
-	Point posicionAbsoluta;
 	Point centro;
-	Point posicionRelativa;
+	//Point posicionRelativa;
 	boolean seleccionada;
 	Rectangle region;
 	Color color;
@@ -20,11 +19,14 @@ public abstract class figura implements valor{
 	public abstract void dibujar(Graphics g);
 	
 	public figura() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
-	
-	
+	public figura(int ID, Rectangle region) {
+		this.ID = ID;
+		this.region=region;
+		
+	}
 	public int getID() {
 		return ID;
 	}
@@ -33,22 +35,6 @@ public abstract class figura implements valor{
 		ID = iD;
 	}
 	
-	public Point getPosicionAbsoluta() {
-		return posicionAbsoluta;
-	}
-	
-	public void setPosicionAbsoluta(Point posicion) {
-		this.posicionAbsoluta = posicion;
-	}
-	
-	public Point getPosicionRelativa() {
-		return posicionRelativa;
-	}
-	
-	public void setPosicionRelativa(Point posicion) {
-		this.posicionRelativa = posicion;
-	}
-
 	public Point getCentro() {
 		return centro;
 	}
@@ -79,6 +65,12 @@ public abstract class figura implements valor{
 	
 	public void setColor(Color color) {
 		this.color = color;
+	}
+	
+	public static Point translacionPto(Point posicion,int dx, int dy){
+		Point aMover=new Point(posicion);
+		aMover.translate(dx, dy);
+		return aMover;
 	}
 	
 }

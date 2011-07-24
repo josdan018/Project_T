@@ -8,38 +8,42 @@ import java.awt.Rectangle;
 public class enlazante extends figura {
 	tipoEnlace tipo;
 	orientacionEnlace orientacion;
-	lado lado;
-	public enlazante(int ID, tipoEnlace tipo, orientacionEnlace orientacion, lado lado, Point posicionAbsoluta) {
-		this.ID = ID;
+	lados lado;
+	public enlazante(int ID, tipoEnlace tipo, orientacionEnlace orientacion, lados lado, Point posicionAbsoluta) {
+		super(
+				ID,
+				new Rectangle(posicionAbsoluta,
+						(orientacion==orientacionEnlace.HORIZONTAL)?
+								new Dimension(G, P):
+								new Dimension(P, P)
+								)
+				);
+		
 		this.tipo = tipo;
 		this.orientacion = orientacion;
 		this.lado = lado;
-		this.posicionAbsoluta=posicionAbsoluta;
-		if(orientacion==orientacionEnlace.HORIZONTAL)
-			setRegion(new Rectangle(posicionAbsoluta,new Dimension(G, P)));
-		else
-			setRegion(new Rectangle(posicionAbsoluta,new Dimension(P, G)));
+		
 			
 		
 		switch (tipo) {
-		case SOLIDO:
-			setColor(colorSolido);
-			break;
-		case OCIOSO:
-			setColor(colorOcioso);
-			break;
-		case CORRECTO:
-			setColor(colorCorrecto);
-			break;
-		case INCORRECTO:
-			setColor(colorIncorrecto);
-			break;
-		case TRIANGULAR:
-			setColor(colorSolido);
-			break;
-		default:
-			break;
-		}
+			case SOLIDO:
+				setColor(colorSolido);
+				break;
+			case OCIOSO:
+				setColor(colorOcioso);
+				break;
+			case CORRECTO:
+				setColor(colorCorrecto);
+				break;
+			case INCORRECTO:
+				setColor(colorIncorrecto);
+				break;
+			case TRIANGULAR:
+				setColor(colorSolido);
+				break;
+			default:
+				break;
+			}
 		
 		
 		
@@ -60,11 +64,11 @@ public class enlazante extends figura {
 	public void dibujar(Graphics g) {
 		g.setColor(color);
 		if(tipoEnlace.TRIANGULAR==tipo){
-			int[] x={posicionAbsoluta.x,posicionAbsoluta.x+region.width/2,posicionAbsoluta.x+region.width};
-			int[] y={posicionAbsoluta.y,posicionAbsoluta.y+region.height,posicionAbsoluta.y};
+			int[] x={region.x,region.x+region.width/2,region.x+region.width};
+			int[] y={region.y,region.y+region.height,region.y};
 			g.fillPolygon(x,y, 3);
 		}else{
-			g.fillRect(posicionAbsoluta.x,posicionAbsoluta.y,region.width,region.height);
+			g.fillRect(region.x,region.y,region.width,region.height);
 		}
 		
 		

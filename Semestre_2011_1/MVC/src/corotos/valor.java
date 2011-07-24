@@ -24,12 +24,14 @@ public interface valor {
 		VERTICAL
 	}
 	
-	public enum lado{
+	public enum lados{
 		DERECHA,
 		IZQUIERDA,
 		ARRIBA,
 		ABAJO
 	}
+	
+	
 	
 	static public int G=40;
 	static public int P=8;
