@@ -81,5 +81,9 @@ public class cuadrada extends figura{
 	public boolean comparaLenguaje(){
 		return false;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
 
 }
