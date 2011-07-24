@@ -13,20 +13,29 @@ public class pieza extends figura{
 		super(ID, region);
 		this.identificador=identificador;
 		cuadrados=new Vector<cuadrada>(1, 1);
-		//-------centro del compilador----------------
-		cuadrada aux=new cuadrada(ID, region.getLocation());
-		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.IZQUIERDA);
-		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.DERECHA);
-		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.ABAJO);
+		switch (identificador) {
+		case COMPILADOR:
+			armarCompilador();
+			break;
+		case INTERPRETE:
+			armarInterprete();
+			break;
+		case MAQUINA:
+			armarMaquina();
+			break;
+		case PROGRAMA:
+			armarPrograma();
+		default:
+			break;
+		}
 		
-		cuadrados.add(aux);
-		//-------izquierda del compilador----------------
-		aux=new cuadrada(ID, translacionPto(region.getLocation(), -G-P, 0));
-		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.IZQUIERDA);
 		
 	}
 	
 	
+	
+
+
 	@Override
 	public boolean dentroFigura(Point p) {
 		if(region.contains(p))
@@ -50,5 +59,45 @@ public class pieza extends figura{
 		
 	}
 	
+	private void armarCompilador(){
+		//-------centro del compilador----------------
+		cuadrada aux=new cuadrada(ID, region.getLocation());
+		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.IZQUIERDA);
+		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.DERECHA);
+		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.ABAJO);
+		cuadrados.add(aux);
+		//-------izquierda del compilador----------------
+		aux=new cuadrada(ID, translacionPto(region.getLocation(), -G-P, 0));
+		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.IZQUIERDA);
+		cuadrados.add(aux);
+		//-------derecha del compilador----------------
+		aux=new cuadrada(ID, translacionPto(region.getLocation(), +G+P, 0));
+		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.DERECHA);
+		cuadrados.add(aux);
+		//-------abajo del compilador----------------
+		aux=new cuadrada(ID, translacionPto(region.getLocation(), 0, +G+P));
+		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.IZQUIERDA);
+		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.DERECHA);
+		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.ABAJO);
+		cuadrados.add(aux);
+		
+		
+	}
+	private void armarPrograma() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void armarMaquina() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	private void armarInterprete() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

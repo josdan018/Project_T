@@ -44,13 +44,6 @@ public class enlazante extends figura {
 			default:
 				break;
 			}
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	
