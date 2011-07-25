@@ -60,7 +60,7 @@ public class Figuras {
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
 			
-			cuadro_informacion(guiobjects, p);
+			//cuadro_informacion(guiobjects, p);
 			
 			final Controlador controlador = new Controlador(modelo,vista);
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
