@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -36,10 +36,7 @@ public class Circulo extends Figura {
 	public void dibujar(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.fillOval(this.getX(), this.getY(), this.getRadio(), this.getRadio());
-		/*if(this.getSeleccionada()){
-			g.setColor(Color.CYAN);
-			g.drawOval(this.getX()+7, this.getY()+7, this.getRadio()-20, this.getRadio()-20);
-		}*/
+		
 	}
 
 	@Override
@@ -53,3 +50,4 @@ public class Circulo extends Figura {
 	}
 
 }
+*/

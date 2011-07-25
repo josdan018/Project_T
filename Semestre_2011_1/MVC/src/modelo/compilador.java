@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -122,3 +122,4 @@ public class compilador extends Figura{
 	}
 
 }
+*/
