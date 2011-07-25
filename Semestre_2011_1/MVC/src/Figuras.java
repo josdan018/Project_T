@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+import metodos.metodo_s;
 import modelo.Modelo;
 import vista.Vista;
 import controlador.Controlador;
@@ -45,14 +46,22 @@ public class Figuras {
 			Modelo modelo = new Modelo();
 			
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
-			JPanel b=new JPanel(),c=new JPanel(),d=new JPanel();
+			JPanel c=new JPanel(),d=new JPanel();
 			
-			b.setOpaque(true);
-			b.setBackground(Color.GREEN);
+			metodo_s b=new metodo_s(frame);
+			
+			/*b.setOpaque(true);
+			b.setBa
+			
+			
+			
+			
+			
+			ckground(Color.GREEN);
 			b.add(new JButton("Listo"));
 			b.add(new JLabel("Pon texto"));
 	        b.add(new JTextField(25));
-	        b.add(new JButton("Listo"));
+	        b.add(new JButton("Listo"));*/
 			
 			c.setOpaque(true);
 			c.setBackground(Color.YELLOW);
@@ -106,7 +115,7 @@ public class Figuras {
         
         if(p.elementAt(0).getIdentificador()== tipoPieza.COMPILADOR){
         	
-        	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)." , a: +, ");
+        	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)+" , a: +, ");
         }
         a.add(t_area);
 	

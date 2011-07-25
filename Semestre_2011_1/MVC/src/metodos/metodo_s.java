@@ -61,7 +61,7 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje Objeto"));
 			lenguajes.add(componentes("Implementacion"));
 			
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.COMPILADOR);			
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.COMPILADOR,lenguajes);			
 			dibujo();
 			
 		}else if(seleccion.equals("INTERPRETE")){
@@ -70,7 +70,7 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje conector"));
 			lenguajes.add(componentes("Lenguaje a interpretar"));
 
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.INTERPRETE);			
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.INTERPRETE,lenguajes);			
 			dibujo();
 						
 		}else if(seleccion.equals("MAQUINA")){
@@ -78,7 +78,7 @@ public class metodo_s extends JPanel {
 			
 			lenguajes.add(componentes("Lenguaje de la Maquina"));
 
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.MAQUINA);			
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.MAQUINA,lenguajes);			
 			dibujo();
 			
 		}else if(seleccion.equals("PROGRAMA")){
@@ -87,7 +87,7 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Nombre del Programa"));
 			lenguajes.add(componentes("Lenguaje del Programa"));
 
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.PROGRAMA);			
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.PROGRAMA,lenguajes);			
 			dibujo();
 		}		
 	}
