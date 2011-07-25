@@ -4,8 +4,13 @@ import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,10 +22,10 @@ import javax.swing.ScrollPaneConstants;
 import modelo.Modelo;
 import vista.Vista;
 import controlador.Controlador;
-
-
+import com.db4o.*;
 
 public class Figuras {
+	
 	
 	public static void main(String[] args) {
 		try{
@@ -37,9 +42,9 @@ public class Figuras {
 		    Container guiobjects = frame.getContentPane();
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
-			
+			franklin c= new franklin();
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
-			JPanel b=new JPanel(),c=new JPanel(),d=new JPanel();
+			JPanel b=new JPanel(),d=new JPanel();
 			
 			b.setOpaque(true);
 			b.setBackground(Color.GREEN);
@@ -48,9 +53,7 @@ public class Figuras {
 	        b.add(new JTextField(25));
 	        b.add(new JButton("Listo"));
 			
-			c.setOpaque(true);
-			c.setBackground(Color.YELLOW);
-			
+				
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
 			
@@ -60,7 +63,6 @@ public class Figuras {
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
-			
 			guiobjects.add(b,BorderLayout.WEST);
 			guiobjects.add(c,BorderLayout.EAST);
 			
@@ -98,5 +100,5 @@ public class Figuras {
 		
         guiobjects.add(a,BorderLayout.SOUTH);
 	}
-
+	
 }

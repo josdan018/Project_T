@@ -78,3 +78,5 @@ public class metodo_s extends JPanel {
 	}
 
 }
+
+
