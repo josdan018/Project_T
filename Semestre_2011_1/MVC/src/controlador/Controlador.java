@@ -70,7 +70,8 @@ public class Controlador {
 	}
 
 	public void cambiarPosicion(pieza f, Point p){
-			f.setPosicion(limitar(p));
+			
+			f.mover(limitar(p));
 	}
 	
 	public Vista getVista(){
@@ -96,10 +97,7 @@ public class Controlador {
 				vec.add("uno");
 				
 				this.anyadirFigura(new pieza(1, new Rectangle(limitar(ev.getPoint())), tipoPieza.COMPILADOR, vec));
-				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
-				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 			}else{
-				//System.out.println("ya hay: " + modelo.getListado().size());
 				seleccionada=this.getFiguraEn(ev.getPoint());
 				System.out.println(""+seleccionada);
 			}
@@ -107,13 +105,22 @@ public class Controlador {
 				//detectaEnlaces(ev.getPoint());
 			
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
-			if(this.obtenerFigura(ev.getPoint())==null);
-				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40,modelo.getListado().size()));
+			Vector<String> vec=new Vector<String>(1, 1);
+			vec.add("uno");
+			vec.add("uno");
+			vec.add("uno");
+			
+			if(this.obtenerFigura(ev.getPoint())==null)
+				this.anyadirFigura(new pieza(1, new Rectangle(limitar(ev.getPoint())), tipoPieza.MAQUINA, vec));
 							
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
-			if(this.obtenerFigura(ev.getPoint())==null);
-				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40,modelo.getListado().size()));
+			Vector<String> vec=new Vector<String>(1, 1);
+			vec.add("uno");
+			vec.add("uno");
+			vec.add("uno");
+			if(this.obtenerFigura(ev.getPoint())==null)
+				this.anyadirFigura(new pieza(1, new Rectangle(limitar(ev.getPoint())), tipoPieza.PROGRAMA, vec));
 		}
 		vista.repaint();
 		//}
@@ -121,8 +128,9 @@ public class Controlador {
 	
 	public void eVmouseDragged(MouseEvent ev) {
 		
-				this.cambiarPosicion(seleccionada, ev.getPoint());
-				vista.repaint();
+		if(seleccionada!=null)
+			this.cambiarPosicion(seleccionada, ev.getPoint());
+		vista.repaint();
 		
 	}
 

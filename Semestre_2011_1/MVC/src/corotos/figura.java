@@ -9,7 +9,7 @@ import java.awt.Rectangle;
 public abstract class figura implements valor{
 	int ID;
 	Point centro;
-	//Point posicionRelativa;
+	Point posicionRelativa;
 	boolean seleccionada;
 	Rectangle region;
 	Color color;
@@ -23,9 +23,10 @@ public abstract class figura implements valor{
 		
 	}
 	
-	public figura(int ID, Rectangle region) {
+	public figura(int ID, Rectangle region,Point posicionRelativa) {
 		this.ID = ID;
 		this.region=region;
+		this.posicionRelativa=posicionRelativa;
 		
 	}
 	public int getID() {

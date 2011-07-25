@@ -39,7 +39,7 @@ public class Figuras {
 		    Container guiobjects = frame.getContentPane();
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
-			franklin c= new franklin();
+			//franklin c= new franklin();
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
 			JPanel d=new JPanel();
 			
@@ -60,7 +60,7 @@ public class Figuras {
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
 		
 			guiobjects.add(b,BorderLayout.WEST);
-			guiobjects.add(c,BorderLayout.EAST);
+			//guiobjects.add(c,BorderLayout.EAST);
 			
 			frame.repaint();//*/
 			frame.pack();

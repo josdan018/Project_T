@@ -9,7 +9,7 @@ public class enlazante extends figura {
 	tipoEnlace tipo;
 	orientacionEnlace orientacion;
 	lados lado;
-	public enlazante(int ID, tipoEnlace tipo, orientacionEnlace orientacion, lados lado, Point posicionAbsoluta) {
+	public enlazante(int ID, tipoEnlace tipo, orientacionEnlace orientacion, lados lado, Point posicionAbsoluta,Point posicionRelativa) {
 		super(
 				ID,
 				new Rectangle(posicionAbsoluta,
@@ -17,6 +17,8 @@ public class enlazante extends figura {
 								new Dimension(G, P):
 								new Dimension(P, G)
 								)
+				,posicionRelativa
+				
 				);
 		
 		this.tipo = tipo;
@@ -88,7 +90,7 @@ public class enlazante extends figura {
 
 	@Override
 	public void mover(Point p) {
-		setPosicion(p);
+		setPosicion(translacionPto(p, posicionRelativa.x, posicionRelativa.y));
 		
 	}
 

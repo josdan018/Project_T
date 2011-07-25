@@ -1,6 +1,8 @@
 package corotos;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -15,10 +17,11 @@ public class cuadrada extends figura{
 	
 	String nombre;
 	
-	public cuadrada(int ID, Point posicionAbsoluta, String nombre) {
+	public cuadrada(int ID, Point posicionAbsoluta,Point posicionRelativa, String nombre) {
 		super(
 				ID,
-				new Rectangle(posicionAbsoluta,	new Dimension(G,G))
+				new Rectangle(posicionAbsoluta,	new Dimension(G,G)),
+				posicionRelativa
 				);
 		enlaces=new Vector<enlazante>(1, 1);
 		this.nombre=nombre;
@@ -43,6 +46,8 @@ public class cuadrada extends figura{
 		}
 		g.setColor(color);
 		g.fillRect(region.getLocation().x, region.getLocation().y, region.width, region.height);
+		g.setColor(Color.white);
+		g.drawString("hola", region.getLocation().x , region.getLocation().y + G/2);
 		
 	}
 	
@@ -51,32 +56,24 @@ public class cuadrada extends figura{
 		switch (ladi) {
 		case ABAJO:
 			posicion=translacionPto(region.getLocation(), 0, +G);
-			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.HORIZONTAL,ladi,posicion));
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.HORIZONTAL,ladi,posicion,new Point(0, +G)));
 			break;
 		case ARRIBA:
 			posicion=translacionPto(region.getLocation(), 0, -P);
-			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.HORIZONTAL,ladi,posicion));
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.HORIZONTAL,ladi,posicion,new Point(0, -P)));
 			break;
 		case IZQUIERDA:
 			posicion=translacionPto(region.getLocation(), -P, 0);
-			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.VERTICAL,ladi,posicion));
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.VERTICAL,ladi,posicion,new Point(-P,0)));
 			break;
 		case DERECHA:
 			posicion=translacionPto(region.getLocation(), +G, 0);
-			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.VERTICAL,ladi,posicion));
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.VERTICAL,ladi,posicion,new Point(+G, 0)));
 			break;
 		default:
 			break;
 		}
-		enlaces.add(
-				new enlazante(
-						ID,
-						tipo,
-						(ladi==lados.DERECHA||ladi==lados.IZQUIERDA)?orientacionEnlace.VERTICAL:orientacionEnlace.HORIZONTAL,
-						ladi,
-						posicion
-						)
-				);
+
 		
 		
 		
@@ -84,9 +81,9 @@ public class cuadrada extends figura{
 
 	@Override
 	public void mover(Point p) {
-		setPosicion(p);
+		setPosicion(translacionPto(p, posicionRelativa.x, posicionRelativa.y));
 		for (enlazante elemento : enlaces) {
-			elemento.mover(p);
+			elemento.mover(region.getLocation());
 		}
 	}
 	
