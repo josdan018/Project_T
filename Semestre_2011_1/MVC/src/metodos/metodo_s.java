@@ -1,28 +1,41 @@
 package metodos;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Vector;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import corotos.cuadrada;
+import corotos.pieza;
+import corotos.valor;
 
 public class metodo_s extends JPanel {
 	
 	JButton agregar_piezas= new JButton();
 	JFrame ventana;
+	Vector<String> lenguajes;
+	
 	
 	public metodo_s(JFrame ventana){
 		
 		this.setOpaque(true);
 		this.setBackground(Color.GREEN);
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		this.ventana=ventana;
 		
 		agregar_piezas.setText("Agregar");
-		
+		//agregar_piezas.setBounds(0, 0, 50, 20);
+				
 		agregar_piezas.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -34,6 +47,7 @@ public class metodo_s extends JPanel {
 	}
 	
 	public void ventana_emergente(){
+		
 				
 		Object seleccion = JOptionPane.showInputDialog(
 				ventana,
@@ -41,33 +55,62 @@ public class metodo_s extends JPanel {
 				"Componentes",
 				JOptionPane.QUESTION_MESSAGE,
 				null, 
-				new Object[] { "Compilador", "Interprete", "Maquina","Programa"},
-				"Compilador");	
-		if(seleccion.equals("Compilador")){
-			String []lenguajes=new String[3];
+				new Object[] { "COMPILADOR", "INTERPRETE", "MAQUINA","PROGRAMA"},
+				"COMPILADOR");	
+		if(seleccion.equals("COMPILADOR")){
+			lenguajes=new Vector<String>(1, 1);
 			
-			lenguajes[0]=componentes("Lenguaje Fuente");
-			lenguajes[1]=componentes("Lenguaje Objeto");
-			lenguajes[2]=componentes("Implementacion");			
-		}else if(seleccion.equals("Interprete")){
-			String []lenguajes=new String[3];
+			lenguajes.add(componentes("Lenguaje Fuente"));
+			lenguajes.add(componentes("Lenguaje Objeto"));
+			lenguajes.add(componentes("Implementacion"));
 			
-			lenguajes[0]=componentes("Lenguaje conector");
-			lenguajes[1]=componentes("Lenguaje a interpretar");
-			lenguajes[2]=null;			
-		}else if(seleccion.equals("Maquina")){
-			String []lenguajes=new String[3];
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.COMPILADOR,lenguajes);			
+			dibujo(imag1);
 			
-			lenguajes[0]=componentes("Lenguaje de la Maquina");
-			lenguajes[1]=null;
-			lenguajes[2]=null;
-		}else if(seleccion.equals("Programa")){
-			String []lenguajes=new String[3];
+		}else if(seleccion.equals("INTERPRETE")){
+			lenguajes=new Vector<String>(1, 1);
 			
-			lenguajes[0]=componentes("Nombre del Programa");
-			lenguajes[1]=componentes("Lenguaje del Programa");
-			lenguajes[2]=null;
-		}
+			lenguajes.add(componentes("Lenguaje conector"));
+			lenguajes.add(componentes("Lenguaje a interpretar"));
+
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.INTERPRETE,lenguajes);			
+			dibujo(imag1);
+						
+		}else if(seleccion.equals("MAQUINA")){
+			lenguajes=new Vector<String>(1, 1);
+			
+			lenguajes.add(componentes("Lenguaje de la Maquina"));
+
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.MAQUINA,lenguajes);			
+			dibujo(imag1);
+			
+		}else if(seleccion.equals("PROGRAMA")){
+			lenguajes=new Vector<String>(1, 1);
+			
+			lenguajes.add(componentes("Nombre del Programa"));
+			lenguajes.add(componentes("Lenguaje del Programa"));
+
+			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.PROGRAMA,lenguajes);			
+			dibujo(imag1);
+		}		
+	}
+	
+	public void dibujo(final pieza imag1){
+		JLabel imagen= new JLabel(){
+			pieza imag=imag1;
+			@Override			
+			public void paint(Graphics g) {
+				imag.dibujar(g);
+			}
+		};
+		imagen.setOpaque(true);
+		imagen.setBackground(Color.black);
+		//imagen.setBounds(0, 10, 140, 100);
+		imagen.setVisible(true);
+		imagen.repaint();
+		imagen.repaint();
+		this.add(imagen);
+		System.out.println("hizo algoooooooo");
 		
 	}
 	public String componentes(String lenguaje){
@@ -78,5 +121,3 @@ public class metodo_s extends JPanel {
 	}
 
 }
-
-
