@@ -48,7 +48,7 @@ public class Figuras {
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
 			JPanel c=new JPanel(),d=new JPanel();
 			
-<<<<<<< HEAD
+
 			metodo_s b=new metodo_s(frame);
 			
 			/*b.setOpaque(true);
@@ -83,7 +83,7 @@ public class Figuras {
 			
 			//cuadro_informacion(guiobjects, p);
 			
->>>>>>> 0851eef423e046aa8f371a2b1fa29018b021f041
+
 			
 			final Controlador controlador = new Controlador(modelo,vista);
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
@@ -92,9 +92,9 @@ public class Figuras {
 		
 			//cuadro_informacion(p, t_area);
 			
-			a.add(t_area);
+			//a.add(t_area);
 			
-			guiobjects.add(a,BorderLayout.SOUTH);
+			//guiobjects.add(a,BorderLayout.SOUTH);
 			guiobjects.add(b,BorderLayout.WEST);
 			guiobjects.add(c,BorderLayout.EAST);
 			
@@ -126,9 +126,9 @@ public class Figuras {
 		
         if(p.elementAt(0).getIdentificador()== tipoPieza.COMPILADOR){
         	
-<<<<<<< HEAD
+
         	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)+" , a: +, ");
-=======
+
         	cuadro_informacion_compilador(p, t_area, 0);
         	
         	if(p.elementAt(1).getIdentificador()== tipoPieza.COMPILADOR){
@@ -177,7 +177,7 @@ public class Figuras {
         		}
         	}
         	
->>>>>>> 0851eef423e046aa8f371a2b1fa29018b021f041
+
         }
         
         

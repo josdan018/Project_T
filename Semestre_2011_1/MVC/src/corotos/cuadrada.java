@@ -84,4 +84,5 @@ public class cuadrada extends figura{
 		return nombre;
 	}
 
+
 }
