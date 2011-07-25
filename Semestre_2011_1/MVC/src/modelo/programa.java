@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -95,3 +95,4 @@ public class programa extends Figura{ //un cuadro, un enlace (3 ocultos) y un  c
 		return 0;
 	}
 }
+*/

@@ -59,6 +59,7 @@ public class pieza extends figura{
 		
 		
 	}
+	
 	@Override
 	public void mover(Point p) {
 		for(cuadrada elemento:cuadrados){

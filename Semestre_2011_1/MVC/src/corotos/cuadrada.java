@@ -16,7 +16,6 @@ public class cuadrada extends figura{
 	String nombre;
 	
 	public cuadrada(int ID, Point posicionAbsoluta, String nombre) {
-	public cuadrada(int ID, Point posicionAbsoluta) {
 		super(
 				ID,
 				new Rectangle(posicionAbsoluta,	new Dimension(G,G))
@@ -73,8 +72,8 @@ public class cuadrada extends figura{
 				new enlazante(
 						ID,
 						tipo,
-						(lado==lados.DERECHA||lado==lados.IZQUIERDA)?orientacionEnlace.VERTICAL:orientacionEnlace.HORIZONTAL,
-						lado,
+						(ladi==lados.DERECHA||ladi==lados.IZQUIERDA)?orientacionEnlace.VERTICAL:orientacionEnlace.HORIZONTAL,
+						ladi,
 						posicion
 						)
 				);
@@ -87,7 +86,7 @@ public class cuadrada extends figura{
 	public void mover(Point p) {
 		setPosicion(p);
 		for (enlazante elemento : enlaces) {
-			elemento.setPosicion(p);
+			elemento.mover(p);
 		}
 	}
 	

@@ -9,7 +9,8 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import modelo.Modelo;
-import modelo.Figura;
+import modelo.Pieza;
+
 import javax.swing.JPanel;
 
 
@@ -62,7 +63,7 @@ public class Vista extends JPanel {
 	private void pintarTodo(Graphics2D g){
 		pintar_rejilla(g);
 		
-		for (Figura elemento : modelo.getListado()) {
+		for (Pieza elemento : modelo.getListado()) {
 			elemento.dibujar(g);
 		}
 	}

@@ -84,4 +84,12 @@ public class enlazante extends figura {
 		}
 	}
 
+
+
+	@Override
+	public void mover(Point p) {
+		setPosicion(p);
+		
+	}
+
 }

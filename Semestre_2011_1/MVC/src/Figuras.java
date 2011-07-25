@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -19,11 +20,15 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.ScrollPaneConstants;
 
+
 import metodos.metodo_s;
 import modelo.Modelo;
 import vista.Vista;
 import controlador.Controlador;
-import com.db4o.*;
+import corotos.pieza;
+import corotos.valor;
+
+//import com.db4o.*;
 
 public class Figuras {
 	
@@ -45,36 +50,12 @@ public class Figuras {
 			Modelo modelo = new Modelo();
 			franklin c= new franklin();
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
-			JPanel c=new JPanel(),d=new JPanel();
+			JPanel d=new JPanel();
 			
 
 			metodo_s b=new metodo_s(frame);
 			
-			/*b.setOpaque(true);
-			b.setBa
-			
-			
-			
-			
-			
-			ckground(Color.GREEN);
-=======
-			JPanel a=new JPanel();
-			JTextArea t_area = new JTextArea("  . . . . . Creando \n",10,80); 
-			a.setOpaque(true);
-			a.setBackground(Color.BLUE);
-			a = new JPanel(new FlowLayout());
-	        a.add(new JLabel("Acción Realizada:  ",10));
-			
-			b.setOpaque(true);
-			b.setBackground(Color.GREEN);
->>>>>>> 0851eef423e046aa8f371a2b1fa29018b021f041
-			b.add(new JButton("Listo"));
-			b.add(new JLabel("Pon texto"));
-	        b.add(new JTextField(25));
-	        b.add(new JButton("Listo"));*/
-			
-				
+
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
 			
@@ -87,22 +68,9 @@ public class Figuras {
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
 		
-			//cuadro_informacion(p, t_area);
-			
-			//a.add(t_area);
-			
-			//guiobjects.add(a,BorderLayout.SOUTH);
 			guiobjects.add(b,BorderLayout.WEST);
 			guiobjects.add(c,BorderLayout.EAST);
 			
-			/*ModelScroll.repaint();
-			 * v.getContentPane().setLayout(new BorderLayout()); 
-			v.getContentPane().add(scroll,BorderLayout.CENTER);
-			v.getContentPane().add(panelSuperior,BorderLayout.NORTH);
-			v.getContentPane().add(panelInferior,BorderLayout.SOUTH);
-			v.getContentPane().add(panelIzquierdo,BorderLayout.WEST);
-			v.getContentPane().add(panelDerecho,BorderLayout.EAST);
-			 */
 			frame.repaint();//*/
 			frame.pack();
 		}catch (RuntimeException e){
@@ -121,55 +89,55 @@ public class Figuras {
         //Acciones
 		int xx = 0;
 		
-        if(p.elementAt(0).getIdentificador()== tipoPieza.COMPILADOR){
+        if(p.elementAt(0).getIdentificador()== valor.tipoPieza.COMPILADOR){
         	
 
         	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)+" , a: +, ");
 
         	cuadro_informacion_compilador(p, t_area, 0);
         	
-        	if(p.elementAt(1).getIdentificador()== tipoPieza.COMPILADOR){
+        	if(p.elementAt(1).getIdentificador()== valor.tipoPieza.COMPILADOR){
             	
             	cuadro_informacion_compilador(p, t_area, 1);
             	
-            	if(p.elementAt(2).getIdentificador()== tipoPieza.MAQUINA){
+            	if(p.elementAt(2).getIdentificador()== valor.tipoPieza.MAQUINA){
             		cuadro_informacion_maquina(p, t_area, 2);
             	}
             }
-        	else if (p.elementAt(1).getIdentificador()== tipoPieza.INTERPRETE){
+        	else if (p.elementAt(1).getIdentificador()== valor.tipoPieza.INTERPRETE){
         		cuadro_informacion_interprete (p, t_area, 1);
         		xx = 2;
-        		while(p.elementAt(xx).getIdentificador()== tipoPieza.INTERPRETE){
+        		while(p.elementAt(xx).getIdentificador()== valor.tipoPieza.INTERPRETE){
         			cuadro_informacion_interprete (p, t_area, xx);
         			xx = xx + 1;
         		}
-        		if(p.elementAt(xx).getIdentificador()== tipoPieza.COMPILADOR){
+        		if(p.elementAt(xx).getIdentificador()== valor.tipoPieza.COMPILADOR){
                 	
                 	cuadro_informacion_compilador(p, t_area, xx);
         		}
         	}
         	
         }
-        else if(p.elementAt(0).getIdentificador()== tipoPieza.PROGRAMA){
+        else if(p.elementAt(0).getIdentificador()== valor.tipoPieza.PROGRAMA){
         	cuadro_informacion_compilador(p, t_area,0);
-        	if(p.elementAt(1).getIdentificador()== tipoPieza.COMPILADOR){
+        	if(p.elementAt(1).getIdentificador()== valor.tipoPieza.COMPILADOR){
             	
             	cuadro_informacion_compilador(p, t_area,1);
             	
-            	if(p.elementAt(2).getIdentificador()== tipoPieza.MAQUINA){
+            	if(p.elementAt(2).getIdentificador()== valor.tipoPieza.MAQUINA){
             		cuadro_informacion_maquina(p, t_area, 2);
             	}
             }
-        	else if (p.elementAt(1).getIdentificador()== tipoPieza.INTERPRETE){
+        	else if (p.elementAt(1).getIdentificador()== valor.tipoPieza.INTERPRETE){
         		cuadro_informacion_interprete (p, t_area, 1);
         		xx = 2;
-        		while(p.elementAt(xx).getIdentificador()== tipoPieza.INTERPRETE){
+        		while(p.elementAt(xx).getIdentificador()== valor.tipoPieza.INTERPRETE){
         			
         			cuadro_informacion_interprete (p, t_area, xx);
         			xx = xx + 1;
         		}
         		
-        		if(p.elementAt(xx).getIdentificador()== tipoPieza.MAQUINA){
+        		if(p.elementAt(xx).getIdentificador()== valor.tipoPieza.MAQUINA){
         			cuadro_informacion_maquina(p, t_area, xx);
         		}
         	}

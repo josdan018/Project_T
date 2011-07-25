@@ -4,10 +4,13 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
+import corotos.pieza;
+
+
 public class Modelo {
 	String nombre="puto";
 	
-	private List<Pieza> listaFiguras;
+	private List<pieza> listaFiguras;
 	public Modelo(){
 		listaFiguras = new ArrayList<Pieza>();
 	}
