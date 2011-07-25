@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -88,3 +88,4 @@ public class Cuadrado extends Figura{
 	}
 
 }
+*/

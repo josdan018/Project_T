@@ -18,6 +18,7 @@ public class cuadrada extends figura{
 				);
 		enlaces=new Vector<enlazante>(1, 1);
 		this.nombre=nombre;
+		this.color=colorSolido;
 	}
 	
 	@Override
@@ -35,37 +36,34 @@ public class cuadrada extends figura{
 		for (figura elemento : enlaces) {
 			elemento.dibujar(g);
 		}
+		g.setColor(color);
 		g.fillRect(region.getLocation().x, region.getLocation().y, region.width, region.height);
 		
 	}
 	
-	public void anyadirEnlazante(tipoEnlace tipo, lados lado){
+	public void anyadirEnlazante(tipoEnlace tipo, lados ladi){
 		Point posicion=null;
-		switch (lado) {
+		switch (ladi) {
 		case ABAJO:
 			posicion=translacionPto(region.getLocation(), 0, +G);
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.HORIZONTAL,ladi,posicion));
 			break;
 		case ARRIBA:
 			posicion=translacionPto(region.getLocation(), 0, -P);
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.HORIZONTAL,ladi,posicion));
 			break;
 		case IZQUIERDA:
 			posicion=translacionPto(region.getLocation(), -P, 0);
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.VERTICAL,ladi,posicion));
 			break;
 		case DERECHA:
 			posicion=translacionPto(region.getLocation(), +G, 0);
+			enlaces.add(new enlazante(ID,tipo,orientacionEnlace.VERTICAL,ladi,posicion));
 			break;
 		default:
 			break;
 		}
-		enlaces.add(
-				new enlazante(
-						ID,
-						tipo,
-						(lado==lados.DERECHA||lado==lados.IZQUIERDA)?orientacionEnlace.VERTICAL:orientacionEnlace.HORIZONTAL,
-						lado,
-						posicion
-						)
-				);
+		
 		
 		
 	}

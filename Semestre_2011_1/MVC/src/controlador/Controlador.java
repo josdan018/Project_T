@@ -19,7 +19,7 @@ import modelo.Figura;
 import modelo.Modelo;
 import modelo.Pieza;
 //import modelo.compilador;
-import modelo.enlace;
+//import modelo.enlace;
 import corotos.*;
 //import modelo.maquina;
 //import modelo.programa;
@@ -28,7 +28,7 @@ public class Controlador {
 	
 	private Modelo modelo;
 	private Vista vista;
-	private Figura seleccionada;
+	private Pieza seleccionada;
 	int tamanyoFig=40;
 	boolean insercion;
 	
@@ -39,10 +39,10 @@ public class Controlador {
 		insercion=false;
 	}
 	
-	public Figura obtenerFigura(Point posicion){
-		ListIterator<Figura> it=modelo.getListado().listIterator();
+	public Pieza obtenerFigura(Point posicion){
+		ListIterator<Pieza> it=modelo.getListado().listIterator();
 	    while (it.hasNext()) {
-	    	Figura tmp=it.next();
+	    	Pieza tmp=it.next();
 	    		if(tmp.dentroFigura(posicion)){
 	    			tmp.setSeleccionada(true);
 	    			return tmp;
@@ -51,10 +51,10 @@ public class Controlador {
 	    return null;
 	}
 	
-	public Figura obtenerFigura(int ID){
-		ListIterator<Figura> it=modelo.getListado().listIterator();
+	public Pieza obtenerFigura(int ID){
+		ListIterator<Pieza> it=modelo.getListado().listIterator();
 	    while (it.hasNext()) {
-	    	Figura tmp=it.next();
+	    	Pieza tmp=it.next();
 	    		if(tmp.getID()==ID){
 	    			tmp.setSeleccionada(true);
 	    			return tmp;
@@ -63,10 +63,10 @@ public class Controlador {
 	    return null;
 	}
 	public int cuantasFiguras(Point posicion){
-		ListIterator<Figura> it=modelo.getListado().listIterator();
+		ListIterator<Pieza> it=modelo.getListado().listIterator();
 		int k=0;
 	    while (it.hasNext()) {
-	    	Figura tmp=it.next();
+	    	Pieza tmp=it.next();
 	    		if(tmp.dentroFigura(posicion)){
 	    			System.out.println("k aumento");
 	    			k++;
@@ -76,7 +76,7 @@ public class Controlador {
 	    return k;
 	}
 
-	public void cambiarPosicion(Figura f, Point p){
+	public void cambiarPosicion(Pieza f, Point p){
 			f.setPosicion(limitar(p));
 	}
 	
@@ -88,7 +88,7 @@ public class Controlador {
 		modelo.anyadirFigura(f);
 	}
 	
-	public Figura getFiguraEn(Point p){
+	public Pieza getFiguraEn(Point p){
 		return modelo.getFiguraEn(p);
 	}
 	
@@ -102,12 +102,13 @@ public class Controlador {
 				vec.add("uno");
 				vec.add("uno");
 				
-				this.anyadirFigura(new Pieza(1, new Rectangle(ev.getPoint()), tipoPieza.COMPILADOR, vec));
+				this.anyadirFigura(new Pieza(1, new Rectangle(limitar(ev.getPoint())), tipoPieza.COMPILADOR, vec));
 				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
 				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 			}else{
 				//System.out.println("ya hay: " + modelo.getListado().size());
 				seleccionada=this.getFiguraEn(ev.getPoint());
+				System.out.println(""+seleccionada);
 			}
 			if(this.getFiguraEn(ev.getPoint())!=null);
 				//detectaEnlaces(ev.getPoint());
@@ -126,19 +127,10 @@ public class Controlador {
 	}
 	
 	public void eVmouseDragged(MouseEvent ev) {
-		if(this.obtenerFigura(ev.getPoint())==null){
-			;
-		}
-		if(seleccionada!=null){
-			
-			int k=this.cuantasFiguras(limitar(ev.getPoint()));
-			System.out.println(k+"             )");
-			if(k==0){
-				System.out.println("moviendo "+ev.getPoint()+" "+k);
+		
 				this.cambiarPosicion(seleccionada, ev.getPoint());
 				vista.repaint();
-			}
-		}
+		
 	}
 
 	public void eVmouseReleased (MouseEvent ev) {
@@ -153,7 +145,7 @@ public class Controlador {
 	
 	public void detectaEnlaces(Point donde) {
 		/*
-		Point posicionFigura = this.getFiguraEn(donde).getPosicion();
+		Point posicionPieza = this.getFiguraEn(donde).getPosicion();
 		switch (this.getFiguraEn(donde).getTipoFigura()) {
 		case Figura.COMPILADOR:
 			System.out.println("primer entrar");
@@ -177,8 +169,8 @@ public class Controlador {
 	}
 	
 	public void modificarAlgo(Point figuraResidente, Point figuraVecina, int enlaceAfectado){
-		/*Figura vecina = this.getFiguraEn(figuraVecina);
-		Figura residente = this.getFiguraEn(figuraResidente);
+		/*Pieza vecina = this.getFiguraEn(figuraVecina);
+		Pieza residente = this.getFiguraEn(figuraResidente);
 		int tipoResidente = residente.getTipoFigura();	
 		System.out.println("vecina: "+vecina);
 		

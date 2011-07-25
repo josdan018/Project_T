@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -16,7 +16,7 @@ public class enlace extends Figura {
 				new Rectangle(posicionAbsoluta,
 						(orientacion==orientacionEnlace.HORIZONTAL)?
 								new Dimension(G, P):
-								new Dimension(P, P)
+								new Dimension(P, G)
 								)
 				);
 		
@@ -24,11 +24,13 @@ public class enlace extends Figura {
 		this.orientacion = orientacion;
 		this.lado = lado;
 		
+		
 			
 		
 		switch (tipo) {
 			case SOLIDO:
 				setColor(colorSolido);
+				System.out.println("solido");
 				break;
 			case OCIOSO:
 				setColor(colorOcioso);
@@ -94,3 +96,4 @@ public class enlace extends Figura {
 	}
 
 }
+*/

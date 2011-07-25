@@ -15,7 +15,7 @@ public class enlazante extends figura {
 				new Rectangle(posicionAbsoluta,
 						(orientacion==orientacionEnlace.HORIZONTAL)?
 								new Dimension(G, P):
-								new Dimension(P, P)
+								new Dimension(P, G)
 								)
 				);
 		

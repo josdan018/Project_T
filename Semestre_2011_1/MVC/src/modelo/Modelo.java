@@ -7,25 +7,25 @@ import java.util.List;
 public class Modelo {
 	String nombre="puto";
 	
-	private List<Figura> listaFiguras;
+	private List<Pieza> listaFiguras;
 	public Modelo(){
-		listaFiguras = new ArrayList<Figura>();
+		listaFiguras = new ArrayList<Pieza>();
 	}
 	
-	public void AnyadirFigura(Figura f){
+	public void AnyadirFigura(Pieza f){
 		listaFiguras.add(f);
 	}
 	
-	public List<Figura> getListado(){
+	public List<Pieza> getListado(){
 		return listaFiguras;
 	}
 	
-	public void anyadirFigura(Figura f){
+	public void anyadirFigura(Pieza f){
 		listaFiguras.add(f);
 	}
 	
-	public Figura getFiguraEn(Point p){
-		for (Figura elemento : getListado()) {
+	public Pieza getFiguraEn(Point p){
+		for (Pieza elemento : getListado()) {
 			if(elemento.dentroFigura(p)){
 				elemento.seleccionada=true;
 				return elemento;				
