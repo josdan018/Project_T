@@ -1,124 +1,96 @@
 package modelo;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
+import corotos.*;
 
-public class enlace extends Figura{
-	public static int 
-		ENLACE_HORIZONTAL=1,
-		ENLACE_VERTICAL=2,
-		ENLACE_SOLIDO=1,
-		ENLACE_VOLATIL_CORRECTO=2,
-		ENLACE_VOLATIL_INCORRECTO=3,
-		ENLACE_VOLATIL_NO_ACTIVO=4,
-		ENLACE_TRIANGULAR=5,//solo para maquinas
-		ENLACE_BLOQUEADO=6
-		;
+public class enlace extends Figura {
+	tipoEnlace tipo;
+	orientacionEnlace orientacion;
+	lados lado;
+	public enlace(int ID, tipoEnlace tipo, orientacionEnlace orientacion, lados lado, Point posicionAbsoluta) {
+		super(
+				ID,
+				new Rectangle(posicionAbsoluta,
+						(orientacion==orientacionEnlace.HORIZONTAL)?
+								new Dimension(G, P):
+								new Dimension(P, P)
+								)
+				);
+		
+		this.tipo = tipo;
+		this.orientacion = orientacion;
+		this.lado = lado;
+		
+			
+		
+		switch (tipo) {
+			case SOLIDO:
+				setColor(colorSolido);
+				break;
+			case OCIOSO:
+				setColor(colorOcioso);
+				break;
+			case CORRECTO:
+				setColor(colorCorrecto);
+				break;
+			case INCORRECTO:
+				setColor(colorIncorrecto);
+				break;
+			case TRIANGULAR:
+				setColor(colorSolido);
+				break;
+			default:
+				break;
+			}
+	}
+	
+	
 
-	 
-	int ancho, alto, orientacion, estado, idCercano, idDuenyo;
-
-	
-	
-	public enlace(Point posicion, int ancho, int orientacion, int estado, int idDuenyo) {
-
-		this.posicion=posicion;
-		this.orientacion=orientacion;
-		this.estado=estado;
-		this.tipoFigura=Figura.ENLACE;
-		this.idDuenyo=idDuenyo;
-		if(orientacion==ENLACE_VERTICAL){
-			this.ancho=ancho/8;
-			this.alto=ancho;
-		}else if(orientacion==ENLACE_HORIZONTAL){
-			this.alto=ancho/8;
-			this.ancho=ancho;
-		}
-		
-		
-		// TODO Auto-generated constructor stub
-	}
-	
-	public boolean disponible(){
-		
-		if(estado==ENLACE_VOLATIL_CORRECTO)
-			return true;
-		if(estado==ENLACE_VOLATIL_INCORRECTO)
-			return true;
-		return false;
-		
-		
-		
-		
-		
-		
-		
-	}
-	
-	public void setEstado(int estado) {
-		this.estado = estado;
-	}
-	
-	public int getEstado() {
-		return estado;
-	}
-	
-	public void setAlto(int alto) {
-		this.alto = alto;
-	}
-	
-	public void setAncho(int ancho) {
-		this.ancho = ancho;
-	}
-	
 	@Override
 	public boolean dentroFigura(Point p) {
-		
-		return new Rectangle(posicion,new Dimension(ancho, alto)).contains(p);
+		return region.contains(p);
 	}
 
 	@Override
 	public void dibujar(Graphics g) {
-		if(estado!=ENLACE_BLOQUEADO){
-			if(estado==ENLACE_SOLIDO||estado==ENLACE_TRIANGULAR)
-				g.setColor(Color.BLUE);
-			else if(estado==ENLACE_VOLATIL_CORRECTO)
-				g.setColor(Color.GREEN);
-			else if(estado==ENLACE_VOLATIL_INCORRECTO)
-				g.setColor(Color.RED);
-			else if(estado==ENLACE_VOLATIL_NO_ACTIVO){
-				g.setColor(new Color(0.1F, 0.1F, 0.1F, 0.1F));
-			}
-	
-			
-			if(ENLACE_TRIANGULAR==estado){
-				int[] x={posicion.x,posicion.x+ancho/2,posicion.x+ancho};
-				int[] y={posicion.y,posicion.y+alto,posicion.y};
-				g.fillPolygon(x,y, 3);
-			}else
-				g.fillRect(posicion.x,posicion.y,ancho,alto);
-			}
-		// TODO Auto-generated method stub
+		g.setColor(color);
+		if(tipoEnlace.TRIANGULAR==tipo){
+			int[] x={region.x,region.x+region.width/2,region.x+region.width};
+			int[] y={region.y,region.y+region.height,region.y};
+			g.fillPolygon(x,y, 3);
+		}else{
+			g.fillRect(region.x,region.y,region.width,region.height);
+		}
 		
+		
+	}
+	
+	public void activar(boolean activo){
+		if(!activo){
+			setColor(colorOcioso);
+			this.tipo=tipoEnlace.OCIOSO;
+		}
+	}
+	
+	public void corregir(boolean correcto){
+		if(correcto){
+			setColor(colorCorrecto);
+			this.tipo=tipoEnlace.CORRECTO;
+		}else{
+			setColor(colorIncorrecto);
+			this.tipo=tipoEnlace.INCORRECTO;
+		}
 	}
 
+
+
 	@Override
-	public void bloquear() {
-		// TODO Auto-generated method stub
+	public void mover(Point p) {
+		setPosicion(p);
 		
 	}
-	
-	public int dentroCualFigura(Point p){
-		return 0;
-	}
-	
-	public boolean interseccionDeEnlaces(enlace otro){
-		
-		return new Rectangle(posicion,new Dimension(ancho, alto)).intersects(new Rectangle(otro.posicion,new Dimension(ancho, alto)));
-		
-	} 
 
 }
