@@ -20,7 +20,7 @@ import controlador.Controlador;
 public class Vista extends JPanel {
 	static final long serialVersionUID = 0L;
 	private Modelo modelo;
-	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TODO FALLA
+	public Controlador controlador;  //IMPORTANTE DEBE SER REGISTRADO O TO DO FALLA
 	int tamanio=40;
 	int separacion=5;
 	int tam_sep=tamanio+separacion;

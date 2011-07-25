@@ -5,7 +5,6 @@ import java.awt.Rectangle;
 
 import javax.swing.SwingUtilities;
 
-import com.sun.xml.internal.ws.developer.MemberSubmissionAddressing.Validation;
 
 import corotos.pieza;
 import corotos.valor.tipoPieza;
@@ -17,11 +16,6 @@ import java.util.Vector;
 import vista.Vista;
 
 import modelo.Modelo;
-//import modelo.compilador;
-//import modelo.enlace;
-import corotos.*;
-//import modelo.maquina;
-//import modelo.programa;
 
 public class Controlador {
 	
