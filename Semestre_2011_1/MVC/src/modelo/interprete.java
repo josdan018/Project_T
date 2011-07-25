@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -80,3 +80,4 @@ public class interprete extends Figura{//un cuadrado (2 enlaces ocultos?)
 		return 0;
 	}
 }
+*/

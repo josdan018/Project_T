@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Modelo {
+	String nombre="puto";
 	
 	private List<Figura> listaFiguras;
 	public Modelo(){

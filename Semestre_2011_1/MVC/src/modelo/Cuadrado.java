@@ -1,53 +1,90 @@
 package modelo;
 
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Rectangle;
+import java.util.Vector;
+import corotos.*;
 
-public class Cuadrado extends Figura {
-
-	private int ancho;
-	public Cuadrado(Point posicion, int ancho){
-		this.tipoFigura=Figura.CUADRADO;
-		this.posicion=posicion;
-		this.ancho=ancho;
-		this.seleccionada=false;  //Deberia estar en el constructor pero por simplicidad
-	}
+public class Cuadrado extends Figura{
+	Vector<enlazante> enlaces;
 	
-	public void setAncho(int ancho){
-		this.ancho=ancho;
-	}
-	public int getAncho(){
-		return ancho;
+	String nombre;
+	
+	public Cuadrado(int ID, Point posicionAbsoluta, String nombre) {
+		super(
+				ID,
+				new Rectangle(posicionAbsoluta,	new Dimension(G,G))
+				);
+		enlaces=new Vector<enlazante>(1, 1);
+		this.nombre=nombre;
 	}
 	
 	@Override
-	//Muy rudimentario y solo a modo demostrativo, para uso serio debe ser mejorada
 	public boolean dentroFigura(Point p) {
-		int difX=Math.abs(p.x-(posicion.x+(ancho/2)));
-		int difY=Math.abs(p.y-(posicion.y+(ancho/2)));
-		//System.out.println(difX+" " + difY);
-		return ( (difX<ancho/2) && (difY<ancho/2));   
-	}
-	
-	@Override
-	public void dibujar(Graphics g)
-	{
-		g.setColor(Color.BLUE);
-		g.fillRect(this.getX(), this.getY(), this.getAncho(), this.getAncho());
-		/*if(this.getSeleccionada()){
-			g.setColor(Color.RED);
-			g.drawRect(this.getX()+7, this.getY()+7, this.getAncho()-20, this.getAncho()-20);
-		}*/
+		
+		for (figura elemento : enlaces) {
+			if(elemento.dentroFigura(p))
+				return true;
+		}
+		return region.contains(p);
 	}
 
 	@Override
-	public void bloquear() {
-		// TODO Auto-generated method stub
+	public void dibujar(Graphics g) {
+		for (figura elemento : enlaces) {
+			elemento.dibujar(g);
+		}
+		g.fillRect(region.getLocation().x, region.getLocation().y, region.width, region.height);
 		
-	}	
-	
-	public int dentroCualFigura(Point p){
-		return 0;
 	}
+	
+	public void anyadirEnlazante(tipoEnlace tipo, lados lado){
+		Point posicion=null;
+		switch (lado) {
+		case ABAJO:
+			posicion=translacionPto(region.getLocation(), 0, +G);
+			break;
+		case ARRIBA:
+			posicion=translacionPto(region.getLocation(), 0, -P);
+			break;
+		case IZQUIERDA:
+			posicion=translacionPto(region.getLocation(), -P, 0);
+			break;
+		case DERECHA:
+			posicion=translacionPto(region.getLocation(), +G, 0);
+			break;
+		default:
+			break;
+		}
+		enlaces.add(
+				new enlazante(
+						ID,
+						tipo,
+						(lado==lados.DERECHA||lado==lados.IZQUIERDA)?orientacionEnlace.VERTICAL:orientacionEnlace.HORIZONTAL,
+						lado,
+						posicion
+						)
+				);
+		
+		
+	}
+
+	@Override
+	public void mover(Point p) {
+		setPosicion(p);
+		for (enlazante elemento : enlaces) {
+			elemento.setPosicion(p);
+		}
+	}
+	
+	public boolean comparaLenguaje(){
+		return false;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
 }
