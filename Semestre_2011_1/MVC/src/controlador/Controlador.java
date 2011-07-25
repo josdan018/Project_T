@@ -143,53 +143,12 @@ public class Controlador {
 	}
 	
 	public void detectaEnlaces(Point donde) {
-		/*
-		Point posicionpieza = this.getFiguraEn(donde).getPosicion();
-		switch (this.getFiguraEn(donde).getTipoFigura()) {
-		case Figura.COMPILADOR:
-			System.out.println("primer entrar");
-			modificarAlgo(donde, Figura.translacionPto(donde, -70, 0), 3);
-			
-			break;
-		case Figura.PROGRAMA:
-			//revisar por debajo
-			break;
-		case Figura.INTERPRETE:
-			//revisar por arriba y por debajo
-			break;
-		case Figura.MAQUINA:
-			//revisar por arriba
-			break;
-		default:
-			break;
-		}
-		*/
+		
 		
 	}
 	
 	public void modificarAlgo(Point figuraResidente, Point figuraVecina, int enlaceAfectado){
-		/*pieza vecina = this.getFiguraEn(figuraVecina);
-		pieza residente = this.getFiguraEn(figuraResidente);
-		int tipoResidente = residente.getTipoFigura();	
-		System.out.println("vecina: "+vecina);
 		
-		if(vecina!=null){
-			for(int i=0; i < residente.numeroEnlaces ;i++)
-				for(int j=0;j<vecina.numeroEnlaces;j++)
-					if(residente.enlaces[enlaceAfectado].interseccionDeEnlaces(vecina.enlaces[j])
-							&&
-							residente.enlaces[enlaceAfectado].disponible()){
-						System.out.println("entro");
-						residente.enlaces[enlaceAfectado].setEstado(enlace.ENLACE_VOLATIL_CORRECTO);
-						vecina.enlaces[enlaceAfectado].setEstado(enlace.ENLACE_VOLATIL_CORRECTO);
-						
-						
-					}
-			//if()
-			
-			
-		}
-		*/
 		
 	}
 	
