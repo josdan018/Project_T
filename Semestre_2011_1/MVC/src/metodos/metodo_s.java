@@ -7,6 +7,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Vector;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -28,11 +29,13 @@ public class metodo_s extends JPanel {
 		
 		this.setOpaque(true);
 		this.setBackground(Color.GREEN);
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
 		this.ventana=ventana;
 		
 		agregar_piezas.setText("Agregar");
-		
+		//agregar_piezas.setBounds(0, 0, 50, 20);
+				
 		agregar_piezas.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -62,7 +65,7 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Implementacion"));
 			
 			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.COMPILADOR,lenguajes);			
-			dibujo();
+			dibujo(imag1);
 			
 		}else if(seleccion.equals("INTERPRETE")){
 			lenguajes=new Vector<String>(1, 1);
@@ -71,7 +74,7 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje a interpretar"));
 
 			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.INTERPRETE,lenguajes);			
-			dibujo();
+			dibujo(imag1);
 						
 		}else if(seleccion.equals("MAQUINA")){
 			lenguajes=new Vector<String>(1, 1);
@@ -79,7 +82,7 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje de la Maquina"));
 
 			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.MAQUINA,lenguajes);			
-			dibujo();
+			dibujo(imag1);
 			
 		}else if(seleccion.equals("PROGRAMA")){
 			lenguajes=new Vector<String>(1, 1);
@@ -88,18 +91,27 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje del Programa"));
 
 			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.PROGRAMA,lenguajes);			
-			dibujo();
+			dibujo(imag1);
 		}		
 	}
 	
-	public void dibujo(){
+	public void dibujo(final pieza imag1){
 		JLabel imagen= new JLabel(){
-			pieza imag;
+			pieza imag=imag1;
 			@Override			
 			public void paint(Graphics g) {
 				imag.dibujar(g);
 			}
 		};
+		imagen.setOpaque(true);
+		imagen.setBackground(Color.black);
+		//imagen.setBounds(0, 10, 140, 100);
+		imagen.setVisible(true);
+		imagen.repaint();
+		imagen.repaint();
+		this.add(imagen);
+		System.out.println("hizo algoooooooo");
+		
 	}
 	public String componentes(String lenguaje){
 		String len = JOptionPane.showInputDialog(
