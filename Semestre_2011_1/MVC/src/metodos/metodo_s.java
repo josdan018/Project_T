@@ -14,7 +14,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-import corotos.cuadrada;
 import corotos.pieza;
 import corotos.valor;
 
