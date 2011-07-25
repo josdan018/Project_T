@@ -17,7 +17,6 @@ public abstract class figura implements valor{
 	
 	public abstract boolean dentroFigura(Point p);
 	public abstract void dibujar(Graphics g);
-	public abstract void mover(Point p);
 	
 	public figura() {
 		
@@ -73,12 +72,5 @@ public abstract class figura implements valor{
 		aMover.translate(dx, dy);
 		return aMover;
 	}
-	
-	public void setPosicion(Point p){
-		region.setLocation(p);
-		
-	}
-	
-	
 	
 }

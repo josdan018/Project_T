@@ -1,13 +1,16 @@
 import java.awt.BorderLayout;
-
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
-import java.util.Vector;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.File;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -20,16 +23,12 @@ import metodos.metodo_s;
 import modelo.Modelo;
 import vista.Vista;
 import controlador.Controlador;
-import corotos.*;
-import corotos.valor.tipoPieza;
-
+import com.db4o.*;
 
 public class Figuras {
 	
+	
 	public static void main(String[] args) {
-		Vector <pieza> p = new Vector<pieza>() ;
-		valor v;
-
 		try{
 			final JFrame frame = new JFrame();
 			frame.setTitle("Ejemplo Modelo Vista Controlador (MVC) Compíladores e Interpretes UNET");
@@ -44,7 +43,7 @@ public class Figuras {
 		    Container guiobjects = frame.getContentPane();
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
-			
+			franklin c= new franklin();
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
 			JPanel c=new JPanel(),d=new JPanel();
 			
@@ -75,9 +74,7 @@ public class Figuras {
 	        b.add(new JTextField(25));
 	        b.add(new JButton("Listo"));*/
 			
-			c.setOpaque(true);
-			c.setBackground(Color.YELLOW);
-			
+				
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
 			

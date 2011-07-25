@@ -6,18 +6,24 @@ import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.Vector;
 
+
+
+
+
 public class cuadrada extends figura{
 	Vector<enlazante> enlaces;
 	
 	String nombre;
 	
 	public cuadrada(int ID, Point posicionAbsoluta, String nombre) {
+	public cuadrada(int ID, Point posicionAbsoluta) {
 		super(
 				ID,
 				new Rectangle(posicionAbsoluta,	new Dimension(G,G))
 				);
 		enlaces=new Vector<enlazante>(1, 1);
 		this.nombre=nombre;
+
 		this.color=colorSolido;
 	}
 	
@@ -63,6 +69,15 @@ public class cuadrada extends figura{
 		default:
 			break;
 		}
+		enlaces.add(
+				new enlazante(
+						ID,
+						tipo,
+						(lado==lados.DERECHA||lado==lados.IZQUIERDA)?orientacionEnlace.VERTICAL:orientacionEnlace.HORIZONTAL,
+						lado,
+						posicion
+						)
+				);
 		
 		
 		
