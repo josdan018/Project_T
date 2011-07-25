@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 
 import java.awt.Color;
@@ -83,4 +83,4 @@ public abstract class Figura implements valor{
 	
 	
 	
-}
+}*/

@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -72,3 +72,4 @@ public class maquina extends Figura{
 
 
 }
+*/

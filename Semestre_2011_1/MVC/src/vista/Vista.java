@@ -9,7 +9,7 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 import modelo.Modelo;
-import modelo.Pieza;
+import corotos.*;
 
 import javax.swing.JPanel;
 
@@ -63,7 +63,7 @@ public class Vista extends JPanel {
 	private void pintarTodo(Graphics2D g){
 		pintar_rejilla(g);
 		
-		for (Pieza elemento : modelo.getListado()) {
+		for (pieza elemento : modelo.getListado()) {
 			elemento.dibujar(g);
 		}
 	}

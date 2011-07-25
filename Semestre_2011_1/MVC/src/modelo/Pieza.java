@@ -1,4 +1,4 @@
-package modelo;
+/*package modelo;
 
 import java.awt.Graphics;
 import java.awt.Point;
@@ -133,4 +133,4 @@ public class Pieza extends Figura{
 		cuadrados.add(aux);
 	}
 
-}
+}*/

@@ -12,25 +12,25 @@ public class Modelo {
 	
 	private List<pieza> listaFiguras;
 	public Modelo(){
-		listaFiguras = new ArrayList<Pieza>();
+		listaFiguras = new ArrayList<pieza>();
 	}
 	
-	public void AnyadirFigura(Pieza f){
+	public void AnyadirFigura(pieza f){
 		listaFiguras.add(f);
 	}
 	
-	public List<Pieza> getListado(){
+	public List<pieza> getListado(){
 		return listaFiguras;
 	}
 	
-	public void anyadirFigura(Pieza f){
+	public void anyadirFigura(pieza f){
 		listaFiguras.add(f);
 	}
 	
-	public Pieza getFiguraEn(Point p){
-		for (Pieza elemento : getListado()) {
+	public pieza getFiguraEn(Point p){
+		for (pieza elemento : getListado()) {
 			if(elemento.dentroFigura(p)){
-				elemento.seleccionada=true;
+				elemento.setSeleccionada(true);
 				return elemento;				
 			}
 		}

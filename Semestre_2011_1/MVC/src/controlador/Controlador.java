@@ -15,9 +15,8 @@ import java.util.ListIterator;
 import java.util.Vector;
 
 import vista.Vista;
-import modelo.Figura;
+
 import modelo.Modelo;
-import modelo.Pieza;
 //import modelo.compilador;
 //import modelo.enlace;
 import corotos.*;
@@ -28,7 +27,7 @@ public class Controlador {
 	
 	private Modelo modelo;
 	private Vista vista;
-	private Pieza seleccionada;
+	private pieza seleccionada;
 	int tamanyoFig=40;
 	boolean insercion;
 	
@@ -39,10 +38,10 @@ public class Controlador {
 		insercion=false;
 	}
 	
-	public Pieza obtenerFigura(Point posicion){
-		ListIterator<Pieza> it=modelo.getListado().listIterator();
+	public pieza obtenerFigura(Point posicion){
+		ListIterator<pieza> it=modelo.getListado().listIterator();
 	    while (it.hasNext()) {
-	    	Pieza tmp=it.next();
+	    	pieza tmp=it.next();
 	    		if(tmp.dentroFigura(posicion)){
 	    			tmp.setSeleccionada(true);
 	    			return tmp;
@@ -51,10 +50,10 @@ public class Controlador {
 	    return null;
 	}
 	
-	public Pieza obtenerFigura(int ID){
-		ListIterator<Pieza> it=modelo.getListado().listIterator();
+	public pieza obtenerFigura(int ID){
+		ListIterator<pieza> it=modelo.getListado().listIterator();
 	    while (it.hasNext()) {
-	    	Pieza tmp=it.next();
+	    	pieza tmp=it.next();
 	    		if(tmp.getID()==ID){
 	    			tmp.setSeleccionada(true);
 	    			return tmp;
@@ -63,10 +62,10 @@ public class Controlador {
 	    return null;
 	}
 	public int cuantasFiguras(Point posicion){
-		ListIterator<Pieza> it=modelo.getListado().listIterator();
+		ListIterator<pieza> it=modelo.getListado().listIterator();
 		int k=0;
 	    while (it.hasNext()) {
-	    	Pieza tmp=it.next();
+	    	pieza tmp=it.next();
 	    		if(tmp.dentroFigura(posicion)){
 	    			System.out.println("k aumento");
 	    			k++;
@@ -76,7 +75,7 @@ public class Controlador {
 	    return k;
 	}
 
-	public void cambiarPosicion(Pieza f, Point p){
+	public void cambiarPosicion(pieza f, Point p){
 			f.setPosicion(limitar(p));
 	}
 	
@@ -84,11 +83,11 @@ public class Controlador {
 		return vista;
 	}
 	
-	public void anyadirFigura(Pieza f){
+	public void anyadirFigura(pieza f){
 		modelo.anyadirFigura(f);
 	}
 	
-	public Pieza getFiguraEn(Point p){
+	public pieza getFiguraEn(Point p){
 		return modelo.getFiguraEn(p);
 	}
 	
@@ -102,7 +101,7 @@ public class Controlador {
 				vec.add("uno");
 				vec.add("uno");
 				
-				this.anyadirFigura(new Pieza(1, new Rectangle(limitar(ev.getPoint())), tipoPieza.COMPILADOR, vec));
+				this.anyadirFigura(new pieza(1, new Rectangle(limitar(ev.getPoint())), tipoPieza.COMPILADOR, vec));
 				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
 				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 			}else{
@@ -145,7 +144,7 @@ public class Controlador {
 	
 	public void detectaEnlaces(Point donde) {
 		/*
-		Point posicionPieza = this.getFiguraEn(donde).getPosicion();
+		Point posicionpieza = this.getFiguraEn(donde).getPosicion();
 		switch (this.getFiguraEn(donde).getTipoFigura()) {
 		case Figura.COMPILADOR:
 			System.out.println("primer entrar");
@@ -169,8 +168,8 @@ public class Controlador {
 	}
 	
 	public void modificarAlgo(Point figuraResidente, Point figuraVecina, int enlaceAfectado){
-		/*Pieza vecina = this.getFiguraEn(figuraVecina);
-		Pieza residente = this.getFiguraEn(figuraResidente);
+		/*pieza vecina = this.getFiguraEn(figuraVecina);
+		pieza residente = this.getFiguraEn(figuraResidente);
 		int tipoResidente = residente.getTipoFigura();	
 		System.out.println("vecina: "+vecina);
 		

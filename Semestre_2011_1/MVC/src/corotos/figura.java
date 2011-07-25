@@ -81,4 +81,6 @@ public abstract class figura implements valor{
 	
 	
 	
+	
+	
 }

@@ -18,7 +18,7 @@ import corotos.cuadrada;
 import corotos.pieza;
 import corotos.valor;
 
-@SuppressWarnings("serial")
+
 public class metodo_s extends JPanel {
 	
 	JButton agregar_piezas= new JButton();
