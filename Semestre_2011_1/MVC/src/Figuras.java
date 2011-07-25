@@ -102,12 +102,41 @@ public class Figuras {
 		a = new JPanel(new FlowLayout());
         a.add(new JLabel("Acción Realizada:  ",10));
         
-        //Acciones;
+        //Acciones
         
         if(p.elementAt(0).getIdentificador()== tipoPieza.COMPILADOR){
         	
-        	t_area.setText(t_area.getText()+" Se tiene un compilador de: "+p.elementAt(0)." , a: +, ");
+        	t_area.setText(
+        			t_area.getText()+
+        			" A partir de un compilador de: "+
+        					p.elementAt(0).getCuadrados().elementAt(1).getNombre()+
+        					" , a:"+p.elementAt(0).getCuadrados().elementAt(2).getNombre()+
+        					", escrito en: "+
+        					p.elementAt(0).getCuadrados().elementAt(3).getNombre());
+        	
+        	if(p.elementAt(1).getIdentificador()== tipoPieza.COMPILADOR){
+            	
+            	t_area.setText(
+            			t_area.getText()+
+            			" A partir de un compilador de: "+
+            					p.elementAt(1).getCuadrados().elementAt(1).getNombre()+
+            					" , a:"+p.elementAt(1).getCuadrados().elementAt(2).getNombre()+
+            					", escrito en: "+
+            					p.elementAt(1).getCuadrados().elementAt(3).getNombre());
+            	
+            		if(p.elementAt(2).getIdentificador()== tipoPieza.COMPILADOR){
+                	
+                	t_area.setText(
+                			t_area.getText()+
+                			" A partir de un compilador de: "+
+                					p.elementAt(2).getCuadrados().elementAt(1).getNombre()+
+                					" , a:"+p.elementAt(2).getCuadrados().elementAt(2).getNombre()+
+                					", escrito en: "+
+                					p.elementAt(2).getCuadrados().elementAt(3).getNombre());
+            		}
+            }
         }
+        
         a.add(t_area);
 	
         guiobjects.add(a,BorderLayout.SOUTH);
