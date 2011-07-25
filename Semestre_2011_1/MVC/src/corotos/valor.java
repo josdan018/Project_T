@@ -16,6 +16,7 @@ public interface valor {
 		OCIOSO,
 		CORRECTO,
 		INCORRECTO,
+		BLOQUEADO,
 		TRIANGULAR
 	}
 	
@@ -29,6 +30,13 @@ public interface valor {
 		IZQUIERDA,
 		ARRIBA,
 		ABAJO
+	}
+	
+	public enum soy{
+		NINGUNO,
+		ENTRADA,
+		BASE,
+		SALIDA
 	}
 	
 	

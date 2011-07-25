@@ -9,6 +9,10 @@ public class enlazante extends figura {
 	tipoEnlace tipo;
 	orientacionEnlace orientacion;
 	lados lado;
+	int IDVecino;
+	int IDCuadroVecino;
+	int IDEnlaceEnlazante;
+	boolean aBloquear; 
 	public enlazante(int ID, tipoEnlace tipo, orientacionEnlace orientacion, lados lado, Point posicionAbsoluta,Point posicionRelativa) {
 		super(
 				ID,
@@ -24,7 +28,9 @@ public class enlazante extends figura {
 		this.tipo = tipo;
 		this.orientacion = orientacion;
 		this.lado = lado;
-		
+		IDVecino=-1;
+		IDCuadroVecino=-1;
+		aBloquear=false;
 			
 		
 		switch (tipo) {
@@ -46,13 +52,6 @@ public class enlazante extends figura {
 			default:
 				break;
 			}
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	
@@ -76,7 +75,15 @@ public class enlazante extends figura {
 		
 	}
 	
-	public void activar(boolean correcto){
+	public void desactivar(){
+		if(!aBloquear){
+			setColor(colorOcioso);
+			this.tipo=tipoEnlace.OCIOSO;
+		}
+		
+	}
+	
+	public void corregir(boolean correcto){
 		if(correcto){
 			setColor(colorCorrecto);
 			this.tipo=tipoEnlace.CORRECTO;
@@ -92,6 +99,37 @@ public class enlazante extends figura {
 	public void mover(Point p) {
 		setPosicion(translacionPto(p, posicionRelativa.x, posicionRelativa.y));
 		
+	}
+	
+	public tipoEnlace getTipo() {
+		return tipo;
+	}
+	
+	public lados getLado() {
+		return lado;
+	}
+	
+	public void setIDVecino(int iDVecino) {
+		IDVecino = iDVecino;
+	}
+	
+	public int getIDVecino() {
+		return IDVecino;
+	}
+	
+	public int getIDCuadroVecino() {
+		return IDCuadroVecino;
+	}
+	
+	public int getIDEnlaceEnlazante() {
+		return IDEnlaceEnlazante;
+	}
+	
+	public void setIDCuadroVecino(int iDCuadroVecino) {
+		IDCuadroVecino = iDCuadroVecino;
+	}
+	public void setIDEnlaceEnlazante(int iDEnlaceEnlazante) {
+		IDEnlaceEnlazante = iDEnlaceEnlazante;
 	}
 
 }

@@ -14,15 +14,18 @@ import java.util.Vector;
 
 public class cuadrada extends figura{
 	Vector<enlazante> enlaces;
-	
+	//soy deLenguaje;
+	int soy;
 	String nombre;
 	
-	public cuadrada(int ID, Point posicionAbsoluta,Point posicionRelativa, String nombre) {
+	public cuadrada(int ID, Point posicionAbsoluta,Point posicionRelativa, String nombre/*,soy deLenguaje*/,int soy) {
 		super(
 				ID,
 				new Rectangle(posicionAbsoluta,	new Dimension(G,G)),
 				posicionRelativa
 				);
+		//this.deLenguaje=deLenguaje;
+		this.soy=soy;
 		enlaces=new Vector<enlazante>(1, 1);
 		this.nombre=nombre;
 
@@ -47,7 +50,7 @@ public class cuadrada extends figura{
 		g.setColor(color);
 		g.fillRect(region.getLocation().x, region.getLocation().y, region.width, region.height);
 		g.setColor(Color.white);
-		g.drawString("hola", region.getLocation().x , region.getLocation().y + G/2);
+		g.drawString(nombre, region.getLocation().x , region.getLocation().y + G/2);
 		
 	}
 	
@@ -74,9 +77,6 @@ public class cuadrada extends figura{
 			break;
 		}
 
-		
-		
-		
 	}
 
 	@Override
@@ -95,5 +95,21 @@ public class cuadrada extends figura{
 		return nombre;
 	}
 
+	public Vector<enlazante> getEnlaces() {
+		return enlaces;
+	}
+	
+	public int getSoy() {
+		return soy;
+	}
+	
+	public enlazante retornaEnlace(lados lado){
+		for(enlazante enlace:enlaces){
+			if(enlace.getLado()==lado)
+				return enlace;
+		}
+		return null;
+	}
+	
 
 }
