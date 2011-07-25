@@ -1,17 +1,28 @@
 package controlador;
 
 import java.awt.Point;
+import java.awt.Rectangle;
+
 import javax.swing.SwingUtilities;
+
+import com.sun.xml.internal.ws.developer.MemberSubmissionAddressing.Validation;
+
+import corotos.pieza;
+import corotos.valor.tipoPieza;
+
 import java.awt.event.MouseEvent;
 import java.util.ListIterator;
+import java.util.Vector;
 
 import vista.Vista;
 import modelo.Figura;
 import modelo.Modelo;
-import modelo.compilador;
+import modelo.Pieza;
+//import modelo.compilador;
 import modelo.enlace;
-import modelo.maquina;
-import modelo.programa;
+import corotos.*;
+//import modelo.maquina;
+//import modelo.programa;
 
 public class Controlador {
 	
@@ -73,7 +84,7 @@ public class Controlador {
 		return vista;
 	}
 	
-	public void anyadirFigura(Figura f){
+	public void anyadirFigura(Pieza f){
 		modelo.anyadirFigura(f);
 	}
 	
@@ -86,7 +97,12 @@ public class Controlador {
 		//if(insercion){
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			if(this.obtenerFigura(ev.getPoint())==null){
-				this.anyadirFigura(new programa(limitar(ev.getPoint()), 40,modelo.getListado().size()));
+				Vector<String> vec=new Vector<String>(1, 1);
+				vec.add("uno");
+				vec.add("uno");
+				vec.add("uno");
+				
+				this.anyadirFigura(new Pieza(1, new Rectangle(ev.getPoint()), tipoPieza.COMPILADOR, vec));
 				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40));
 				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40));
 			}else{
@@ -97,13 +113,13 @@ public class Controlador {
 				//detectaEnlaces(ev.getPoint());
 			
 		}else if(SwingUtilities.isRightMouseButton(ev)){		//click boton izquierdo añade figura tipo cuadrado
-			if(this.obtenerFigura(ev.getPoint())==null)
-				this.anyadirFigura(new maquina(limitar(ev.getPoint()),40,modelo.getListado().size()));
+			if(this.obtenerFigura(ev.getPoint())==null);
+				//this.anyadirFigura(new maquina(limitar(ev.getPoint()),40,modelo.getListado().size()));
 							
 		}else if(SwingUtilities.isMiddleMouseButton(ev))//click boton medio añade figura tipo circulo
 		{
-			if(this.obtenerFigura(ev.getPoint())==null)
-				this.anyadirFigura(new compilador(limitar(ev.getPoint()),40,modelo.getListado().size()));
+			if(this.obtenerFigura(ev.getPoint())==null);
+				//this.anyadirFigura(new compilador(limitar(ev.getPoint()),40,modelo.getListado().size()));
 		}
 		vista.repaint();
 		//}
@@ -136,7 +152,7 @@ public class Controlador {
 	}
 	
 	public void detectaEnlaces(Point donde) {
-		
+		/*
 		Point posicionFigura = this.getFiguraEn(donde).getPosicion();
 		switch (this.getFiguraEn(donde).getTipoFigura()) {
 		case Figura.COMPILADOR:
@@ -156,12 +172,12 @@ public class Controlador {
 		default:
 			break;
 		}
-		
+		*/
 		
 	}
 	
 	public void modificarAlgo(Point figuraResidente, Point figuraVecina, int enlaceAfectado){
-		Figura vecina = this.getFiguraEn(figuraVecina);
+		/*Figura vecina = this.getFiguraEn(figuraVecina);
 		Figura residente = this.getFiguraEn(figuraResidente);
 		int tipoResidente = residente.getTipoFigura();	
 		System.out.println("vecina: "+vecina);
@@ -182,7 +198,7 @@ public class Controlador {
 			
 			
 		}
-		
+		*/
 		
 	}
 	
