@@ -65,7 +65,10 @@ public class Figuras {
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
-		
+
+			a.add(t_area);
+
+			guiobjects.add(a,BorderLayout.SOUTH);
 			guiobjects.add(b,BorderLayout.WEST);
 			//guiobjects.add(c,BorderLayout.EAST);
 			
