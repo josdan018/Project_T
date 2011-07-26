@@ -42,8 +42,8 @@ public class Figuras {
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
 			//franklin c= new franklin();
-			Vista vista = new Vista(new Dimension(1000,800),modelo);
-			JPanel d=new JPanel();
+			Vista vista = new Vista(new Dimension(800,800),modelo);
+			//JPanel d=new JPanel();
 			
 
 			metodo_s b=new metodo_s(frame);
@@ -53,9 +53,9 @@ public class Figuras {
 			a.setBackground(Color.BLUE);
 			a = new JPanel(new FlowLayout());
 	        a.add(new JLabel("Accion realizada:  ",10));
-
-			d.setOpaque(true);
-			d.setBackground(Color.RED);
+	        a.setPreferredSize(new Dimension(100,100));
+			//d.setOpaque(true);
+			//d.setBackground(Color.RED);
 			
 			//cuadro_informacion(guiobjects, p);
 			
@@ -107,7 +107,6 @@ public class Figuras {
             }
         	else if (p.elementAt(1).getIdentificador()== valor.tipoPieza.INTERPRETE){
         		cuadro_informacion_interprete (p, t_area, 1);
-        		xx = 2;
         		while(p.elementAt(xx).getIdentificador()== valor.tipoPieza.INTERPRETE){
         			cuadro_informacion_interprete (p, t_area, xx);
         			xx = xx + 1;
