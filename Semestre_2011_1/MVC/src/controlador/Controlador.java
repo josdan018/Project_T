@@ -191,7 +191,7 @@ public class Controlador {
 							enlazante enlaceAVecinar=cuadroAdyacente.retornaEnlace(vecinoDebeSer);
 							if(enlaceAVecinar!=null){
 								if(enlaceAVecinar.getTipo()!=tipoEnlace.SOLIDO&&enlaceAVecinar.getTipo()!=tipoEnlace.TRIANGULAR&&enlaceAVecinar.getTipo()!=tipoEnlace.BLOQUEADO){
-									System.out.println("ennnnnnnnnnnnntttttttrrrrrrrrrroooooo");
+									
 									enlace.corregir(true);
 									enlaceAVecinar.corregir(true);
 									
@@ -206,18 +206,19 @@ public class Controlador {
 						}else{
 							enlazante enlaceAVecinar=cuadroAdyacente.retornaEnlace(vecinoDebeSer);
 							if(enlaceAVecinar!=null){
-								enlace.corregir(false);
-								enlaceAVecinar.corregir(false);
+								if(enlaceAVecinar.getTipo()!=tipoEnlace.SOLIDO&&enlaceAVecinar.getTipo()!=tipoEnlace.TRIANGULAR&&enlaceAVecinar.getTipo()!=tipoEnlace.BLOQUEADO){
+									
+									enlace.corregir(false);
+									enlaceAVecinar.corregir(false);
+									
+									enlace.setIDVecino(adyacente.getID());
+									enlaceAVecinar.setIDVecino(seleccionada.getID());
+									
+									enlace.setIDCuadroVecino(cuadroAdyacente.getSoy());
+									enlaceAVecinar.setIDCuadroVecino(cuadro.getSoy());
+								}
 								
-								enlace.setIDVecino(adyacente.getID());
-								enlaceAVecinar.setIDVecino(seleccionada.getID());
-								
-								enlace.setIDCuadroVecino(cuadroAdyacente.getSoy());
-								enlaceAVecinar.setIDCuadroVecino(cuadro.getSoy());
-								
-								
-							}
-							
+							}	
 						}
 						
 						

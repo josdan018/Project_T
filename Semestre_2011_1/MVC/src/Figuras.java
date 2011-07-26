@@ -2,10 +2,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.util.Vector;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -45,7 +47,12 @@ public class Figuras {
 			
 
 			metodo_s b=new metodo_s(frame);
-			
+			JPanel a=new JPanel();
+			JTextArea t_area = new JTextArea("  . . . . . Creando \n",10,80); 
+			a.setOpaque(true);
+			a.setBackground(Color.BLUE);
+			a = new JPanel(new FlowLayout());
+	        a.add(new JLabel("Accion realizada:  ",10));
 
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
