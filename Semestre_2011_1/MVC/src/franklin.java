@@ -33,7 +33,7 @@ public class franklin extends JPanel{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
-				accion(1,m);
+				accion(1);
 			}
 		}	
 		});
@@ -41,7 +41,7 @@ public class franklin extends JPanel{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
-				accion(2,m);
+				accion(2);
 			}
 		}	
 		});
@@ -49,13 +49,13 @@ public class franklin extends JPanel{
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
-				accion(3,m);					
+				accion(3);					
 			}
 		}	
 		});
 	}
 	
-	public void accion(int i, Modelo mod){
+	public void accion(int i){
 		modelo=bd.accessDb4o(modelo, i,archivo.getText());
 		area.setText(bd.accessDb4o(modelo));
 	}
