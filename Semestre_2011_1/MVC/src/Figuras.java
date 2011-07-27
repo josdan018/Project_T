@@ -41,7 +41,7 @@ public class Figuras {
 		    Container guiobjects = frame.getContentPane();
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
-			//franklin c= new franklin();
+			franklin c= new franklin(modelo);
 			Vista vista = new Vista(new Dimension(800,800),modelo);
 			//JPanel d=new JPanel();
 			

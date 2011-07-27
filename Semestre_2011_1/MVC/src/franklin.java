@@ -1,42 +1,36 @@
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
-import javax.swing.ScrollPaneConstants;
-
 import modelo.Modelo;
-import vista.Vista;
-import controlador.Controlador;
-import com.db4o.*;
 
 public class franklin extends JFrame {
-
-	basededatos bd= new basededatos();
-	JTextField archivo = new JTextField("te quiero");
+	
+	Modelo modelo;
+	JTextField archivo = new JTextField("Ingrese nombre de archivo");
 	JButton guardar = new JButton("Guardar");
 	JButton cargar = new JButton("Cargar");
 	JButton eliminar = new JButton("Eliminar");
-	JTextArea area = new JTextArea("Ingrese aqui nombre de archivo\n"); 
+	JTextArea area = new JTextArea("Area de texto\n"); 
 	
-	public franklin(){
+	public franklin(Modelo m){
+	modelo=m;
+	basededatos bd= new basededatos();
 	this.setBackground(Color.YELLOW);
 	this.add(archivo);
 	this.add(guardar);
 	this.add(cargar);
 	this.add(eliminar);
-	//this.add(area);
+	this.add(area);
+	//aqui seria el metodo listar para llenar el text area
 	guardar.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
-				explorer(1);
+				accion(1);
 			}
 		}	
 		});
@@ -44,7 +38,7 @@ public class franklin extends JFrame {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
-				explorer(2);
+				accion(2);
 			}
 		}	
 		});
@@ -52,21 +46,21 @@ public class franklin extends JFrame {
 		@Override
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
-				explorer(3);					
+				accion(3);					
 			}
 		}	
 		});
 	}
 	
-	public void explorer(int i){
+	public void accion(int i){
 		if(i==1){
-			//basededatos.guardar(objeto);
+		//	basededatos.accesdb4o(modelo,i);
 		}
 		else if(i==2){
-			//basededatos.cargar(objeto);
+		//	basededatos.accesdb4o(modelo,i);
 		}
 		else{
-			//basededatos.borrar(objeto);
+		//	basededatos.borrar(modelo,i);
 		}
 		
 	}
