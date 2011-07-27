@@ -42,8 +42,10 @@ public class Figuras {
 		    Container guiobjects = frame.getContentPane();
 		    guiobjects.setLayout(new BorderLayout());
 			Modelo modelo = new Modelo();
-			franklin c= new franklin(modelo);
+			
 			Vista vista = new Vista(new Dimension(1000,800),modelo);
+			
+			franklin c= new franklin(modelo,vista);
 			JPanel d=new JPanel();
 			
 
@@ -61,15 +63,15 @@ public class Figuras {
 			d.setBackground(Color.RED);
 			
 			//cuadro_informacion(guiobjects, p);
-			
+			metodo_s b=new metodo_s(frame,guiobjects);
 
 			
-			final Controlador controlador = new Controlador(modelo,vista);
+			final Controlador controlador = new Controlador(modelo,vista, b);
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
 			
-			metodo_s b=new metodo_s(frame,guiobjects);
+			
 			zulma a=new zulma();
 			controlador.addzulma(a);
 			//a.add(t_area);

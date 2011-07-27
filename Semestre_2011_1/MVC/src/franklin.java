@@ -1,15 +1,15 @@
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
+
 import modelo.Modelo;
+import vista.Vista;
 
 public class franklin extends JPanel{
 	
@@ -19,10 +19,12 @@ public class franklin extends JPanel{
 	JButton guardar = new JButton("Guardar");
 	JButton cargar = new JButton("Cargar");
 	JButton eliminar = new JButton("Eliminar");
-	JTextArea area = new JTextArea("Area de texto\n"); 
+	JTextArea area = new JTextArea("Area de texto\n");
+	Vista centro;
 	
-	public franklin(final Modelo m){
+	public franklin(final Modelo m,Vista centro){
 		
+		this.centro=centro;
 	modelo=m;
 	this.setBackground(Color.YELLOW);
 	this.add(archivo);
@@ -45,6 +47,7 @@ public class franklin extends JPanel{
 		public void mousePressed(MouseEvent e) {
 			if(e.getButton()==1){
 				accion(2,m);
+				franklin.this.centro.repaint();
 			}
 		}	
 		});

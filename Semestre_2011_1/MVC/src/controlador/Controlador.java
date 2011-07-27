@@ -22,6 +22,7 @@ import java.util.Vector;
 
 import vista.Vista;
 
+import metodos.metodo_s;
 import metodos.zulma;
 import modelo.Modelo;
 
@@ -34,13 +35,15 @@ public class Controlador {
 	boolean insercion;
 	vectorDeVectores superv;
 	zulma a;
+	metodo_s meto;
 	
-	public Controlador(Modelo modelo, Vista vista){
+	public Controlador(Modelo modelo, Vista vista, metodo_s metodo){
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
 		insercion=false;
 		superv=new vectorDeVectores();
+		meto=metodo;
 	}
 	
 	public pieza obtenerFigura(Point posicion){
@@ -112,7 +115,15 @@ public class Controlador {
 				vec.add("uno");
 				vec.add("uno");
 				
-				this.anyadirFigura(new pieza(getListadoSize(), new Rectangle(limitar(ev.getPoint())), tipoPieza.COMPILADOR, vec));
+				//this.anyadirFigura(new pieza(getListadoSize(), new Rectangle(limitar(ev.getPoint())), tipoPieza.COMPILADOR, vec));
+				pieza piie=meto.getpiezas();
+				if(piie!=null){
+				piie.setID(getListadoSize());
+				piie.setRegion(new Rectangle(limitar(ev.getPoint()),new Dimension(0, 0)));
+				
+				this.anyadirFigura(piie);
+				meto.nullvar();
+				}
 
 			}
 			

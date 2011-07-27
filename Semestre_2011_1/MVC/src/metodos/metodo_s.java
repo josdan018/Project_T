@@ -154,6 +154,10 @@ public class metodo_s extends JPanel {
 		
 	}
 	
+	public pieza getpiezas(){
+		return var;
+	}
+	
 	public void nullvar(){
 		var=null;
 	}
