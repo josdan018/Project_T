@@ -15,6 +15,7 @@ import javax.swing.ScrollPaneConstants;
 
 
 import metodos.metodo_s;
+import metodos.zulma;
 import modelo.Modelo;
 import vista.Vista;
 import controlador.Controlador;
@@ -48,13 +49,13 @@ public class Figuras {
 
 			
 			
-			
+			/*
 			JPanel a=new JPanel();
 			JTextArea t_area = new JTextArea("  . . . . . Creando \n",10,80); 
 			a.setOpaque(true);
 			a.setBackground(Color.BLUE);
 			a = new JPanel(new FlowLayout());
-	        a.add(new JLabel("Accion realizada:  ",10));
+	        a.add(new JLabel("Accion realizada:  ",10));*/
 
 			d.setOpaque(true);
 			d.setBackground(Color.RED);
@@ -69,8 +70,9 @@ public class Figuras {
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
 			
 			metodo_s b=new metodo_s(frame,guiobjects);
-
-			a.add(t_area);
+			zulma a=new zulma();
+			controlador.addzulma(a);
+			//a.add(t_area);
 
 			guiobjects.add(a,BorderLayout.SOUTH);
 			guiobjects.add(b,BorderLayout.WEST);
