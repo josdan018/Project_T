@@ -87,6 +87,7 @@ public class Controlador {
 	
 	public void anyadirFigura(pieza f){
 		modelo.anyadirFigura(f);
+		System.out.println("añadiendo maquina");
 		superv.añadir(obtenerFigura(f.getID()));
 	}
 	
@@ -103,7 +104,7 @@ public class Controlador {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			if(this.obtenerFigura(ev.getPoint())==null){
 				Vector<String> vec=new Vector<String>(1, 1);
-				vec.add("dos");
+				vec.add("uno");
 				vec.add("uno");
 				vec.add("uno");
 				
@@ -155,6 +156,8 @@ public class Controlador {
 				detectaEnlaces();
 			}
 			seleccionada=null;
+			superv.verificar();
+			
 		}
 	}
 	
@@ -242,20 +245,96 @@ public class Controlador {
 		}
 		
 		public void añadir(pieza p){
+			supervector.add(p);
 		}
 
+		public void verificar() {
+			System.out.println("revizando maquinas "+supervector.size());
+			for(pieza maquinaI:supervector){
+				System.out.println(verificandoMaquina(0, maquinaI.getID()));
+				if(verificandoMaquina(0, maquinaI.getID())){
+					System.out.println("ojo correcto . . . . ");
+					
+				}
+			}
+			// TODO Auto-generated method stub
+
+		}
 		
-		private boolean maquinaBusca(int index) {
-			
+		private boolean verificandoMaquina(int index,int ID) {
+			pieza actual=obtenerFigura(ID);
+			if(actual!=null){
+				enlazante enlace=actual.getCuadrados().get(0).getEnlaces().get(0);
+				if(enlace.getTipo()==tipoEnlace.CORRECTO){
+					switch (obtenerFigura(enlace.getIDVecino()).getIdentificador()) {
+					case COMPILADOR:
+						return verificandoCompilador(0, enlace.getIDVecino());
+					case INTERPRETE:
+						return verificandoInterprete(0, enlace.getIDVecino());
+					case PROGRAMA:
+						return verificandoPrograma(0, enlace.getIDVecino());
+					default:
+						return false;
+					}
+					 
+				}
+			}
 			return false;
 		}
 		
-		private boolean interpreteBusca(int index) {
+		private boolean verificandoInterprete(int index,int ID) {
+			pieza actual=obtenerFigura(ID);
+			if(actual!=null){
+				enlazante enlace=actual.getCuadrados().get(1).getEnlaces().get(0);
+				if(enlace.getTipo()==tipoEnlace.CORRECTO){
+					switch (obtenerFigura(enlace.getIDVecino()).getIdentificador()) {
+					case COMPILADOR:
+						return verificandoCompilador(0, enlace.getIDVecino());
+					case INTERPRETE:
+						return verificandoInterprete(0, enlace.getIDVecino());
+					case PROGRAMA:
+						return verificandoPrograma(0, enlace.getIDVecino());
+					default:
+						return false;
+					}
+					 
+				}
+			}
 			return false;
 		}
 		
-		private boolean compiladorBusca(int index) {
+		private boolean verificandoCompilador(int index,int ID) {
+			pieza actual=obtenerFigura(ID);
+			if(actual!=null){
+				enlazante enlace = null;
+				if(index==0)
+					enlace=actual.getCuadrados().get(1).getEnlaces().get(0);
+				if(index==1){
+					System.out.println("compilacion correcta del programa");
+					return true;
+				}
+					//enlace=actual.getCuadrados().get(1).getEnlaces().get(0);//todavia tiene que verificar?
+				if(enlace.getTipo()==tipoEnlace.CORRECTO){					
+					switch (obtenerFigura(enlace.getIDVecino()).getIdentificador()) {
+					case COMPILADOR:
+						return verificandoCompilador(1, enlace.getIDVecino());
+					/*case INTERPRETE:
+						return verificandoInterprete(0, enlace.getIDVecino());*///puede haber interprete?
+					case PROGRAMA:
+						System.out.println("compilacion correcta del programa");
+						return /*verificandoPrograma(0, enlace.getIDVecino())*/true;
+					default:
+						return false;
+					}
+					 
+				}
+			}
 			return false;
+		}
+		
+		private boolean verificandoPrograma(int index,int ID) {
+
+			return true;
 		}
 		
 		
