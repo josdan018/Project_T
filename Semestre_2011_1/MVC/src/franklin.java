@@ -55,8 +55,8 @@ public class franklin extends JPanel{
 		});
 	}
 	
-	public void accion(int i, Modelo mod){
-		modelo=bd.accessDb4o(modelo, i,archivo.getText());
+	public void accion(int i, Modelo m){
+		m=bd.accessDb4o(modelo, i,archivo.getText());
 		area.setText(bd.accessDb4o(modelo));
 	}
 }
