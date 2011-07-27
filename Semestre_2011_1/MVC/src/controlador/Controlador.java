@@ -240,19 +240,23 @@ public class Controlador {
 	} 
 	
 	class vectorDeVectores {
-		Vector<pieza> supervector;
+		Vector<pieza> maquinas,vectorPosible;
+		
 		public vectorDeVectores() {
-			supervector=new Vector<pieza>(1, 1);
+			maquinas=new Vector<pieza>(1, 1);
+			vectorPosible=new Vector<pieza>(1, 1);
 			// //vector grande creado;
 		}
 
 		public void anyadir(pieza p){
-			supervector.add(p);
+			maquinas.add(p);
 		}
 
 		public void verificar() {
-			System.out.println("revizando maquinas "+supervector.size());
-			for(pieza maquinaI:supervector){
+			System.out.println("revizando maquinas "+maquinas.size());
+			for(pieza maquinaI:maquinas){
+				vectorPosible.removeAllElements();
+				vectorPosible.add(0,maquinaI);
 				System.out.println(verificandoMaquina(0, maquinaI.getID()));
 				if(verificandoMaquina(0, maquinaI.getID())){
 					System.out.println("ojo correcto . . . . ");
@@ -266,6 +270,7 @@ public class Controlador {
 		private boolean verificandoMaquina(int index,int ID) {
 			pieza actual=obtenerFigura(ID);
 			if(actual!=null){
+				vectorPosible.add(0,actual);
 				enlazante enlace=actual.getCuadrados().get(0).getEnlaces().get(0);
 				if(enlace.getTipo()==tipoEnlace.CORRECTO){
 					switch (obtenerFigura(enlace.getIDVecino()).getIdentificador()) {
@@ -287,6 +292,7 @@ public class Controlador {
 		private boolean verificandoInterprete(int index,int ID) {
 			pieza actual=obtenerFigura(ID);
 			if(actual!=null){
+				vectorPosible.add(0,actual);
 				enlazante enlace=actual.getCuadrados().get(1).getEnlaces().get(0);
 				if(enlace.getTipo()==tipoEnlace.CORRECTO){
 					switch (obtenerFigura(enlace.getIDVecino()).getIdentificador()) {
@@ -311,6 +317,7 @@ public class Controlador {
 		private boolean verificandoCompilador(int index,int ID) {
 			pieza actual=obtenerFigura(ID);
 			if(actual!=null){
+				vectorPosible.add(0,actual);
 				enlazante enlace = null;
 				if(index==0)
 					enlace=actual.getCuadrados().get(1).getEnlaces().get(0);
@@ -326,19 +333,24 @@ public class Controlador {
 								obtenerFigura(pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),-(valor.P+valor.G)))==null){
 							System.out.println("compilacion correcta del programa");
 							Vector< String > aux=new Vector<String>(1, 1);
-							aux.add("");
+							System.out.println("");
+							System.out.println(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(1).getNombre());
+							System.out.println(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(2).getNombre());
+							System.out.println(actual.getCuadrados().get(2).getNombre());
 							aux.add(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(1).getNombre());
 							aux.add(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(2).getNombre());
 							aux.add(actual.getCuadrados().get(2).getNombre());
 
-
-							anyadirFigura(new pieza(
-								getListadoSize(),
-								new Rectangle(
-										pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),-(valor.P+valor.G)),
-										new Dimension(0,0)), 
-								tipoPieza.COMPILADOR,
-								aux));
+							pieza nueva = new pieza(
+									getListadoSize(),
+									new Rectangle(
+											pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),-(valor.P+valor.G)),
+											new Dimension(0,0)), 
+									tipoPieza.COMPILADOR,
+									aux);
+							anyadirFigura(nueva);
+							
+							
 						return true;
 						}
 						break;
@@ -352,13 +364,15 @@ public class Controlador {
 							aux.add(actual.getCuadrados().get(1).getNombre());
 							aux.add(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(1).getNombre());
 
-							anyadirFigura(new pieza(
-								getListadoSize(),
-								new Rectangle(
-										pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),0),
-										new Dimension(0,0)), 
-								tipoPieza.PROGRAMA,
-								aux));
+							pieza nueva = new pieza(
+									getListadoSize(),
+									new Rectangle(
+											pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),0),
+											new Dimension(0,0)), 
+									tipoPieza.PROGRAMA,
+									aux);
+							anyadirFigura(nueva);
+							
 						return true;
 						}
 						break;
@@ -372,7 +386,8 @@ public class Controlador {
 		}
 
 		private boolean verificandoPrograma(int index,int ID) {
-
+			pieza actual=obtenerFigura(ID);
+			vectorPosible.add(0,actual);
 			return true;
 		}
 
