@@ -1,6 +1,9 @@
 package metodos;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
@@ -13,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
 
 import corotos.pieza;
 import corotos.valor;
@@ -23,18 +28,24 @@ public class metodo_s extends JPanel {
 	JButton agregar_piezas= new JButton();
 	JFrame ventana;
 	Vector<String> lenguajes;
-	
+	int im = 0;
+ 	
 	
 	public metodo_s(JFrame ventana){
 		
-		this.setOpaque(true);
-		this.setBackground(Color.GREEN);
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 		
+		setOpaque(true);
+		setBackground(Color.RED);
+		setPreferredSize(new Dimension(200,1000));
+		//setBounds(0, 0, 400,1000);
+		//ssContainer guiobjects = this.getRootPane();
 		this.ventana=ventana;
 		
-		agregar_piezas.setText("Agregar");
-		//agregar_piezas.setBounds(0, 0, 50, 20);
+		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+
+		agregar_piezas.setText("   Agregar   ");
+		//agregar_piezas.setAlignmentX(CENTER_ALIGNMENT);
+		//agregar_piezas.setBounds(0, 0, 110, 1000);
 				
 		agregar_piezas.addMouseListener(new MouseAdapter(){
 			@Override
@@ -47,8 +58,8 @@ public class metodo_s extends JPanel {
 	}
 	
 	public void ventana_emergente(){
+
 		
-				
 		Object seleccion = JOptionPane.showInputDialog(
 				ventana,
 				"Seleccione un tipo de Componente",
@@ -64,7 +75,8 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje Objeto"));
 			lenguajes.add(componentes("Implementacion"));
 			
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.COMPILADOR,lenguajes);			
+			pieza imag1= new pieza(0,new Rectangle(valor.G+20,0,0,0),valor.tipoPieza.COMPILADOR,lenguajes);
+			im = im + 1;
 			dibujo(imag1);
 			
 		}else if(seleccion.equals("INTERPRETE")){
@@ -73,7 +85,8 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Lenguaje conector"));
 			lenguajes.add(componentes("Lenguaje a interpretar"));
 
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.INTERPRETE,lenguajes);			
+			pieza imag1= new pieza(0,new Rectangle(valor.G+20,0,0,0),valor.tipoPieza.INTERPRETE,lenguajes);
+			im = im + 1;
 			dibujo(imag1);
 						
 		}else if(seleccion.equals("MAQUINA")){
@@ -81,7 +94,8 @@ public class metodo_s extends JPanel {
 			
 			lenguajes.add(componentes("Lenguaje de la Maquina"));
 
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.MAQUINA,lenguajes);			
+			pieza imag1= new pieza(0,new Rectangle(valor.G+20,0,0,0),valor.tipoPieza.MAQUINA,lenguajes);					
+			im = im + 1;
 			dibujo(imag1);
 			
 		}else if(seleccion.equals("PROGRAMA")){
@@ -90,27 +104,32 @@ public class metodo_s extends JPanel {
 			lenguajes.add(componentes("Nombre del Programa"));
 			lenguajes.add(componentes("Lenguaje del Programa"));
 
-			pieza imag1= new pieza(0,new Rectangle(0,0,0,0),valor.tipoPieza.PROGRAMA,lenguajes);			
+			pieza imag1= new pieza(0,new Rectangle(valor.G+20,0,0,0),valor.tipoPieza.PROGRAMA,lenguajes);			
+			im = im + 1;
 			dibujo(imag1);
 		}		
 	}
 	
 	public void dibujo(final pieza imag1){
 		JLabel imagen= new JLabel(){
-			pieza imag=imag1;
+
 			@Override			
 			public void paint(Graphics g) {
-				imag.dibujar(g);
+				imag1.dibujar(g);
 			}
 		};
+		
 		imagen.setOpaque(true);
 		imagen.setBackground(Color.black);
-		//imagen.setBounds(0, 10, 140, 100);
+		System.out.println("cantidad en el vector: "+ im);
+		imagen.setBounds(0,(90 * im), 1000, 1000);
+		imagen.setLayout(null);
 		imagen.setVisible(true);
-		imagen.repaint();
-		imagen.repaint();
+		
+		
 		this.add(imagen);
-		System.out.println("hizo algoooooooo");
+		//imagen.repaint();
+		//System.out.println("hizo algoooooooo");
 		
 	}
 	public String componentes(String lenguaje){
