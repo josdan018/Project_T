@@ -22,6 +22,7 @@ import java.util.Vector;
 
 import vista.Vista;
 
+import metodos.zulma;
 import modelo.Modelo;
 
 public class Controlador {
@@ -32,6 +33,7 @@ public class Controlador {
 	int tamanyoFig=40;
 	boolean insercion;
 	vectorDeVectores superv;
+	zulma a;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
@@ -348,6 +350,7 @@ public class Controlador {
 									tipoPieza.COMPILADOR,
 									aux);
 							anyadirFigura(nueva);
+							a.cuadro_informacion(vectorPosible);
 							//TODO: llamar al metodo de zulma
 							
 							
@@ -397,5 +400,11 @@ public class Controlador {
 
 
 
+	}
+
+	public void addzulma(zulma a) {
+		this.a=a;
+		// TODO Auto-generated method stub
+		
 	}
 }
