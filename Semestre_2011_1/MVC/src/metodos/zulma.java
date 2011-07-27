@@ -38,11 +38,14 @@ public class zulma extends JPanel{
             	
             	if(p.elementAt(2).getIdentificador()== valor.tipoPieza.MAQUINA){
             		cuadro_informacion_maquina(p, 2);
-            		if(p.elementAt(3).getIdentificador()== valor.tipoPieza.COMPILADOR){
-                		cuadro_informacion_compilador(p, 3);
-                	}
             		
-            	}
+            		
+            		
+            	}if(p.elementAt(3).getIdentificador()== valor.tipoPieza.COMPILADOR){
+            			System.out.println(". Ejecutando (1) sobre (2) ");
+            			cuadro_informacion_compilador(p, 3);
+            		}
+            	
             }
         	else if (p.elementAt(1).getIdentificador()== valor.tipoPieza.INTERPRETE){
         		cuadro_informacion_interprete (p, 1);

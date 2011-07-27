@@ -350,6 +350,7 @@ public class Controlador {
 									tipoPieza.COMPILADOR,
 									aux);
 							anyadirFigura(nueva);
+							vectorPosible.add(nueva);
 							a.cuadro_informacion(vectorPosible);
 							//TODO: llamar al metodo de zulma
 							
@@ -374,7 +375,7 @@ public class Controlador {
 											new Dimension(0,0)), 
 									tipoPieza.PROGRAMA,
 									aux);
-
+							vectorPosible.add(nueva);
 							anyadirFigura(nueva);
 							//TODO: llamar al metodo de zulma
 							

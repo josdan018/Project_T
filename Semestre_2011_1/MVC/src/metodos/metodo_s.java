@@ -29,6 +29,8 @@ public class metodo_s extends JPanel {
 	JFrame ventana;
 	Vector<String> lenguajes;
 	int im = 0;
+	pieza var;
+	clase imagen;
 	
  	
 	
@@ -115,19 +117,32 @@ public class metodo_s extends JPanel {
 		this.repaint();
 	}
 	
+	class clase extends JLabel{
+		public pieza imag1;
+		@Override			
+		public void paint(Graphics g) {
+			imag1.dibujar(g);
+		}
+		public clase(pieza k ) {
+			imag1=k;
+			// TODO Auto-generated constructor stub
+		}
+		
+		public pieza getpieza(){
+			return imag1;
+		}
+	}
+	
 	public void dibujo(final pieza imag1){
 		
-		JLabel imagen= new JLabel(){
-
-			@Override			
-			public void paint(Graphics g) {
-				imag1.dibujar(g);
+		imagen= new clase(imag1);
+		
+		imagen.addMouseListener(new MouseAdapter() {@Override
+			public void mouseClicked(MouseEvent arg0) {
+				var=imagen.getpieza();
 			}
-			
-			
-		};
-		
-		
+		})
+		;
 		imagen.setOpaque(true);
 		imagen.setBackground(Color.black);
 		System.out.println("cantidad en el vector: "+ im);
@@ -138,6 +153,11 @@ public class metodo_s extends JPanel {
 		this.add(imagen); 
 		
 	}
+	
+	public void nullvar(){
+		var=null;
+	}
+	
 	public String componentes(String lenguaje){
 		String len = JOptionPane.showInputDialog(
 				  ventana,
