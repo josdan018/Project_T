@@ -263,7 +263,6 @@ public class Controlador {
 
 				}
 			}
-			// TODO Auto-generated method stub
 
 		}
 
@@ -349,6 +348,7 @@ public class Controlador {
 									tipoPieza.COMPILADOR,
 									aux);
 							anyadirFigura(nueva);
+							//TODO: llamar al metodo de zulma
 							
 							
 						return true;
@@ -371,7 +371,9 @@ public class Controlador {
 											new Dimension(0,0)), 
 									tipoPieza.PROGRAMA,
 									aux);
+
 							anyadirFigura(nueva);
+							//TODO: llamar al metodo de zulma
 							
 						return true;
 						}
