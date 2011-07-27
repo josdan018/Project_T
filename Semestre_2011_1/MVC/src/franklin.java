@@ -1,6 +1,9 @@
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -28,7 +31,7 @@ public class franklin extends JPanel{
 	this.add(eliminar);
 	area.setText(bd.accessDb4o(modelo));
 	this.add(area);
-	//aqui seria el metodo listar para llenar el text area
+	this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
 	guardar.addMouseListener(new MouseAdapter() {
 		@Override
 		public void mousePressed(MouseEvent e) {
