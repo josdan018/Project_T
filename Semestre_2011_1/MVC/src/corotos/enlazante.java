@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Rectangle;
 
+
 public class enlazante extends figura {
 	tipoEnlace tipo;
 	orientacionEnlace orientacion;
@@ -77,8 +78,13 @@ public class enlazante extends figura {
 	
 	public void desactivar(){
 		if(!aBloquear){
+			IDCuadroVecino=-1;
+			IDVecino=-1;
 			setColor(colorOcioso);
 			this.tipo=tipoEnlace.OCIOSO;
+		}else{
+			
+			
 		}
 		
 	}
@@ -131,5 +137,22 @@ public class enlazante extends figura {
 	public void setIDEnlaceEnlazante(int iDEnlaceEnlazante) {
 		IDEnlaceEnlazante = iDEnlaceEnlazante;
 	}
+	
+	public lados getTipoEnlaceContrario(){
+		switch (lado) {
+			case ARRIBA:
+				return lados.ABAJO;
+			case ABAJO:
+				return lados.ARRIBA;
+			case IZQUIERDA:
+				return lados.DERECHA;
+			case DERECHA:
+				return lados.IZQUIERDA;
+			default:
+					
+		}
+		
+		return null;
+	} 
 
 }

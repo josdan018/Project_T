@@ -95,7 +95,7 @@ public class pieza extends figura{
 		cuadrados.add(aux);
 		//-------derecha del compilador----------------
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), +G+P, 0),new Point(+G+P, 0),nombres.get(1)/*,soy.SALIDA*/,cuadrados.size());
-		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.DERECHA);
+		aux.anyadirEnlazante(tipoEnlace.BLOQUEADO, lados.DERECHA);
 		cuadrados.add(aux);
 		//-------abajo del compilador----------------
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), 0, +G+P),new Point(0, +G+P),nombres.get(2)/*,soy.BASE*/,cuadrados.size());

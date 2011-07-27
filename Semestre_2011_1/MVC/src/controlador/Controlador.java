@@ -10,13 +10,11 @@ import corotos.cuadrada;
 import corotos.enlazante;
 import corotos.figura;
 import corotos.pieza;
-import corotos.utilesEscolares;
 import corotos.valor.lados;
 import corotos.valor.tipoEnlace;
 import corotos.valor.tipoPieza;
 
 import java.awt.event.MouseEvent;
-import java.util.List;
 import java.util.ListIterator;
 import java.util.Vector;
 
@@ -31,12 +29,14 @@ public class Controlador {
 	private pieza seleccionada;
 	int tamanyoFig=40;
 	boolean insercion;
+	vectorDeVectores superv;
 	
 	public Controlador(Modelo modelo, Vista vista){
 		this.modelo=modelo;
 		this.vista=vista;
 		seleccionada=null;
 		insercion=false;
+		superv=new vectorDeVectores();
 	}
 	
 	public pieza obtenerFigura(Point posicion){
@@ -87,6 +87,7 @@ public class Controlador {
 	
 	public void anyadirFigura(pieza f){
 		modelo.anyadirFigura(f);
+		superv.añadir(obtenerFigura(f.getID()));
 	}
 	
 	public pieza getFiguraEn(Point p){
@@ -102,7 +103,7 @@ public class Controlador {
 		if(SwingUtilities.isLeftMouseButton(ev)){ 			//Click boton izquierdo selecciona figura
 			if(this.obtenerFigura(ev.getPoint())==null){
 				Vector<String> vec=new Vector<String>(1, 1);
-				vec.add("uno");
+				vec.add("dos");
 				vec.add("uno");
 				vec.add("uno");
 				
@@ -127,8 +128,11 @@ public class Controlador {
 			vec.add("uno");
 			if(this.obtenerFigura(ev.getPoint())==null)
 				this.anyadirFigura(new pieza(getListadoSize(), new Rectangle(limitar(ev.getPoint())), tipoPieza.PROGRAMA, vec));
+			
 		}
 		seleccionada=this.getFiguraEn(limitar(ev.getPoint()));
+		
+		desactivarVecinos();
 		vista.repaint();
 		//}
 	}
@@ -160,92 +164,63 @@ public class Controlador {
 			for(enlazante enlace:cuadro.getEnlaces()){
 				if(enlace.getTipo()!=tipoEnlace.SOLIDO&&enlace.getTipo()!=tipoEnlace.TRIANGULAR) {
 					Point tentando = null;
-					lados vecinoDebeSer = null;
+					lados vecinoDebeSer = enlace.getTipoEnlaceContrario();
 					switch (enlace.getLado()) {
 						case ARRIBA:
-							vecinoDebeSer=lados.ABAJO;
 							tentando=new Point(figura.translacionPto(enlace.getRegion().getLocation(), 0, -figura.G));
 							break;
 						case ABAJO:
-							vecinoDebeSer=lados.ARRIBA;
 							tentando=new Point(figura.translacionPto(enlace.getRegion().getLocation(), 0, +figura.G));
 							break;
 						case IZQUIERDA:
-							vecinoDebeSer=lados.DERECHA;
 							tentando=new Point(figura.translacionPto(enlace.getRegion().getLocation(), -figura.G , 0));
 							break;
 						case DERECHA:
-							vecinoDebeSer=lados.IZQUIERDA;
 							tentando=new Point(figura.translacionPto(enlace.getRegion().getLocation(),+figura.G , 0));
 							break;
 						default:
 								break;
-					} 
+					}
+					
 					adyacente=getFiguraEn(tentando );
 					if(adyacente!=null){
 						cuadrada cuadroAdyacente = adyacente.retornaCuadrada(tentando);
+						boolean correcto=cuadroAdyacente.getNombre().compareTo(cuadro.getNombre())==0;
 						
-						
-						
-						if (cuadroAdyacente.getNombre().compareTo(cuadro.getNombre())==0) {
-							enlazante enlaceAVecinar=cuadroAdyacente.retornaEnlace(vecinoDebeSer);
-							if(enlaceAVecinar!=null){
-								if(enlaceAVecinar.getTipo()!=tipoEnlace.SOLIDO&&enlaceAVecinar.getTipo()!=tipoEnlace.TRIANGULAR&&enlaceAVecinar.getTipo()!=tipoEnlace.BLOQUEADO){
-									
-									enlace.corregir(true);
-									enlaceAVecinar.corregir(true);
-									
-									enlace.setIDVecino(adyacente.getID());
-									enlaceAVecinar.setIDVecino(seleccionada.getID());
-									
-									enlace.setIDCuadroVecino(cuadroAdyacente.getSoy());
-									enlaceAVecinar.setIDCuadroVecino(cuadro.getSoy());
+						enlazante enlaceAVecinar=cuadroAdyacente.retornaEnlace(vecinoDebeSer);
+						if(enlaceAVecinar!=null){
+							if(enlaceAVecinar.getTipo()==tipoEnlace.OCIOSO){
+								aVecinar(enlace, correcto, adyacente.getID(), cuadroAdyacente.getSoy());
+								aVecinar(enlaceAVecinar, correcto, seleccionada.getID(), cuadro.getSoy());
 								}
-								
-							}
-						}else{
-							enlazante enlaceAVecinar=cuadroAdyacente.retornaEnlace(vecinoDebeSer);
-							if(enlaceAVecinar!=null){
-								if(enlaceAVecinar.getTipo()!=tipoEnlace.SOLIDO&&enlaceAVecinar.getTipo()!=tipoEnlace.TRIANGULAR&&enlaceAVecinar.getTipo()!=tipoEnlace.BLOQUEADO){
-									
-									enlace.corregir(false);
-									enlaceAVecinar.corregir(false);
-									
-									enlace.setIDVecino(adyacente.getID());
-									enlaceAVecinar.setIDVecino(seleccionada.getID());
-									
-									enlace.setIDCuadroVecino(cuadroAdyacente.getSoy());
-									enlaceAVecinar.setIDCuadroVecino(cuadro.getSoy());
-								}
-								
-							}	
-						}
-						
-						
-						
-					}else{
-						if(enlace.getIDVecino()!=-1){
-							
-							pieza YaNoVecina=obtenerFigura(enlace.getIDVecino());
-							
-							if(YaNoVecina!=null){
-								enlazante YaNoVecino = YaNoVecina.getCuadrados().get(enlace.getIDCuadroVecino()).retornaEnlace(vecinoDebeSer);
-								
-								enlace.setIDVecino(-1);
-								YaNoVecino.setIDVecino(-1);
-								
-								enlace.setIDCuadroVecino(-1);
-								YaNoVecino.setIDCuadroVecino(-1);
-								
-								YaNoVecino.desactivar();
-								enlace.desactivar();
 							}
 						}
 					}
 				}
 			}
-		}
 		
+	}
+	
+	private void aVecinar(enlazante enlace,boolean correcto, int IDVecino, int IDCuadroVecino ) {
+		enlace.corregir(correcto);
+		enlace.setIDVecino(IDVecino);
+		enlace.setIDCuadroVecino(IDCuadroVecino);
+	}
+	
+	public void desactivarVecinos(){
+		for(cuadrada cuadrito:seleccionada.getCuadrados()){
+			for(enlazante enlacito:cuadrito.getEnlaces()){
+				if(enlacito.getIDCuadroVecino()!=-1&&enlacito.getIDVecino()!=-1){
+					cuadrada cuadroV = obtenerFigura(enlacito.getIDVecino()).getCuadrados().get(enlacito.getIDCuadroVecino());
+					for(enlazante enlaceV:cuadroV.getEnlaces()){
+						if(enlaceV.getLado()==enlacito.getTipoEnlaceContrario()){
+							enlaceV.desactivar();
+							enlacito.desactivar();
+						}
+					}
+				}
+			}
+		}		
 	}
 	
 	public void modificarAlgo(Point figuraResidente, Point figuraVecina, int enlaceAfectado){
@@ -258,5 +233,34 @@ public class Controlador {
 		auxiliar.setLocation((int)original.x/45*45+5, (int)original.y/45*45+5);
 		return auxiliar;
 	} 
+	
+	class vectorDeVectores {
+		Vector<pieza> supervector;
+		public vectorDeVectores() {
+			supervector=new Vector<pieza>(1, 1);
+			// //vector grande creado;
+		}
+		
+		public void añadir(pieza p){
+		}
 
+		
+		private boolean maquinaBusca(int index) {
+			
+			return false;
+		}
+		
+		private boolean interpreteBusca(int index) {
+			return false;
+		}
+		
+		private boolean compiladorBusca(int index) {
+			return false;
+		}
+		
+		
+		
+		
+	
+	}
 }
