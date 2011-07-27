@@ -8,10 +8,11 @@ import corotos.pieza;
 
 
 public class Modelo {
-	String nombre="puto";
+	public String nombre;
 	
 	private List<pieza> listaFiguras;
 	public Modelo(){
+		nombre="";
 		listaFiguras = new ArrayList<pieza>();
 	}
 	
