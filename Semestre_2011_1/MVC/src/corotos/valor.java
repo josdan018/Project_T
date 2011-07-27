@@ -48,5 +48,5 @@ public interface valor {
 	public Color colorOcioso=new Color(0.1F, 0.1F, 0.1F, 0.1F);
 	public Color colorCorrecto=new Color(0F, 1F, 0F, 1F);
 	public Color colorIncorrecto=new Color(1F, 0F, 0F, 1F);
-	public Color colorBloqueado=new Color(1F, 1F, 1F, 0F);
+	public Color colorBloqueado=new Color(0.1F, 0.1F, 0.1F, 0.1F);
 }

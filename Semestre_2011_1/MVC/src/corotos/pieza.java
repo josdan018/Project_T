@@ -83,21 +83,21 @@ public class pieza extends figura{
 	
 	
 	private void armarCompilador(Vector<String> nombres){
-		//-------centro del compilador----------------
+		//-------centro del compilador----------------(0)
 		cuadrada aux=new cuadrada(ID, region.getLocation(),new Point(0, 0),""/*,soy.NINGUNO*/,cuadrados.size());
 		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.IZQUIERDA);
 		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.DERECHA);
 		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.ABAJO);
 		cuadrados.add(aux);
-		//-------izquierda del compilador----------------
+		//-------izquierda del compilador----------------(1)
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), -G-P, 0),new Point(-G-P, 0),nombres.get(0)/*,soy.ENTRADA*/,cuadrados.size());
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.IZQUIERDA);
 		cuadrados.add(aux);
-		//-------derecha del compilador----------------
+		//-------derecha del compilador----------------(2)
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), +G+P, 0),new Point(+G+P, 0),nombres.get(1)/*,soy.SALIDA*/,cuadrados.size());
 		aux.anyadirEnlazante(tipoEnlace.BLOQUEADO, lados.DERECHA);
 		cuadrados.add(aux);
-		//-------abajo del compilador----------------
+		//-------abajo del compilador----------------(3)
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), 0, +G+P),new Point(0, +G+P),nombres.get(2)/*,soy.BASE*/,cuadrados.size());
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.IZQUIERDA);
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.DERECHA);
@@ -107,14 +107,14 @@ public class pieza extends figura{
 		
 	}
 	private void armarPrograma(Vector<String> nombres) {
-		//-------centro del Programa----------------
+		//-------centro del Programa----------------(0)
 		cuadrada aux=new cuadrada(ID, region.getLocation(),new Point(0, 0),nombres.get(0)/*,soy.ENTRADA*/,cuadrados.size());
 		aux.anyadirEnlazante(tipoEnlace.SOLIDO, lados.ARRIBA);
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.ABAJO);
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.IZQUIERDA);
 		aux.anyadirEnlazante(tipoEnlace.OCIOSO, lados.DERECHA);
 		cuadrados.add(aux);
-		//-------arriba del programa----------------
+		//-------arriba del programa----------------(1)
 		aux=new cuadrada(ID, translacionPto(region.getLocation(), 0, -G-P),new Point(0, -G-P),nombres.get(1)/*,soy.SALIDA*/,cuadrados.size());
 		cuadrados.add(aux);
 		

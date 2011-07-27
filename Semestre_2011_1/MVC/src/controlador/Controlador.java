@@ -1,5 +1,6 @@
 package controlador;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import java.awt.Rectangle;
 
@@ -10,6 +11,7 @@ import corotos.cuadrada;
 import corotos.enlazante;
 import corotos.figura;
 import corotos.pieza;
+import corotos.valor;
 import corotos.valor.lados;
 import corotos.valor.tipoEnlace;
 import corotos.valor.tipoPieza;
@@ -68,7 +70,6 @@ public class Controlador {
 	    while (it.hasNext()) {
 	    	pieza tmp=it.next();
 	    		if(tmp.dentroFigura(posicion)){
-	    			System.out.println("k aumento");
 	    			k++;
 	    		}
 		    }
@@ -87,8 +88,8 @@ public class Controlador {
 	
 	public void anyadirFigura(pieza f){
 		modelo.anyadirFigura(f);
-		System.out.println("añadiendo maquina");
-		superv.añadir(obtenerFigura(f.getID()));
+		if(f.getIdentificador()==tipoPieza.MAQUINA)
+			superv.añadir(obtenerFigura(f.getID()));
 	}
 	
 	public pieza getFiguraEn(Point p){
@@ -152,7 +153,6 @@ public class Controlador {
 			seleccionada.setSeleccionada(false);
 
 			if(this.getFiguraEn(ev.getPoint())!=null){
-				//System.out.println("entro aqui");
 				detectaEnlaces();
 			}
 			seleccionada=null;
@@ -293,7 +293,10 @@ public class Controlador {
 					case INTERPRETE:
 						return verificandoInterprete(0, enlace.getIDVecino());
 					case PROGRAMA:
-						return verificandoPrograma(0, enlace.getIDVecino());
+						if(verificandoPrograma(0, enlace.getIDVecino())){
+							return true;
+						}
+						break;
 					default:
 						return false;
 					}
@@ -317,12 +320,46 @@ public class Controlador {
 				if(enlace.getTipo()==tipoEnlace.CORRECTO){					
 					switch (obtenerFigura(enlace.getIDVecino()).getIdentificador()) {
 					case COMPILADOR:
-						return verificandoCompilador(1, enlace.getIDVecino());
+						if(verificandoCompilador(1, enlace.getIDVecino())&&
+								obtenerFigura(pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),-(valor.P+valor.G)))==null){
+							System.out.println("compilacion correcta del programa");
+							Vector< String > aux=new Vector<String>(1, 1);
+							aux.add("");
+							aux.add(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(1).getNombre());
+							aux.add(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(2).getNombre());
+							aux.add(actual.getCuadrados().get(2).getNombre());
+							
+							
+							anyadirFigura(new pieza(
+								getListadoSize(),
+								new Rectangle(
+										pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),-(valor.P+valor.G)),
+										new Dimension(0,0)), 
+								tipoPieza.COMPILADOR,
+								aux));
+						return true;
+						}
+						break;
 					/*case INTERPRETE:
 						return verificandoInterprete(0, enlace.getIDVecino());*///puede haber interprete?
 					case PROGRAMA:
-						System.out.println("compilacion correcta del programa");
-						return /*verificandoPrograma(0, enlace.getIDVecino())*/true;
+						if(verificandoPrograma(0, enlace.getIDVecino())&&
+								obtenerFigura(pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),0))==null){
+							System.out.println("compilacion correcta del programa");
+							Vector< String > aux=new Vector<String>(1, 1);
+							aux.add(actual.getCuadrados().get(1).getNombre());
+							aux.add(obtenerFigura(enlace.getIDVecino()).getCuadrados().get(1).getNombre());
+							
+							anyadirFigura(new pieza(
+								getListadoSize(),
+								new Rectangle(
+										pieza.translacionPto(actual.getRegion().getLocation(),+2*(valor.G+valor.P),0),
+										new Dimension(0,0)), 
+								tipoPieza.PROGRAMA,
+								aux));
+						return true;
+						}
+						break;
 					default:
 						return false;
 					}
