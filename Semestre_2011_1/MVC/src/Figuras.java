@@ -46,7 +46,9 @@ public class Figuras {
 			JPanel d=new JPanel();
 			
 
-			metodo_s b=new metodo_s(frame);
+			
+			
+			
 			JPanel a=new JPanel();
 			JTextArea t_area = new JTextArea("  . . . . . Creando \n",10,80); 
 			a.setOpaque(true);
@@ -65,6 +67,8 @@ public class Figuras {
 			vista.controlador=controlador; //Lo registro para su uso, deberia ser un metodo pero por simplificacion
 			JScrollPane ModelScroll = new JScrollPane(controlador.getVista(), ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS, ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
 			guiobjects.add(ModelScroll,BorderLayout.CENTER);
+			
+			metodo_s b=new metodo_s(frame,guiobjects);
 
 			a.add(t_area);
 

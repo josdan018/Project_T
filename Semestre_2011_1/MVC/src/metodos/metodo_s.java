@@ -29,32 +29,35 @@ public class metodo_s extends JPanel {
 	JFrame ventana;
 	Vector<String> lenguajes;
 	int im = 0;
+	
  	
 	
-	public metodo_s(JFrame ventana){
+	public metodo_s(JFrame ventana,Container guiobjects ){
 		
-		
+
 		setOpaque(true);
-		setBackground(Color.RED);
+		setBackground(Color.GREEN);
 		setPreferredSize(new Dimension(200,1000));
-		//setBounds(0, 0, 400,1000);
-		//ssContainer guiobjects = this.getRootPane();
+		//setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		setLayout(null);
 		this.ventana=ventana;
 		
-		this.setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		JScrollPane scroll = new JScrollPane();
+		this.ventana.getContentPane().add(scroll, BorderLayout.WEST);
 
 		agregar_piezas.setText("   Agregar   ");
 		//agregar_piezas.setAlignmentX(CENTER_ALIGNMENT);
-		//agregar_piezas.setBounds(0, 0, 110, 1000);
-				
+		agregar_piezas.setBounds(40, 0, 100, 25);
+		this.add(agregar_piezas);		
 		agregar_piezas.addMouseListener(new MouseAdapter(){
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				ventana_emergente();								
 			}
 		});
+
 		
-		this.add(agregar_piezas);		
+		//repaint();
 	}
 	
 	public void ventana_emergente(){
@@ -107,29 +110,32 @@ public class metodo_s extends JPanel {
 			pieza imag1= new pieza(0,new Rectangle(valor.G+20,0,0,0),valor.tipoPieza.PROGRAMA,lenguajes);			
 			im = im + 1;
 			dibujo(imag1);
-		}		
+			
+		}	
+		this.repaint();
 	}
 	
 	public void dibujo(final pieza imag1){
+		
 		JLabel imagen= new JLabel(){
 
 			@Override			
 			public void paint(Graphics g) {
 				imag1.dibujar(g);
 			}
+			
+			
 		};
+		
 		
 		imagen.setOpaque(true);
 		imagen.setBackground(Color.black);
 		System.out.println("cantidad en el vector: "+ im);
-		imagen.setBounds(0,(90 * im), 1000, 1000);
-		imagen.setLayout(null);
+		imagen.setBounds(0,(90 * im), 140, 150);
+		//imagen.setLayout(new BoxLayout(imagen,BoxLayout.Y_AXIS));
 		imagen.setVisible(true);
 		
-		
-		this.add(imagen);
-		//imagen.repaint();
-		//System.out.println("hizo algoooooooo");
+		this.add(imagen); 
 		
 	}
 	public String componentes(String lenguaje){
